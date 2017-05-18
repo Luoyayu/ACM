@@ -6,7 +6,7 @@
 #include<cstdio>
 #include<cstring>
 #include<cmath>
-const int maxn=999;
+const int maxn=3000000+33;
 using namespace std;
 int euler_phi(int n)//欧拉函数
 {
@@ -19,12 +19,13 @@ int euler_phi(int n)//欧拉函数
             while(n%i==0) n/=i;
         }
     if(n>1) ans=ans/n*(n-1);
+    return ans;
 }
 int phi[maxn];
+int Euler[maxn]={0};
 void phi_table(int n)//筛法欧拉表
 {
-    for(int i=2;i<=n;i++)
-        phi[i]=0;
+    //memset(phi,0,sizeof phi);全局变量默认0
     phi[1]=1;
     for(int i=2;i<=n;i++)
         if(!phi[i])
@@ -32,13 +33,19 @@ void phi_table(int n)//筛法欧拉表
             {
                 if(!phi[j])
                     phi[j]=j;
-                phi[j]=phi[i]/i*(i-1);
+                phi[j]=phi[j]/i*(i-1);
             }
+    Euler[1]=phi[1];
+    for(int i=2;i<=maxn;i++)
+       Euler[i]=Euler[i-1]+phi[i];
 }
 int main()
 {
-    int n;
-    scanf("%d",&n);
-    printf("%d\n",euler_phi(n));
+    int a,b;
+    while(scanf("%d%d",&a,&b)!=EOF)
+    {
+        phi_table(3000000);
+        printf("%d\n",Euler[b]-Euler[a-1]);
+    }
     return 0;
 }

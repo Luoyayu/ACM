@@ -9,10 +9,24 @@ ull pow_mod(ull a,ull p,ull n)
     if(p&1) ans=(ans%n)*(a%n)%n;
     return ans;
 }
+ull power_mod(ull a,ull b,ull mod)
+{
+    ull ans=1,tmp=a%mod;
+    while(b)
+    {
+        if(b&1)
+            ans=ans*tmp%mod;
+
+        tmp=tmp*tmp%mod;
+        b>>=1;
+    }
+    return ans;
+}
 int main()
 {
     ull a,p,n;
     scanf("%lld%lld%lld",&a,&p,&n);
     printf("%lld\n",pow_mod(a,p,n));
+    printf("%llu\n",power_mod(a,p,n));
     return 0;
 }
