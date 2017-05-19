@@ -32,6 +32,7 @@ int main()
     {
         ans = INF;
         dfs(0,1,1);
+        cout<<((long long )1<<62)+1<<endl;
         cout<<ans<<endl;
     }
     return 0;

@@ -1,3 +1,5 @@
+///如果type==0即是求出整数的约数为K
+///如果type==1即是
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -10,12 +12,13 @@ int prime[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
 void prim()
 {
     for(int i=1;i<=maxn;i++)
-        ip[i]=i;
-    for(int i=1;i<=maxn;i++)
     {
-        for(int j=i;j<maxn;j+=i)
+        ip[i]+=i;
+        for(int j=i;j<=maxn;j+=i)
             ip[j]--;
-        if(!ip[ip[i]]) ip[ip[i]]=i;
+
+        if(!ip[ip[i]])
+            ip[ip[i]]=i;
         ip[i]=0;
     }
 }
@@ -23,10 +26,12 @@ void dfs(int num,LL tmp,int dept)
 {
     if(num==n) ans=min(tmp,ans);
     if(num>=n || (dept>=16)) return ;
-    for(int i=1; i<=63; i++)
+    for(int i=1; i<=62; i++)
     {
-        if(tmp>ans/prime[dept]) break;
-            dfs(num*(i+1), tmp*=prime[dept], dept+1);
+        if(tmp>ans/prime[dept]) return ;
+
+        tem*=prime[dept];
+            dfs(num*(i+1), tmp, dept+1);
     }
 }
 int main()
@@ -48,7 +53,7 @@ int main()
         printf("Case %d: ",kase);
         if(ans==0)
             cout<<"Illegal"<<endl;
-        if(ans>=INF)
+        else if(ans>=INF)
             cout<<"INF"<<endl;
         else
             cout<<ans<<endl;
