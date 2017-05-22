@@ -3,6 +3,7 @@
 ///问怎么样最少操作使得(起始N+1)%K==(现在N)%K
 ///注意此处的mod模后的结果都为正,故A%B=(A%B+B)%B;
 ///由HDU4474的结论可知,模数相等的情况下对两个数操作结果是一致的
+///担心自己忘了还是写一边吧:
 #include<cstdio>
 #include<vector>
 #include<string>

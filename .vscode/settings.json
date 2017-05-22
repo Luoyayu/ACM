@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "queue": "cpp"
+    },
+    "[cpp]": {
+        "editor.quickSuggestions": false
+    },
+    "[c]": {
+        "editor.quickSuggestions": false
+    }
+}
