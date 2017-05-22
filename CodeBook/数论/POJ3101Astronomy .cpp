@@ -11,6 +11,6 @@ int main()
     int n;
     while(scanf("%d",&n)!=EOF)
     {
-        printf("%d\n",30*28/__gcd(30,28));
+        printf("%d\n",);
     }
 }

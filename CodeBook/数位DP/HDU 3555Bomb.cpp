@@ -20,13 +20,13 @@ void init()
 
 ll solve(ll n)
 {
-    int digit[20];//分数
+    int digit[20];//分|数
     int len=1;
     ll m=n;
-    while(n)
+    while(m)
     {
-        digit[len++]=n%10;
-        n/=10;
+        digit[len++]=m%10;
+        m/=10;
     }
 
     digit[len+1]=0;
@@ -40,7 +40,7 @@ ll solve(ll n)
         if(digit[i]==9 && digit[i+1]==4)
             break;
     }
-    return m-ans;
+    return n-ans;
 }
 int main()
 {
