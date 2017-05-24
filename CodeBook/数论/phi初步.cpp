@@ -31,20 +31,17 @@ int phi[maxn];
 int Euler[maxn]={0};
 void phi_table(int n)//筛法欧拉表
 {
-    //memset(phi,0,sizeof phi);全局变量默认0
     phi[1]=1;
-    for(int i=2;i<=n;i++)
-        if(!phi[i])
-            for(int j=i;j<=n;j+=i)
-            {
-                if(!phi[j])
-                    phi[j]=j;
-                phi[j]=phi[j]/i*(i-1);
-            }
-    Euler[1]=phi[1];
-    for(int i=2;i<=maxn;i++)
-       Euler[i]=Euler[i-1]+phi[i];
+    for(int i=2;i<=n;i++) if(!phi[i])
+        for(int j=i;j<=n;j+=i)
+        {
+            if(!phi[j]) phi[j]=j;
+            phi[j]=phi[j]/i*(i-1);
+        }
 }
+
+///一些常用性质:d
+
 
 ///<*************欧拉表**************>
 
