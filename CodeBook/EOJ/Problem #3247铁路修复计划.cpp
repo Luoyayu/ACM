@@ -28,15 +28,15 @@ bool kurskal()
 {
     int cnt=0;double sum=0;
     for(int i=1;i<=n;i++)F[i]=i;
-    for(int i=1;i<=n;i++)
+    for(int i=1;i<=m;i++)
     {
         int x=find(edge[i].u),y=find(edge[i].v);
         if(x!=y)
         {
             unite(x,y);
             sum+=edge[i].w;
+            if(++cnt==n-1) break;
         }
-        if(cnt==n-1) break;
     }
     if(sum>M) return 0;
     return 1;
