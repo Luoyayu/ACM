@@ -33,13 +33,14 @@
         {
             "name": "Win32",
             "includePath": [
-                "C://MinGW//include"
+                "C://MinGW//lib//gcc//mingw32//5.3.0//include//c++",
+                
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": "",
                 "path": [
-                    "C://MinGW//include"
+                    "C://MinGW//lib//gcc//mingw32//5.3.0//include//c++"
                 ]
             }
         }

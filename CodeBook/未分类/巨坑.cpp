@@ -1,7 +1,7 @@
-
+//题巨难理解
 #include <iostream>
 #include <cstring>
-#include<cstdio>
+#include <cstdio>
 using namespace std;
 #define  ok ios::sync_with_stdio(false)
 int main()
