@@ -29,7 +29,7 @@ int main()
     {
         memset(vis,0,sizeof(vis));
         cin>>a>>b;
-        for(int i=1; i<=n; i++)//´Ó1²ã¿ªÊ¼ËãÆð 
+        for(int i=1; i<=n; i++)//ä»Ž1å±‚å¼€å§‹ç®—èµ· 
             cin>>k[i];
         cout<<bfs(a,b)<<endl;
     }

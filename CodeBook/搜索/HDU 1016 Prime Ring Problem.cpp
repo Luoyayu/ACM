@@ -1,11 +1,11 @@
-//ËØÊı»·dfs
+//ç´ æ•°ç¯dfs
 #include <cstdio>
 #include<cmath>
 #include<cstring>
 int vis[25];
 int num[25];
 int n,kase=0;
-int jud(int x)//ÕâÀï¿ÉÒÔ´ò±íÓÅ»¯ 
+int jud(int x)//è¿™é‡Œå¯ä»¥æ‰“è¡¨ä¼˜åŒ– 
 {
 	for(int i=2;i<=sqrt(x);i++)
 		if(x%i==0) return 0;
@@ -13,7 +13,7 @@ int jud(int x)//ÕâÀï¿ÉÒÔ´ò±íÓÅ»¯
 } 
 int DFS(int x=1)
 {
-	if(x==n&&jud(num[n-1]+1))//ËÑµ½nÊ±£¬²¢ÇÒÓë1µÄºÍÎªÆæÊıÊä³ö 
+	if(x==n&&jud(num[n-1]+1))//æœåˆ°næ—¶ï¼Œå¹¶ä¸”ä¸1çš„å’Œä¸ºå¥‡æ•°è¾“å‡º 
 	{
 		for(int i=0;i<n-1;i++)
 			printf("%d ",num[i]);
@@ -22,14 +22,14 @@ int DFS(int x=1)
 	}
 	for(int i=2;i<=n;i++)//2 -> n 
 	{
-		if(!vis[i])//Ã»ÓĞ±»±ê¼Ç¹ı 
+		if(!vis[i])//æ²¡æœ‰è¢«æ ‡è®°è¿‡ 
 		{
-			if(jud(num[x-1]+i))//ºÍÇ°Ò»¸öºÍÎªÆæÊı 
+			if(jud(num[x-1]+i))//å’Œå‰ä¸€ä¸ªå’Œä¸ºå¥‡æ•° 
 			{
-				vis[i]=1;//±ê¼Ç 
+				vis[i]=1;//æ ‡è®° 
 				num[x]=i;//
 				DFS(x+1);//dfs 
-				vis[i]=0;//±ê¼ÇÎª0±ãÓÚ»ØËİ 
+				vis[i]=0;//æ ‡è®°ä¸º0ä¾¿äºå›æº¯ 
 			}
 		}
 	}
@@ -40,7 +40,7 @@ int main()
 	{
 		num[0]=1;
 		memset(vis,0,sizeof vis); 
-		printf("Case %d:\n",++kase);//×¢Òâ¸ñÊ½ 
+		printf("Case %d:\n",++kase);//æ³¨æ„æ ¼å¼ 
 		DFS();
 		printf("\n");
 	}

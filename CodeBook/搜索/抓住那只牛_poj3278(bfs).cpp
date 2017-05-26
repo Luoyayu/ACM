@@ -7,14 +7,14 @@
 using namespace std;
 int N, K;
 const int MAXN = 1000010;
-int vis[2*MAXN ];//  ÅĞÖØ±ê¼Ç,visited[i]=1±íÊ¾iÒÑ¾­À©Õ¹¹ı
+int vis[2*MAXN ];//  åˆ¤é‡æ ‡è®°,visited[i]=1è¡¨ç¤ºiå·²ç»æ‰©å±•è¿‡
 struct Step
 {
 	int x;
 	int steps;
 	Step(int xx, int s) :x(xx), steps(s) {}
 };
-queue<Step>q;//Open±í
+queue<Step>q;//Openè¡¨
 int main()
 {
 	while (scanf("%d %d",&N,&K)!=EOF)
@@ -73,13 +73,13 @@ int n, k;
 void bfs(int x)
 {
 	int nx, i, s;
-	queue<int> p; //open±í 
-	vis[x] = 1, time[x] = 0, p.push(x); //³ö¶Ó£¬Èëclosed±í 
+	queue<int> p; //openè¡¨ 
+	vis[x] = 1, time[x] = 0, p.push(x); //å‡ºé˜Ÿï¼Œå…¥closedè¡¨ 
 	while (!p.empty())
 	{
 		s = p.front();
-		p.pop(); //³öÕ» 
-		for (i = 1; i <= 3; i++) //Ã¿´Î¿É×ßÈıÖÖ 
+		p.pop(); //å‡ºæ ˆ 
+		for (i = 1; i <= 3; i++) //æ¯æ¬¡å¯èµ°ä¸‰ç§ 
 		{
 			if (i == 1)
 				nx = s + 1;
@@ -92,7 +92,7 @@ void bfs(int x)
 			{
 				vis[nx] = 1;
 				p.push(nx);
-				time[nx] = time[s] + 1; //Ê±¼ä+1 
+				time[nx] = time[s] + 1; //æ—¶é—´+1 
 			}
 			if (nx == k)
 			{

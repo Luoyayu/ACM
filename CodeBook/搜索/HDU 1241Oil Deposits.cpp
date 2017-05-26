@@ -1,4 +1,4 @@
-//DFS ÇóÊ¯ÓÍ¿ìÇøÓò£¬ÉîËÑ 
+//DFS æ±‚çŸ³æ²¹å¿«åŒºåŸŸï¼Œæ·±æœ 
 #include<cstdio>
 int n,m;
 char map[105][105];
@@ -6,7 +6,7 @@ void dfs(int a,int b)
 {
 	if(map[a][b]=='@')
 	{
-		map[a][b]='*';//°Ë·½Ïòµİ¹é 
+		map[a][b]='*';//å…«æ–¹å‘é€’å½’ 
 		dfs(a,b+1);  
         dfs(a+1,b+1);  
         dfs(a+1,b);  
