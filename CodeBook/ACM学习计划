@@ -2,81 +2,58 @@ ACM大量习题题库
 
 ACM大量习题题库 
 现在网上有许多题库，大多是可以在线评测，所以叫做Online Judge。除了USACO是为IOI准备外，其余几乎全部是大学的ACM竞赛题库。
-
 USACO
-
 http://ace.delos.com/usacogate
-
 美国著名在线题库，专门为信息学竞赛选手准备
 
 
 TJU
-
 http://acm.tongji.edu.cn/
-
 同济大学在线题库，唯一的中文题库，适合NOIP选手
 
 
 ZJU
-
 http://acm.zju.edu.cn/
-
 浙江大学在线题库
 
 
 JLU
-
 http://acm.jlu.edu.cn/
-
 吉林大学在线题库（一直上不去）
 
 
 PKU
-
 http://acm.pku.edu.cn
-
 北京大学在线题库
 
 
 URAL
-
 http://acm.timus.ru
-
 俄罗斯乌拉尔大学在线题库
 
 
 SGU
-
 http://acm.sgu.ru/
-
 俄罗斯圣萨拉托夫州大学在线题库
 
 
 ELJ
-
 http://acm.mipt.ru/judge/bin/problems.pl?lang=en
-
 俄罗斯莫斯科物理技术学院
 
 
 SPOJ
-
 https://spoj.sphere.pl/
-
 波兰格但斯克理工大学
 
 
 UVA
-
 http://acm.uva.es/
-
 西班牙的Universidad de Valladolid在线题
 
 
 ACM联系建议
-
 一位高手对我的建议：
-
 一般要做到50行以内的程序不用调试、100行以内的二分钟内调试成功.acm主要是考算法的
 ，主要时间是花在思考算法上，不是花在写程序与debug上。 
 下面给个计划你练练：
