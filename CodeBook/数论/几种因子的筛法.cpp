@@ -55,3 +55,27 @@ void init()
 ///3<****************************预处理质分解************************>
 
 
+
+///4<****************************素数线性筛法************************>
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int maxn = 10000000+5;
+bool isprime[maxn];
+int tot=0, p[maxn];
+void init()
+{
+    memset(isprime, 1, sizeof isprime);
+    for(int i = 2; i < maxn; i++)
+    {
+        if(isprime[i]) p[tot++]=i;
+        for(int j = 0; j < tot && i*p[j] < maxn; j++)
+        {
+            isprime[i * p[j] ] = 0;
+            if(i % p[j] == 0) break;
+        }
+    }
+}
+///4<****************************素数线性筛法************************>
+
+

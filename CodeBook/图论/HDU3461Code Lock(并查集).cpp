@@ -10,9 +10,9 @@ typedef long long ll;
 const int mod=1000000007;
 const int maxn=10000000;
 int F[maxn];
-ll pow_m(int b)
+ll pow_m(int b,ll a=26,)
 {
-    ll a=26,ans=1;
+    ll ans=1;
     while(b)
     {
         if(b&1)

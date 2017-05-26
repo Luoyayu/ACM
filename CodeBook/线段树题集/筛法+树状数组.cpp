@@ -34,8 +34,8 @@ int main()
         }
 
 
-    for(int i=1;i<maxn;i++)
-       printf("%d ",prime[i]);
+    //for(int i=1;i<maxn;i++)
+       //printf("%d ",prime[i]);
     for(int i=2;i<=maxn;i++)
         if(prime[i]-prime[i-1]==2)
             add(prime[i],1);
