@@ -11,18 +11,15 @@ Matrix operator	* (Matrix a,Matrix b)
     memset(c.m,0,sizeof c.m);
     for(int i=0;i<n;i++)
         for(int j=0;j<n;j++)
-		{
             for(int k=0;k<n;k++)
                 c.m[i][j]=(c.m[i][j]+a.m[i][k]*b.m[k][j]%mod)%mod;
-        }
     return c;
 }
 Matrix power_mod(Matrix a,Matrix b,int x){
     while(x)
 	{
-        if(x&1){
+        if(x&1)
             b = b*a;
- 	}
         x >>= 1;
         a = a*a;
     }
@@ -35,7 +32,8 @@ Matrix operator	+ (Matrix a,Matrix b){
             c.m[i][j]=(a.m[i][j]+b.m[i][j])%mod;
     return c;
 }
-Matrix solve(int x){
+Matrix solve(int x)
+{
     if(x==1)
         return mat;
     Matrix res=solve(x/2),cur;
@@ -45,10 +43,11 @@ Matrix solve(int x){
         res=res+cur*res;
         res=res+cur;
     }
-	else{
-	        cur=power_mod(mat,E,x/2);
-	        res=res+cur*res;
-    	}	
+	else
+    {
+        cur=power_mod(mat,E,x/2);
+        res=res+cur*res;
+    }	
     return res;
 }
 
