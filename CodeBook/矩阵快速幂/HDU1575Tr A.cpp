@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
+using namespace std;
 #define mod 9973
 struct matrix{int a[10][10];};
 matrix mat1, mat2,ans;
