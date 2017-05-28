@@ -6,21 +6,18 @@ int main()
     while(scanf("%d %d",&a,&b)!=EOF)
     {
         int cnt=1;
-        while(1)
+        int turn=0;
+        while(a>=0&&b>=0)
         {
-            a-=cnt++;
-            b-=cnt++;
-            if(b<=0&&a>0)
-            {
-                printf("Vladik\n");
-                break;
-            }
-            if(a<=0)
-            {
-                printf("Valera\n");
-                break;
-            }
+            if(turn)
+                a-=cnt;
+            else
+                b-=cnt;
+            turn^=1;
+            cnt++;
         }
+        if(a>=0) printf("Vladik\n");
+        else printf("Valera\n");
     }
     return 0;
 }

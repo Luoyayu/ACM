@@ -1,15 +1,15 @@
-//ÌâÄ¿Ì«³¤¿´(((¦Õ(¡ò¥í¡ò;)¦Õ)))
-//Ò»¸öÈí¼þÓÐs¸÷×ÓÏµÍ³,²úÉún¸öbug
-//ÇÒÒ»¸öbuÖ»ÊôÓÚÒ»¸ö×ÓÏµÍ³£¬ÊôÓÚÒ»¸ö·ÖÀà
-//IvanÃ¿Ìì·¢ÏÖÒ»¸öbug,Õâ¸öbugÊôÓÚÄ³¸ö×ÓÏµÍ³µÄ¸ÅÂÊÊÇ1/s,ÊôÓÚÄ³¸ö·ÖÀà¸ö¸ÅÂÊÊÇ1/n
-//ÎÊ·¢ÏÖnÖÖug£¬ÇÒÃ¿¸ö×ÓÏµÍ³¶¼·¢ÏÖbugµÄÌìÊýµÄÆÚÍû
-//×´Ì¬£ºdp[i][j]±íÊ¾ÒÑ¾­ÕÒµ½iÖÐbugs£¬´ïµ½Ä¿±ê×´Ì¬µÄÌìÊýµÄÆÚÍû
-//×ªÒÆ·½³Ì:     dp[i][j]=(i/n)*(j/s)
+//é¢˜ç›®å¤ªé•¿çœ‹(((Ï†(â—Žãƒ­â—Ž;)Ï†)))
+//ä¸€ä¸ªè½¯ä»¶æœ‰så„å­ç³»ç»Ÿ,äº§ç”Ÿnä¸ªbug
+//ä¸”ä¸€ä¸ªbuåªå±žäºŽä¸€ä¸ªå­ç³»ç»Ÿï¼Œå±žäºŽä¸€ä¸ªåˆ†ç±»
+//Ivanæ¯å¤©å‘çŽ°ä¸€ä¸ªbug,è¿™ä¸ªbugå±žäºŽæŸä¸ªå­ç³»ç»Ÿçš„æ¦‚çŽ‡æ˜¯1/s,å±žäºŽæŸä¸ªåˆ†ç±»ä¸ªæ¦‚çŽ‡æ˜¯1/n
+//é—®å‘çŽ°nç§ugï¼Œä¸”æ¯ä¸ªå­ç³»ç»Ÿéƒ½å‘çŽ°bugçš„å¤©æ•°çš„æœŸæœ›
+//çŠ¶æ€ï¼šdp[i][j]è¡¨ç¤ºå·²ç»æ‰¾åˆ°iä¸­bugsï¼Œè¾¾åˆ°ç›®æ ‡çŠ¶æ€çš„å¤©æ•°çš„æœŸæœ›
+//è½¬ç§»æ–¹ç¨‹:     dp[i][j]=(i/n)*(j/s)
 //              dp[i][j+1]=(i/n)*(1-j/s)
 //              dp[i+1][j]=(1-i/n)*(j/s)
 //              dp[i+1][j+1]=(1-i/n)*(1-j/s)
-//ÕûÀíµÄ£ºdp[i][j]=
-//±ß½ç£ºdp[n][s]=0
+//æ•´ç†çš„ï¼šdp[i][j]=
+//è¾¹ç•Œï¼šdp[n][s]=0
 #include<cstdio>
 #include<cstring>
 using namespace std;

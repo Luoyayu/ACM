@@ -4,13 +4,13 @@
 ///懵,如果没有联动区间的话答案是26^n,如果增加一个联动区间则为26^(n-1)
 ///因为在这个区间内的26中情况数相同的，现在是要找有多少个独立的联动区间
 ///对于一个区间[l,r],join(l,r+1)这样对于一个新的区间如果是将原来的分开的联动的区间总体联动的就可以去掉
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 const int mod=1000000007;
 const int maxn=10000000;
 int F[maxn];
-ll pow_m(int b,ll a=26,)
+ll pow_m(int b,ll a=26)
 {
     ll ans=1;
     while(b)

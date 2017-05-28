@@ -1,7 +1,9 @@
 {
     "files.associations": {
         "queue": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "stack": "cpp",
+        "algorithm": "cpp"
     },
     "[cpp]": {
         "editor.quickSuggestions": false
