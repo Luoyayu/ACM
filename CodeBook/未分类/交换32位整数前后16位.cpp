@@ -8,3 +8,4 @@ int main()
         printf("%u\n",((n << 16) | (n >> 16)));
     return 0;
 }
+
