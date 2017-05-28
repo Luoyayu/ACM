@@ -3,7 +3,8 @@
         "queue": "cpp",
         "ostream": "cpp",
         "stack": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "cstdio": "cpp"
     },
     "[cpp]": {
         "editor.quickSuggestions": false

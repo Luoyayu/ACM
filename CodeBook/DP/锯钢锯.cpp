@@ -36,8 +36,8 @@ return r[n];
 int main()
 {
 	int n;
-	freopen("input.txt","r",stdin);
-	freopen("output.txt","w",stdout);
+	//freopen("input.txt","r",stdin);
+	//freopen("output.txt","w",stdout);
 	while(scanf("%d",&n)!=EOF)
 	{
 		for(int i=0;i<n;i++)
