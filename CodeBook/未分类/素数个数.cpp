@@ -14,6 +14,7 @@ void init()
             isprime[i*p[j]]=false;
             if(i % p[j] ==0) break;
         }
+
         if(isprime[i])
             isprime[i]+=isprime[i-1];
         else

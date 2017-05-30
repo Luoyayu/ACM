@@ -7,7 +7,7 @@ int main()
     int V;
     while(scanf("%d",&V)!=EOF)
     {
-        scanf("%d%d%d%d",&c[1],&w[1],&c[2],&w[2]);
+        scanf("%d %d %d %d",&c[1],&w[1],&c[2],&w[2]);
         memset(dp,0,sizeof dp);
         for(int i=1;i<=2;i++)
             for(int v=c[i];v<=V;v++)
