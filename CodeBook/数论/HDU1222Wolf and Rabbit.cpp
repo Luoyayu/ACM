@@ -7,6 +7,7 @@ using namespace std;
 int main()
 {
     int p;
+    ios::sync_with_stdio(false);
     scanf("%d",&p);
     while(p--)
     {
@@ -16,7 +17,6 @@ int main()
             cout<<"NO\n";
         else
             cout<<"YES\n";
-
     }
     return 0;
 }
