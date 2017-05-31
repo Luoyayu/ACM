@@ -9,7 +9,7 @@ void init()
     llu cnt=1;
     llu  m=sqrt(maxn+0.5);
     for(llu i=1;i<=m;i++)
-        ans[cnt++]=i*i;
+        ans[cnt++] = i*i;
 }
 int main()
 {
