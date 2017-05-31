@@ -8,7 +8,6 @@ const int maxn=550;
 int g[maxn][maxn];
 int ori[maxn][maxn];
 bool used[maxn];
-int n,m;
 int uN,vN;
 int linker[maxn];
 bool dfs(int u)
@@ -41,6 +40,7 @@ int hungary()
 int b[maxn];
 int main()
 {
+    int n,m;
     while(scanf("%d%d",&n,&m)!=EOF)
     {
         if(n==0&&m==0)break;
@@ -61,7 +61,7 @@ int main()
                 if(ori[i][j]!=-1)
                 {
                     b[index]=i*m+j;//记录可拍卖点在原图的位置
-                    ori[i][j]=index++;//记录原图中可行点的序号
+                    ori[i][j]=index++;//记录原图中可行点的序号便于建图
                 }
         uN=vN=index;
         memset(g,0,sizeof g);
@@ -79,8 +79,10 @@ int main()
                     if(j<m-1&&ori[i][j+1]!=-1)
                         g[u][ori[i][j+1]]=1;
                 }
+
         int ans=hungary();
         printf("%d\n",ans);
+
         for(int i=0;i<index;i++)
             if(linker[i]!=-1)
             {
