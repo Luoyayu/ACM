@@ -6,9 +6,8 @@
 using namespace std;
 int main()
 {
-    int p;
     ios::sync_with_stdio(false);
-    scanf("%d",&p);
+    int p;scanf("%d",&p);
     while(p--)
     {
         int n,m;
