@@ -11,18 +11,18 @@ typedef long long LL;
 #define Rson i<<1|1
 LL sum[MAXN*4];
 LL addv[MAXN*4];
-void PushDown(int i,int num)
+void PushDown(int node,int num)
 {
-    LL &t=addv[i];
-    if(t)
+    LL &lazy=addv[node];
+    if(lazy)
     {
-        sum [Lson]+=t*(num-(num/2));
-        sum [Rson]+=t*(num/2);
-        addv[Lson]+=t,addv[Rson]+=t;
-        t=0;
+        sum [Lson]+=lazy*(num-(num/2));
+        sum [Rson]+=lazy*(num/2);
+        addv[Lson]+=lazy,addv[Rson]+=lazy;
+        lazy=0;
     }
 }
-void maintain(int i)
+void pushup(int i)
 {
     sum[i]=sum[Lson]+sum[Rson];
 }
@@ -34,9 +34,9 @@ void build(int i,int l,int r)
         scanf("%I64d",&sum[i]);
         return ;
     }
-    int m=(l+r)/2;
+    int m=(l+r)>>1;
     build(lson),build(rson);
-    maintain(i);
+    pushup(i);
 }
 void update(int ql,int qr,int add,int i,int l,int r)
 {
@@ -50,7 +50,7 @@ void update(int ql,int qr,int add,int i,int l,int r)
     int m=(l+r)/2;
     if(ql<=m) update(ql,qr,add,lson);
     if(m<qr) update(ql,qr,add,rson);
-    maintain(i);
+    pushup(i);
 }
 LL query(int ql,int qr,int i,int l,int r)
 {

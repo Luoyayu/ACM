@@ -40,7 +40,7 @@ void update(int ql,int qr,int val,int l,int r,int i){}//更新区间
     if(qr>M) {}
     push_up(i);//更新信息
 }
-int query(int q;int qr,int l,int r,int i)
+int query(int ql;int qr,int l,int r,int i)
 {
     if(ql<=l&&qr>=r) {}
     pushdown(i,r-l+1);

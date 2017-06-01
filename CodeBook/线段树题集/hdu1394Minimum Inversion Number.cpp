@@ -25,7 +25,6 @@ void build(int i,int l,int r)
         tree[i]=0;
         return;
     }
-
     int M=(l+r)>>1;
     build(lson),build(rson),maintain(i);
 }

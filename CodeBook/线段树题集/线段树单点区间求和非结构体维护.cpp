@@ -8,11 +8,11 @@
 #define Rson i<<1|1
 using namespace std;
 int tree[50005<<2];
-void maintain(int i)
+void pushup(int node)
 {
-    tree[i]=tree[Lson]|tree[Rson];
+    tree[node]=tree[Lson]|tree[Rson];
 }
-void build(int i,int l,int r)
+void build(int node,int l,int r)
 {
     if(l==r)
     {
@@ -21,21 +21,21 @@ void build(int i,int l,int r)
     }
     else
     {
-        int M=(l+r)/2;
+        int M=(l+r)>>1;
         build(lson),build(rson);
-        maintain(i);
+        pushup(node);
     }
 }
-void update(int p,int val,int i,int l,int r)
+void update(int p,int val,int node,int l,int r)
 {
     if(l==r)
-        tree[i]+=val;
+        tree[node]+=val;
     else
     {
         int M=(l+r)/2;
         if(p<=M) update(p,val,lson);
         else update(p,val,rson);
-        maintain(i);
+        pushup(node);
     }
 }
 int query(int L,int R,int i,int l,int r)
