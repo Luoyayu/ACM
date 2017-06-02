@@ -16,9 +16,9 @@ int main()
 
         ll tmp=0,left,right,blockNum;
         n = min(n,k);///if k<n all is 0
-        for(int i=1; i<=n;i=right+1)
+        for(int i=1;i<=n;i=right+1)
         {
-            blockNum = k/i;
+            blockNum= k/i;
             left  = i;
             right = k/(k/i); cout<<"right1:"<<right<<endl;
             right = min(n, right);
