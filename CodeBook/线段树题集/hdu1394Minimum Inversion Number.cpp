@@ -1,49 +1,47 @@
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 const int maxn=5005;
-//æœ€å°åè½¬æ•°ï¼šåºåˆ—ä¸­ai,aj(i<j&&ai<aj)çš„å¯¹æ•°
-//æè¿°ï¼šå¯¹äºä¸€ä¸ªæ•°åˆ—ï¼Œå¯ä»¥æŠŠç¬¬nä¸ªæ•°æŒ‰éœ€è¦ç§»åˆ°åºåˆ—æœ«å°¾
-//è¾“å…¥åšå°åè½¬æ•°å€¼
-//åˆ©ç”¨çº¿æ®µæ ‘æ±‚é€†åºæ•°
-#define Ls i<<1
-#define Rs i<<1|1
+/*
+//×îĞ¡·´×ªÊı£ºĞòÁĞÖĞai,aj(i<j&&ai<aj)µÄ¶ÔÊı
+//ÃèÊö£º¶ÔÓÚÒ»¸öÊıÁĞ£¬¿ÉÒÔ°ÑµÚn¸öÊı°´ĞèÒªÒÆµ½ĞòÁĞÄ©Î²
+//ÊäÈë×öĞ¡·´×ªÊıÖµ
+//ÀûÓÃÏß¶ÎÊ÷ÇóÄæĞòÊı
+#define Ls node<<1
+#define Rs node<<1|1
 #define lson Ls,l,M
 #define rson Rs,M+1,r
 int s[maxn<<2];
 int tree[maxn<<2];
-void maintain(int i)
+void maintain(int node)
 {
-    tree[i]=tree[Ls]+tree[Rs];
+    tree[node]=tree[Ls]+tree[Rs];
 }
-void build(int i,int l,int r)
+void build(int node,int l,int r)
 {
     if(l==r)
     {
-        tree[i]=0;
+        tree[node] = 0;
         return;
     }
     int M=(l+r)>>1;
-    build(lson),build(rson),maintain(i);
+    build(lson),build(rson),maintain(node);
 }
-void update(int pos,int i,int l,int r)
+void update(int pos,int node,int l,int r)
 {
     if(l==r)
     {
-        tree[i]=1;
+        tree[node] = 1;
         return;
     }
     int M=(l+r)>>1;
     if(pos<=M) update(pos,lson);
     else update(pos,rson);
-    maintain(i);
+    maintain(node);
 }
-int query(int ql,int qr,int i,int l,int r)
+int query(int ql,int qr,int node,int l,int r)
 {
     if(ql<=l&&qr>=r)
-        return tree[i];
+        return tree[node];
     int M=(l+r)>>1;
     int ans=0;
     if(ql<=M) ans+=query(ql,qr,lson);
@@ -64,6 +62,7 @@ int main()
             sum+=query(s[i]+1,n,1,1,n);
             update(s[i]+1,1,1,n);
         }
+
         int MIN=sum;
         for(int i=0;i<n;i++)
         {
@@ -73,4 +72,55 @@ int main()
         printf("%d\n",MIN);
     }
     return 0;
+}*/
+//ÄæĞòÊıÎÊÌâ£¬Ê×ÏÈÇó³öÔ­Ê¼µÄÄæĞòÊı£¬¶ÔÓÚÃ¿´Î²Ù×÷¶¼ÊÇ½«µ±Ç°ÅÅÁĞµÄµÚÒ»¸öÊıÄÃµ½×îºóÒ»¸öÎ»ÖÃ£¬
+//ËùÒÔ´ğ°¸¾Í¸üĞÂÎªans-ËùÓĞ±ÈËûĞ¡µÄÊı×ÖµÄ¸öÊı+ËùÓĞ±ÈËû´óµÄÊı×ÖµÄ¸öÊı
+typedef long long ll;
+int n,m,bit[maxn],a[maxn];
+#define lowbit(x) (x)&(-x)
+int sum(int x)
+{
+    int ans = 0;
+    while(x > 0)
+    {
+        ans += bit[x];
+        x -= lowbit(x);
+    }
+    return ans;
 }
+void add(int x, int d)
+{
+    while(x <= n)
+    {
+        bit[x] += d;
+        x +=lowbit(x);
+    }
+}
+int main()
+{
+    while(~scanf("%d",&n))
+    {
+        memset(bit, 0, sizeof(bit));
+        int ans = 0;
+        for(int i=1;i<=n;i++)
+        {
+            scanf("%d",&a[i]);
+            a[i]++;
+            ans += sum(n) - sum(a[i]);//ÄæĞòÊıºÍ
+            #ifdef Local
+            printf("%d: %d %d %d \n",i,sum(n),sum(a[i]),ans);
+            #endif // Local
+            add(a[i], 1);
+        }
+
+        int cur = ans;
+        for(int i=1;i<n;i++)
+        {
+            cur+= (n - a[i]) - (a[i]-1);
+            ans = min(ans, cur);
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
+}
+

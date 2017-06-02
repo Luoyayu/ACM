@@ -37,7 +37,7 @@ bool cmp( staff a, staff b )
     return a.ability > b.ability;
 }
 
-void AddEdge( int u, int v )    //头插法加点
+void add( int u, int v )    //头插法加点
 {
     D[tot].to = v;
     D[tot].next = head[u];
@@ -62,10 +62,11 @@ void init()                     //初始化
 
 int query(int node,int begin, int end, int left, int right )   //区间查最值
 {
-    if ( left <= begin && end <= right ) return SegTree[node];
+    if ( left <= begin && end <= right )
+        return SegTree[node];
     int m = ( begin + end ) >> 1;
     int ret = -1;
-    if ( left <= m ) ret = max( ret, query(lson,begin, m,  left, right ) );
+    if ( left <= m ) ret = max( ret, query(lson,begin, m, left, right ) );
     if ( right > m )  ret = max( ret, query( rson, m+1, end, left, right ) );
     return ret;
 }
@@ -103,7 +104,7 @@ int main()
         {
             int a, aby, loy;
             scanf( "%d%d%d", &a, &loy, &aby );
-            AddEdge( a, i );
+            add( a, i );
             People[i].ability = aby;
             People[i].loyalty = loy;
             People[i].superior = a;
