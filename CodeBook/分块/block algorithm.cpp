@@ -4,11 +4,11 @@ const int maxn=1e5+7;
 int belong [maxn];//表示这个数在那一块里面
 int block, num;//每块大小; 块的数量
 int l[maxn],r[maxn];//这个数所在的左边界是什么,右边界是什么
-long long MAX[maxn],a[maxn];;
+long long MAX[maxn],a[maxn];
 int n,q;
 void build()
 {
-    block=sqrt(n);
+    block=sqrt(n + 0.5);
     num=n/block;if(n%block) num++;
     for(int i=1;i<=num;i++)
         l[i]=(i-1)*block+1,r[i]=i*block;

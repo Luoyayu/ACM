@@ -6,7 +6,6 @@
 #include<bits/stdc++.h>
 typedef long long ll;
 using namespace std;
-
 int main()
 {
     ll n,k;
@@ -20,10 +19,11 @@ int main()
         {
             blockNum = k/i;
             left  = i;
-            right = k/(k/i); cout<<"right1:"<<right<<endl;
+            right = k/(k/i);
+            //cout<<"right1:"<<right<<endl;
             right = min(n, right);
-            cout<<"right2:"<<right<<endl<<endl;;
-            #ifdef Loca
+            #ifdef Loca //Local
+            //cout<<"right2:"<<right<<endl<<endl;;
             cout<<left<<' '<<k/(k/i)<<endl;
             #endif // Local
             //ll t1 = (1+right)*right>>1;
