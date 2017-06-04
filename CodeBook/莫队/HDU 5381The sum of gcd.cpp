@@ -10,7 +10,7 @@ int a[maxn];
 int n;
 int f(int l,int r)
 {
-
+    
 }
 int main()
 {

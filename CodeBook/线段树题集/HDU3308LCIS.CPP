@@ -1,96 +1,83 @@
-#include<set>
-#include<map>
-#include<stack>
-#include<cmath>
-#include<queue>
-#include<vector>
-#include<cctype>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<sstream>
-#include<iostream>
-#include<algorithm>
-#define rep(i,a,b) for(i=a;i<=b;i++)
-#define rec(i,a)   for(i=0;i< a;i++)
-#define N 50000  +  10
-#define Q 1000   +  10
-#define P 100    +  1
-#define lson left,mid,i<<1
-#define rson mid+1,right,i<<1|1
+///LCIS 线段树
+///op1: U A B 用B代替第A个数
+///op2: Q A B 查询[A,B]中最长连续上升子序列
+///区间合并
+#include<bits/stdc++.h>
+#define lson rt<<1,l,mid
+#define rson rt<<1|1,mid+1,r
 using namespace std;
-int a[N]={0};
-struct point
+const int N = int(1e5+7);
+int n,m,x,y;
+int seg[N<<2],ls[N<<2],rs[N<<2];
+int a[N];
+void pushup(int rt,int l,int r)
 {
-    int left;
-    int right;
-    int sum;
-};
-point tree[N<<2];
-void build (int left,int right,int i)
-{
-	tree[i].left=left;
-	tree[i].right=right;
-	if(left==right)
-	{
-		tree[i].sum = a[left];return ;
-	}
-	int mid  = (left+right)>>1;
-	build(lson);
-	build(rson);
-	tree[i].sum = tree[i<<1].sum+tree[i<<1|1].sum;
+    int mid=l+r>>1;
+    ls[rt]=ls[rt<<1];rs[rt]=rs[rt<<1|1];
+    seg[rt]=max(seg[rt<<1],seg[rt<<1|1]);
+    if(a[mid]<a[mid+1])
+    {
+        if(ls[rt]==mid-l+1) ls[rt]+=ls[rt<<1|1];
+        if(rs[rt]==r-mid) rs[rt]+=rs[rt<<1];
+        seg[rt]=max(seg[rt],ls[rt<<1|1]+rs[rt<<1]);
+    }
 }
-void update(int x,int number,int i)
+void build(int rt,int l,int r)
 {
-	if(tree[i].left==tree[i].right)
-	{
-		tree[i].sum += number;return ;
-	}
-	int mid   = (tree[i].left+tree[i].right)>>1;
-	if(x<=mid)update(x,number,i<<1);
-	else update(x,number,i<<1|1);
-	tree[i].sum = tree[i<<1].sum + tree[i<<1|1].sum;
+    if(l==r)
+    {
+        seg[rt]=ls[rt]=rs[rt]=1;
+        return;
+    }
+    int mid=(l+r)>>1;
+    build(lson);build(rson);
+    pushup(rt,l,r);
 }
-int query(int left,int right,int i)
+void add(int rt,int l,int r)
 {
-	if(left==tree[i].left&&right==tree[i].right)
-	{
-		return tree[i].sum;
-	}
-	int mid  = (tree[i].left+tree[i].right)>>1;
-	if(mid<left)return query(left,right,i<<1|1);
-	else if(right<=mid)return query(left,right,i<<1);
-	else return (query(left,mid,i<<1)+query(mid+1,right,i<<1|1));
+    if(l==r){return;}
+    int mid=l+r>>1;
+    if(x<=mid)add(lson);
+    else add(rson);
+    pushup(rt,l,r);
+}
+int query(int rt,int l,int r)
+{
+    if(x<=l&&r<=y) return seg[rt];
+    int mid=(l+r)>>1;
+
+    //cout<<"x: "<<x<<" "<<"y :"<<y<<endl;
+    //cout<<"mid : "<<mid<<endl;
+    if(y<=mid) return query(lson);//完整的block
+    if(x> mid) return query(rson);
+
+    int t1 = query(lson);
+    int t2 = query(rson);
+    int ans= max(t1,t2);
+    if(a[mid]<a[mid+1])
+        ans= max(ans,(min(ls[rt<<1|1],y-mid)+min(rs[rt<<1],mid+1-x)));
+    return ans;
 }
 int main()
 {
     int T;
-    int n;
-    int i,j;
-    int x,y;
-    char uc[P]={0};
     scanf("%d",&T);
-    for(int cnt=1;cnt<=T;cnt++)
+    while(T--)
     {
-        printf("Case %d:\n",cnt);
-        scanf("%d",&n);
-        for(i=1;i<=n;i++)
-        scanf("%d",&a[i]);
-
-        build(1,n,1);
-        while(scanf("%s",uc)==1)
+        char str[5];
+        scanf("%d%d",&n,&m);
+        for(int i=1;i<=n;++i) scanf("%d",&a[i]);
+        build(1,1,n);
+        while(m--)
         {
-            if(strcmp(uc,"End")==0)break;
-            scanf("%d%d",&x,&y);
-            if(uc[0]=='Q')printf("%d\n",query(x,y,1));
-            else if(uc[0]=='A')update(x,y,1);
-            else if(uc[0]=='S')update(x,-y,1);
-            memset(uc,0,sizeof uc);
+            scanf("%s%d%d",str,&x,&y);
+            ++x;
+            if(str[0]=='U')
+                a[x]=y,add(1,1,n);
+            else
+                ++y,printf("%d\n",query(1,1,n));
         }
-
-        memset(a,0,sizeof a);
-        memset(tree,0,sizeof tree);
-
     }
-return 0;
+    return 0;
 }
+

@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 using namespace std;
 const int MAXN=100005;
 int a[MAXN],dp[MAXN];
@@ -15,6 +16,7 @@ vector<node> G;
 int main()
 {
     int t;
+    ios::sync_with_
     cin>>t;
     for(int j=1;j<=t;j++ )
     {
