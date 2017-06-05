@@ -11,10 +11,9 @@ void init()
     memset(dp,0,sizeof dp);
     dp[0][0]=1;
     for(int i=1;i<20;i++)
-
         for(int j=0;j<10;j++)///枚举第i位
             for(int k=0;k<10;k++)///枚举第i-1位
-                if(!(j==4&&k==9))
+                if(!( j== 4 && k==9))
                     dp[i][j]+=dp[i-1][k];
 }
 
