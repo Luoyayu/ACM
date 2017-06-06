@@ -4,7 +4,9 @@
         "ostream": "cpp",
         "stack": "cpp",
         "algorithm": "cpp",
-        "cstdio": "cpp"
+        "cstdio": "cpp",
+        "vector": "cpp",
+        "xiosbase": "cpp"
     },
     "[cpp]": {
         "editor.quickSuggestions": false
