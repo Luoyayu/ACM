@@ -12,7 +12,7 @@ typedef long long ll;
 
 
 //<*****************费马小定理求解逆元******************>
-
+//有点bug不建议采用
 ll pow_mod(ll a, ll b, ll p) //a^(p-2)%p
 {
     ll ret = 1;
@@ -38,16 +38,22 @@ inline ll Fermat(ll a,ll p)//求a关于p的逆元
 
 //<*****************Ex_gcd求解逆元******************>
 
-void ex_gcd(ll a,ll b,ll &x,ll &y)//x是a关于b的逆元
+ll ex_gcd(ll a,ll b,ll &x,ll &y)//x是a关于b的逆元
 {
     if(!b)
     {
-        x=1;y=0;return;
+        x=1;y=0;return a;
     }
     ll ret=ex_gcd(b,a%b,y,x);
     y-=a/b*x;
     x=(x>0?x:(x%b+b)%b);//保证inv>0
-    return ;
+    return ret;
+}
+int main()
+{
+    ll x,y,a,b;
+    ex_gcd(a,b,x,y); ax==1(mod b)
+    printf("%lld\n",x);
 }
 
 //<*****************Ex_gcd求解逆元******************>

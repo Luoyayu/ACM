@@ -1,6 +1,7 @@
 
 ///HDU 4292 网络流建图训练 建图真有趣
 ///F 种食物 D种酒水 N 人
+///这样想 建超级起点 连上
 ///人拆点 i->i` cost = 1;
 #include<bits/stdc++.h>
 const int inf = 1e9+7;
@@ -97,7 +98,7 @@ using namespace std;
 int main()
 {
     int n,f,d;
-    while(scanf("%d%d%d",&n,&f,&d)!=EOF)
+    while(scanf("%d %d %d",&n,&f,&d)!=EOF)
     {
         Dinic __dinic;
 

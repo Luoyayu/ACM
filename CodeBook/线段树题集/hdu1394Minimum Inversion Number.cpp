@@ -1,7 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn=5005;
-/*
+/
+
 //最小反转数：序列中ai,aj(i<j&&ai<aj)的对数
 //描述：对于一个数列，可以把第n个数按需要移到序列末尾
 //输入做小反转数值
@@ -45,7 +46,7 @@ int query(int ql,int qr,int node,int l,int r)
     int M=(l+r)>>1;
     int ans=0;
     if(ql<=M) ans+=query(ql,qr,lson);
-    if(qr>r) ans+=query(ql,qr,rson);
+    if(qr>M) ans+=query(ql,qr,rson);
     return ans;
 }
 int main()
@@ -63,16 +64,10 @@ int main()
             update(s[i]+1,1,1,n);
         }
 
-        int MIN=sum;
-        for(int i=0;i<n;i++)
-        {
-            sum=sum-2*s[i]+n-1;
-            MIN=min(MIN,sum);
-        }
-        printf("%d\n",MIN);
+        printf("%d\n",sum);
     }
     return 0;
-}*/
+
 //逆序数问题，首先求出原始的逆序数，对于每次操作都是将当前排列的第一个数拿到最后一个位置，
 //所以答案就更新为ans-所有比他小的数字的个数+所有比他大的数字的个数
 typedef long long ll;
