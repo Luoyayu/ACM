@@ -1,13 +1,13 @@
-
 ///HDU 4292 网络流建图训练 建图真有趣
 ///F 种食物 D种酒水 N 人
-///这样想 建超级起点 连上
+///这样想 , 然后每个人连上喜欢的食物,边权为1
 ///人拆点 i->i` cost = 1;
 #include<bits/stdc++.h>
 const int inf = 1e9+7;
 using namespace std;
 const int N= 2002;
 char pref[N];
+
 class Dinic
 {
 
@@ -106,19 +106,19 @@ int main()
         __dinic.pre(s,end);
 
         int food,drink;
-        for(int i=1;i<=f;i++)
+        for(int i=1;i<=f;i++)//源点 连上食物 边权为食物的每种的供应量
         {
             scanf("%d",&food);
             __dinic.addedge(s,i,food);
 
         }
-        for(int i=f+2*n+1;i<end;i++)
+        for(int i=f+2*n+1;i<end;i++)//每种酒水连上终点,边权为供应量
         {
             scanf("%d",&drink);
             __dinic.addedge(i,end,drink);
 
         }
-        for(int i=f+1;i<=f+n;i++)
+        for(int i=f+1;i<=f+n;i++)//人拆点,边权为1,有流流入有表示选上了喜欢的食物,由流流出表示选上了喜欢的酒水。
             __dinic.addedge(i,i+n,1);
 
         for(int i=1;i<=n;i++)
@@ -127,7 +127,7 @@ int main()
             for(int j=1;j<=f;j++)
             {
                 if(pref[j]=='Y')
-                    __dinic.addedge(j,f+i,1);
+                    __dinic.addedge(j,f+i,1);//左人连上食物
             }
 
         }
@@ -138,7 +138,7 @@ int main()
             for(int j=1;j<=d;j++)
             {
                 if(pref[j]=='Y')
-                    __dinic.addedge(f+n+i,f+2*n+j,1);
+                    __dinic.addedge(f+n+i,f+2*n+j,1);//右人连上酒水
             }
         }
 
