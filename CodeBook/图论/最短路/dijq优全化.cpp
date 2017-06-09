@@ -7,19 +7,19 @@ using namespace std;
 #define maxn 110  //最大顶点个数
 int n;       //顶点个数
 
-struct egdenode  //边结点
+struct Edge  //边结点
 {
     int vertex;     //与表头结点相邻的顶点编号
     int weight;     //连接两顶点的边的权值
-    egdenode * next; //指向下一相邻接点
-    egdenode() {}
-    egdenode(int v,int w):vertex(v),weight(w),next(NULL) {}
+    Edge * next; //指向下一相邻接点
+    Edge() {}
+    Edge(int v,int w):vertex(v),weight(w),next(NULL) {}
 };
 
 struct vernode      //顶点结点，为每一条邻接表的表头结点
 {
     int vex;    //当前定点编号
-    egdenode * firedge;   //与该顶点相连的第一个顶点组成的边
+    Edge * firedge;   //与该顶点相连的第一个顶点组成的边
 }Ver[maxn];
 
 void Init()  //建立图的邻接表需要先初始化，建立顶点结点
@@ -33,12 +33,12 @@ void Init()  //建立图的邻接表需要先初始化，建立顶点结点
 
 void Insert(int a, int b, int w)  //尾插法，插入以a为起点，b为终点，权为w的边，效率不如头插，但是可以去重边
 {
-    egdenode * q = new egdenode(b, w);
+    Edge * q = new Edge(b, w);
     if(Ver[a].firedge == NULL)
         Ver[a].firedge = q;
     else
     {
-        egdenode * p = Ver[a].firedge;
+        Edge * p = Ver[a].firedge;
         if(p->vertex == b)
         {
             if(p->weight > w)
@@ -60,12 +60,12 @@ void Insert(int a, int b, int w)  //尾插法，插入以a为起点，b为终点
 }
 void Insert2(int a, int b, int w)   //头插法，效率更高，但不能去重边
 {
-    egdenode * q = new egdenode(b, w);
+    Edge * q = new Edge(b, w);
     if(Ver[a].firedge == NULL)
         Ver[a].firedge = q;
     else
     {
-        egdenode * p = Ver[a].firedge;
+        Edge * p = Ver[a].firedge;
         q->next = p;
         Ver[a].firedge = q;
     }
@@ -104,7 +104,7 @@ void Dijkstra(int s)    //Dijkstra算法，传入源顶点
         if(vis[u])   //注意这一句的深意，避免很多不必要的操作
             continue;
         vis[u] = true;
-        egdenode * p = Ver[u].firedge;
+        Edge * p = Ver[u].firedge;
         //松弛操作
         while(p != NULL)    //找所有与他相邻的顶点，进行松弛操作，更新估算距离，压入队列。
         {
