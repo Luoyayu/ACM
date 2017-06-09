@@ -1,6 +1,6 @@
-//Ç¿Á¬Í¨·ÖÁ¿Ëõµã£¬Çó³öÈë¶ÈÎª0µÄ·ÖÁ¿¸öÊı¡¢
-//taskA£º¸ø¶¨Ò»¸öÓĞÏòÍ¼£¬ÎÊÖÁÉÙĞèÒª¶àÉÙ¶¥µã£¬ÄÜÊ¹¸ÃÍ¼Ç¿Á¬Í¨£»
-//taskB:¸ø¶¨Ò»¸öÓĞÏòÍ¼£¬ÎªÄãÖÁÉÙĞèÒª¼Ó¶àÉÙÌõ±ß£¬ÄÜÊ¹¸ÃÍ¼Ç¿Á¬Í¨
+//å¼ºè¿é€šåˆ†é‡ç¼©ç‚¹ï¼Œæ±‚å‡ºå…¥åº¦ä¸º0çš„åˆ†é‡ä¸ªæ•°ã€
+//taskAï¼šç»™å®šä¸€ä¸ªæœ‰å‘å›¾ï¼Œé—®è‡³å°‘éœ€è¦å¤šå°‘é¡¶ç‚¹ï¼Œèƒ½ä½¿è¯¥å›¾å¼ºè¿é€šï¼›
+//taskB:ç»™å®šä¸€ä¸ªæœ‰å‘å›¾ï¼Œä¸ºä½ è‡³å°‘éœ€è¦åŠ å¤šå°‘æ¡è¾¹ï¼Œèƒ½ä½¿è¯¥å›¾å¼ºè¿é€š
 #include<cstdio>
 #include<cstring>
 #include<algorithm>
@@ -12,7 +12,7 @@ struct edge
     int to,next;
 }Edge[maxE];
 int head[maxV],e,n;
-int indeg[maxV],outdeg[maxV];//µãµÄÈë¶ÈºÍ³ö¶ÈÊı
+int indeg[maxV],outdeg[maxV];//ç‚¹çš„å…¥åº¦å’Œå‡ºåº¦æ•°
 int belong[maxV],low[maxV],dfn[maxV],sccc,cnt;
 int Stack[maxV],top;
 bool inStack[maxV];
@@ -26,12 +26,12 @@ void tarjan(int u)
 {
     int v;
     dfn[u]=low[u]=++cnt;
-    Stack[top++]=u; //rÈëÕ»
+    Stack[top++]=u; //rå…¥æ ˆ
     inStack[u]=1;
     for(int i=head[u];i!=-1;i=Edge[i].next)
     {
         v=Edge[i].to;
-        if(!dfn[v])//Èç¹ûÓëuÏàÁ¬µÄµã»¹Î´±»
+        if(!dfn[v])//å¦‚æœä¸uç›¸è¿çš„ç‚¹è¿˜æœªè¢«
         {
             tarjan(v);
             low[u]=min(low[u],low[v]);
@@ -44,7 +44,7 @@ void tarjan(int u)
         sccc++;
         do
         {
-            v=Stack[--top];//Õ»ÖĞËùÓĞµ½uµÄµã¶¼ÊôÓÚ¸ÃÇ¿Á¬Í¨·ÖÁ¿£¬³öÕ»
+            v=Stack[--top];//æ ˆä¸­æ‰€æœ‰åˆ°uçš„ç‚¹éƒ½å±äºè¯¥å¼ºè¿é€šåˆ†é‡ï¼Œå‡ºæ ˆ
             inStack[v]=0;
             belong[v]=sccc;
         }while(u!=v);

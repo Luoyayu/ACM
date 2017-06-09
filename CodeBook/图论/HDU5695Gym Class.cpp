@@ -36,7 +36,7 @@ void toposort()
         {
             int cur=V[now][i];
             indeg[cur]--;
-            if(indeg[cur]==0)//c::b方括号匹配@懵@
+            if(indeg[cur]==0)//c::b方括号匹配@懵@圈@
                 Q.push(cur);
         }
     }

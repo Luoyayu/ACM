@@ -1,7 +1,7 @@
 //POJ 1419 Graph Coloring
 //undirected black-white color,optimal graph means a maximum of nodes is black;
 //i<->adj[i] not all black;
-//Çó½â¶þ·ÖÍ¼µÄ×î´ó¶ÀÁ¢¼¯=²¹Í¼µÄ×î´óÍÅ
+//æ±‚è§£äºŒåˆ†å›¾çš„æœ€å¤§ç‹¬ç«‹é›†=è¡¥å›¾çš„æœ€å¤§å›¢
 #include <cstdio>
 #include <cstring>
 #include <iostream>
@@ -11,7 +11,7 @@ using namespace std;
 const int maxn=110;
 int n,m;
 int g[maxn][maxn],dp[maxn],stk[maxn][maxn],best;
-int path[maxn],res[maxn];//¼ÇÂ¼×î´óÍÅµÄµã
+int path[maxn],res[maxn];//è®°å½•æœ€å¤§å›¢çš„ç‚¹
 int dfs(int n,int ns,int dep)
 {
     if(ns == 0)
@@ -46,10 +46,10 @@ int MaxClique(int n)
     for(best=0, i=n-1; i>=0; i--)
     {
         path[1] = i;
-        for(ns=0, j=i+1; j<n; j++)// ±éÀú[i+1,n]¼ä¶¥µã
+        for(ns=0, j=i+1; j<n; j++)// éåŽ†[i+1,n]é—´é¡¶ç‚¹
             if(g[i][j]) stk[1][ns++] = j;
         dfs(n,ns,1);
-        dp[i] = best;// µÃ³ö¶¥µãi,³ö·¢¹¹³É×î´óÍÅÖÐ¶¥µãÊýÁ¿
+        dp[i] = best;// å¾—å‡ºé¡¶ç‚¹i,å‡ºå‘æž„æˆæœ€å¤§å›¢ä¸­é¡¶ç‚¹æ•°é‡
     }
     return best;
 }
