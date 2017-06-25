@@ -1,4 +1,5 @@
 //POJ
+/*
 #include<cstdio>
 #include<algorithm>
 #include<queue>
@@ -58,9 +59,9 @@ int main()
 	}
 	return 0;
 }
-
+*/
 //HDU
-#if 0
+
 #include <iostream>
 #include <cstdio> 
 #include <cstring>
@@ -72,14 +73,14 @@ int time[Max * 2];
 int n, k;
 void bfs(int x)
 {
-	int nx, i, s;
+	int nx, s;
 	queue<int> p; //open表 
 	vis[x] = 1, time[x] = 0, p.push(x); //出队，入closed表 
 	while (!p.empty())
 	{
 		s = p.front();
 		p.pop(); //出栈 
-		for (i = 1; i <= 3; i++) //每次可走三种 
+		for (int i = 1; i <= 3; i++) //每次可走三种 
 		{
 			if (i == 1)
 				nx = s + 1;
@@ -115,4 +116,3 @@ int main()
 	}
 	return 0;
 }
-#endif
