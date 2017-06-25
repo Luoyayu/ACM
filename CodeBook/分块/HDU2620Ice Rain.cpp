@@ -18,7 +18,7 @@ int main()
         for(int i=1; i<=n;i=right+1)
         {
             blockNum = k/i;
-            left  = i;
+            left = i;
             right = k/(k/i);
             //cout<<"right1:"<<right<<endl;
             right = min(n, right);

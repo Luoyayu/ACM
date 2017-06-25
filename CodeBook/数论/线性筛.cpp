@@ -6,7 +6,7 @@ using namespace std;
 #define MAX 800000
 const int maxn=10005;
 bool isprime[maxn];//isprime[i]表示i是不是质数
-int p[maxn], tot=1;//p[maxn]用来存质数
+int p[maxn], tot=0;//p[maxn]用来存质数 tot从0计数
 void init()
 {
     memset(isprime,1,sizeof isprime);//假设都是质数

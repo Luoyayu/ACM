@@ -22,7 +22,7 @@ ll cal(ll n)
 ll sum2(ll x)
 {
     return x*(x+1)%mod*(2*x+1)%mod*inv%mod;// sigma (i~n) = n*(n+1)*(2*n+1)/6 在数论中不能瞎除要乘以逆元
-    ///那么6对于mod的逆元是3323403
+    ///使用扩欧算的 6对于mod的逆元是3323403
 }
 int main()
 {
