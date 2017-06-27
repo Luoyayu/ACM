@@ -4,7 +4,7 @@
 using namespace std;
 
 int dir[][2]={{-1,0},{0,-1},{1,0},{0,1},{-1,0},{0,-1},{1,0},{0,1}};
-bool map[10][10][5];    //map[][][]三维数组，记录箱子(x,y)坐标和方向
+bool map[10][10][5];    //map[][][]三维数组，记录箱子(x,y)坐标和方向 //同一个位置箱子可以重复，但是方向不能重复
 int a[10][10], b[10][10], c[10][10];
 int x1, y1, x2, y2, tx, ty, px, py, ax, ay;
 int N, M;
@@ -12,10 +12,10 @@ bool flag;
 
 struct node
 {
-    int x, y, px, py, step; //分别保存箱子的坐标(x,y)、人的坐标(px,py)、步数
+    int x, y, px, py, step; //分别保存目前箱子的坐标(x,y)、人的坐标(px,py)、箱子行进的步数
 }n, m;
 
-bool dfs(int x, int y)  //深搜：判断人是否能够到达箱子的后面
+bool dfs(int x, int y)  //dfs 判断人是否能够到达箱子的后面
 {
     if(x == tx && y == ty) return true;     //到达箱子后面
     if(x<0 || x>=N || y<0 || y>=M) return false;    //越界的返回false
@@ -25,7 +25,7 @@ bool dfs(int x, int y)  //深搜：判断人是否能够到达箱子的后面
     return (dfs(x+1,y) || dfs(x-1,y) || dfs(x,y+1) || dfs(x,y-1));  //往内深搜
 }
 
-void set_bc()   //初始化深搜时用到的数组b[][]
+void set_bc()   //初始化dfs时用到的数组b[][]
 {
     for(int i = 0; i < N; i++)
         for(int j = 0; j < M; j++)

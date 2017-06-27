@@ -1,28 +1,26 @@
-//N个客人 第i个人会在si时间到达,订ni个烧烤，所有烤串总共需要ti时间 需要在ei前完成
-//至多M个烤串同时被烤
-//完成的时间需要在(si,ei]内
+//Task Schedule 补题计划
+//每个任务ni只能在第(si,ei)经过时长pi的时间完成
+//每个任务可以被划分，可以中断，可以转移到另外的机器上
+//问题归纳：最大流判满流 
+//建图：把每个任务看成点，s到每个任务连边，容量为所需的天数
+
 #include<bits/stdc++.h>
 using namespace std;
-const int INF = 0x3f3f3f3f;
-const int maxn = 200+7;
-int N,M;
-struct node
+const int inf = 0x3f3f3f3f;
+const int maxn = 2000;
+int N,M,T;//M机器数量
+
+struct Dinic
 {
-    int si,ni,ei,ti;
-}Person[maxn];
-class Dinic
-{
-public:
     struct point
     {
         int from,to,cap,flow;
         point(int from,int to,int cap,int flow):
-            from(from),to(to),cap(cap),flow(flow){}
+                from(from),to(to),cap(cap),flow(flow){}
     };
     vector<point>edges;
-    vector<int>G[N];
-    int mark[N], d[N], cur[N];
-    char a[N];
+    vector<int>G[maxn];
+    int mark[maxn], d[maxn], cur[maxn];
     int start,ending;
     void addedge(int from,int to,int cap)
     {
@@ -74,8 +72,10 @@ public:
         }
         return flow;
     }
-    int dinic()
+    int dinic(int start, int ending)
     {
+        this->start=start;
+        this->ending =ending;
         int flow=0;
         while(bfs(this->start,this->ending))
         {
@@ -84,24 +84,42 @@ public:
         }
         return flow;
     }
-    void pre(int start,int ending)
+    void init()
     {
-        this->start=start;
-        this->ending=ending;
-        for(int i=0;i<N;i++) G[i].clear();
+        for(int i=0;i<maxn;i++) G[i].clear();
         edges.clear();
         memset(mark,0,sizeof mark);
         memset(d,0,sizeof d);
     }
 };
+
 int main()
 {
-    while(scanf("%d%d",&N,&M)!=EOF)
+    scanf("%d", &T);
+    Dinic __dinic;
+    for(int kase=1;kase<=T;kase++)
     {
-        Dinic.__Dinic;
-        __Dinic.pre();
-        for(int i=0;i<N;i++)
-            scanf("%d%d%d%d",&Person[i].si,&Person[i].ni,&Person[i].ei,&Person[i].ti);
-        
+        __dinic.init();
+        scanf("%d %d", &N, &M);
+        int Last_time = -inf, sump = 0; //判sump满流
+        int s = 0;
+        for(int i=1; i<=N; i++)
+        {
+            int x,y,z;
+            scanf("%d %d %d",&x,&y,&z);
+            sump += x;
+            Last_time = max(z,Last_time);
+            __dinic.addedge(s,i,x);
+            for(int j = y; j <= z; j++)
+                __dinic.addedge(i,N+j,1);
+        }
+        int t = Last_time +1 + N;
+        for(int i=1; i<=Last_time; i++)
+            __dinic.addedge(i+N,t,M);
+
+        int maxFlow = __dinic.dinic(s,t);
+        if(maxFlow==sump) printf("Case %d: Yes\n\n",kase);
+        else printf("Case %d: No\n\n",kase);
     }
+    return 0;
 }
