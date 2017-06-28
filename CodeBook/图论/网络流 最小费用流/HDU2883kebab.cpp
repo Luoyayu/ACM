@@ -1,30 +1,38 @@
 //N个客人 第i个人会在si时间到达,订ni个烧烤，所有烤串总共需要ti时间 需要在ei前完成
 //至多M个烤串同时被烤
 //完成的时间需要在(si,ei]内
+//note: 时间范围很大不可完全设点
+//N个客人 第i个人会在si时间到达,订ni个烧烤，所有烤串总共需要ti时间 需要在ei前完成
+//至多M个烤串同时被烤
+//完成的时间需要在(si,ei]内
+//note: 时间范围很大不可完全设点,需要离散处理
 #include<bits/stdc++.h>
+#define captype int
 using namespace std;
-const int INF = 0x3f3f3f3f;
-const int maxn = 200+7;
+const int inf = 0x3f3f3f3f;
+const int maxn = 20000;
 int N,M;
 struct node
 {
     int si,ni,ei,ti;
 }Person[maxn];
-class Dinic
+
+template <class T>
+struct Dinic
 {
-public:
     struct point
     {
-        int from,to,cap,flow;
-        point(int from,int to,int cap,int flow):
-            from(from),to(to),cap(cap),flow(flow){}
+        int from,to;
+        T cap,flow;
+        point(int from,int to,T cap,T flow):
+                from(from),to(to),cap(cap),flow(flow){}
     };
     vector<point>edges;
-    vector<int>G[N];
-    int mark[N], d[N], cur[N];
-    char a[N];
+    vector<int>G[maxn];
+    int mark[maxn],cur[maxn];
+    T d[maxn];
     int start,ending;
-    void addedge(int from,int to,int cap)
+    void addedge(int from,int to,T cap)
     {
         edges.push_back(point(from,to,cap,0));
         edges.push_back(point(to,from, 0, 0));
@@ -56,10 +64,10 @@ public:
         }
         return mark[ending];
     }
-    int dfs(int x,int a)
+    T dfs(int x,T a)
     {
         if(x==ending||a==0) return a;
-        int flow=0,f;
+        T flow=0,f;
         for(int &i=cur[x];i<G[x].size();i++)
         {
             point &e=edges[G[x][i]];
@@ -67,16 +75,17 @@ public:
             {
                 e.flow+=f;
                 edges[G[x][i]^1].flow-=f;
-                flow+=f;
-                a-=f;
+                flow+=f;a-=f;
                 if(a==0) break;
             }
         }
         return flow;
     }
-    int dinic()
+    T dinic(int start, int ending)
     {
-        int flow=0;
+        this->start = start;
+        this->ending = ending;
+        T flow=0;
         while(bfs(this->start,this->ending))
         {
             memset(cur,0,sizeof cur);
@@ -84,24 +93,44 @@ public:
         }
         return flow;
     }
-    void pre(int start,int ending)
+    void init()
     {
-        this->start=start;
-        this->ending=ending;
-        for(int i=0;i<N;i++) G[i].clear();
+        for(int i=0;i<maxn;i++) G[i].clear();
         edges.clear();
         memset(mark,0,sizeof mark);
         memset(d,0,sizeof d);
     }
 };
+int Time[maxn];
 int main()
 {
     while(scanf("%d%d",&N,&M)!=EOF)
     {
-        Dinic.__Dinic;
-        __Dinic.pre();
-        for(int i=0;i<N;i++)
-            scanf("%d%d%d%d",&Person[i].si,&Person[i].ni,&Person[i].ei,&Person[i].ti);
-        
+        Dinic<int> __Dinic;
+        __Dinic.init();
+        int s = 0;
+        int sum = 0;
+        unsigned cnt = 0;
+        for(int i=1;i<=N;i++) {
+
+            scanf("%d%d%d%d", &Person[i].si, &Person[i].ni, &Person[i].ei, &Person[i].ti);
+            sum += Person[i].ti*Person[i].ni;
+            Time[cnt++]=Person[i].si;
+            Time[cnt++]=Person[i].ei;
+        }
+        sort(Time, Time+cnt);
+        cnt = unique(Time, Time+cnt)-Time;
+        int t = N+cnt+1;
+        for(int i=1;i<=N;i++)
+            __Dinic.addedge(s,i,Person[i].ni*Person[i].ti);
+        for(int i=1;i<=cnt-1;i++)
+        {
+            __Dinic.addedge(N+i,t,(Time[i]-Time[i-1])*M);
+            for(int j=1;j<=N;j++)
+                if(Person[j].si<=Time[i-1]&&Time[i]<=Person[j].ei)
+                    __Dinic.addedge(j,N+i,inf);
+        }
+        printf("%s\n",__Dinic.dinic(s,t)==sum?"Yes":"No");
     }
+    return  0;
 }

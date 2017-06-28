@@ -2,27 +2,32 @@
 //每个任务ni只能在第(si,ei)经过时长pi的时间完成
 //每个任务可以被划分，可以中断，可以转移到另外的机器上
 //问题归纳：最大流判满流 
-//建图：把每个任务看成点，s到每个任务连边，容量为所需的天数
+//建图：把每个任务看成点,s到每个任务连边,容量为所需的天数,
+//然后把持续总天数看成一个个点练到超级汇点,容量为M或inf既可,每个任务连上时间区间上的每个天数点,容量为1,
+//这样只要从超级源点可以满流即可完成
 
 #include<bits/stdc++.h>
 using namespace std;
 const int inf = 0x3f3f3f3f;
+const int exp = 10e-7;
 const int maxn = 2000;
 int N,M,T;//M机器数量
-
+template <class T>
 struct Dinic
 {
     struct point
     {
-        int from,to,cap,flow;
-        point(int from,int to,int cap,int flow):
+        int from,to;
+        T cap,flow;
+        point(int from,int to,T cap,T flow):
                 from(from),to(to),cap(cap),flow(flow){}
     };
     vector<point>edges;
     vector<int>G[maxn];
-    int mark[maxn], d[maxn], cur[maxn];
+    int mark[maxn],cur[maxn];
+    T d[maxn];
     int start,ending;
-    void addedge(int from,int to,int cap)
+    void addedge(int from,int to,T cap)
     {
         edges.push_back(point(from,to,cap,0));
         edges.push_back(point(to,from, 0, 0));
@@ -54,10 +59,10 @@ struct Dinic
         }
         return mark[ending];
     }
-    int dfs(int x,int a)
+    T dfs(int x,T a)
     {
         if(x==ending||a==0) return a;
-        int flow=0,f;
+        T flow=0,f;
         for(int &i=cur[x];i<G[x].size();i++)
         {
             point &e=edges[G[x][i]];
@@ -65,18 +70,17 @@ struct Dinic
             {
                 e.flow+=f;
                 edges[G[x][i]^1].flow-=f;
-                flow+=f;
-                a-=f;
+                flow+=f;a-=f;
                 if(a==0) break;
             }
         }
         return flow;
     }
-    int dinic(int start, int ending)
+    T dinic(int start, int ending)
     {
-        this->start=start;
-        this->ending =ending;
-        int flow=0;
+        this->start = start;
+        this->ending = ending;
+        T flow=0;
         while(bfs(this->start,this->ending))
         {
             memset(cur,0,sizeof cur);
@@ -96,7 +100,7 @@ struct Dinic
 int main()
 {
     scanf("%d", &T);
-    Dinic __dinic;
+    Dinic<int> __dinic;
     for(int kase=1;kase<=T;kase++)
     {
         __dinic.init();
