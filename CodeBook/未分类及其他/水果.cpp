@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+//多重背包
 using namespace std;
 int dp[1000009];
 int c[3],w[3];
