@@ -5,7 +5,7 @@ const int inf = 999999999;
 using namespace std;
 int p[100]={0,1,5,8,9,10,17,17,20,24,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,56,44,432,4234};
 int r[100];
-int dp(int n)
+int dp(int n)//记忆化
 {
 	int q;
 	if(r[n]>0) return r[n];

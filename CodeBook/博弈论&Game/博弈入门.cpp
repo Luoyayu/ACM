@@ -4,3 +4,4 @@
 //P point: the postion Next Player will win 
 //ICG: ending postion is N point Game
 //CG: ending postion is P point Game
+//博弈论（一）: Nim游戏
