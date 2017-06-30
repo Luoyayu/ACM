@@ -21,7 +21,9 @@ int dx[N], dy[N], cx[N], cy[N]; //dx,dy分别维护左点集和右点集的标�
 //cx表示左点集中的点匹配的右点集中的点，cy正好相反
 void add_edge(int v, int u)
 {
-    g[cnt].to = u, g[cnt].next = head[v], head[v] = cnt++;
+    g[cnt].to = u;
+    g[cnt].next = head[v];
+    head[v] = cnt++;
 }
 bool bfs() //寻找增广路径集，每次只寻找当前最短的增广路
 {
