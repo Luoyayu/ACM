@@ -26,8 +26,8 @@ int main()
         scanf("%s",p);
         plen=strlen(p);
         getnext();
-        int L=plen-Next[plen];//
-        if(plen%L==0 && L!=plen)//
+        int L=plen-Next[plen];
+        if(plen%L==0 && L!=plen)
         {
             printf("0\n");
             continue;

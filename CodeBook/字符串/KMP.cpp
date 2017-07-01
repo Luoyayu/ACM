@@ -15,20 +15,16 @@ int Next[maxn];
 //e.g. ABCDABD
 void getfailure(const char *x, int len)//失配函数build
 {
-    int j = -1,i = 0;
-    Next[0] = -1;
+    int j = Next[0]= -1,i = 0;
     while (i < len)
     {
         while (j!= -1 &&  x[i] != x[j])//x[i]表前缀，p[j]表后缀匹配失败
             j = Next[j];
-        i++, j++;
-        if (x[i] == x[j])
-            Next[i] = Next[j];
-        else
-            Next[i] = j;
+        if (x[++i] == x[++j]) Next[i] = Next[j];
+        else Next[i] = j;
     }
 }
-int KMP(const char *p, int plen, const char *s, int slen)//核心
+int KMP(const char *p, int plen, const char *s, int slen)
 {
     int ans = 0;
     getfailure(p, plen);
