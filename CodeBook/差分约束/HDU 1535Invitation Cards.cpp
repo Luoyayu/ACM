@@ -1,8 +1,4 @@
-#include<stdio.h>
-#include<string.h>
-#include<queue>
-#include<algorithm>
-#include<iostream>
+#include<bits/stdc++.h>
 #define INF 1000000000
 #define maxn 1000000+10
 using namespace std;

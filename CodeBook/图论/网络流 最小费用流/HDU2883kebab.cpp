@@ -117,9 +117,10 @@ int main()
             Time[cnt++]=Person[i].si;
             Time[cnt++]=Person[i].ei;
         }
+        sort(Time, Time+cnt);
+
         #ifdef Local
         cout<<"origin cnt = "<<cnt<<endl;
-        sort(Time, Time+cnt);
         cout<<"cnt = "<<cnt<<endl;
         cnt = unique(Time, Time+cnt)-Time;
         cout<<"now cnt = "<<cnt<<endl;
@@ -127,6 +128,7 @@ int main()
             cout<<Time[i]<<" ";
         cout<<endl;
         #endif // Local
+    
         int t = N + cnt + 1;
         for(int i=1;i<=N;i++) __Dinic.addedge(s,i,Person[i].ni*Person[i].ti);//从连0->任务点 容量为ni*ti
 
