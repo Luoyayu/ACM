@@ -6,7 +6,7 @@
 #include<bits/stdc++.h>
 const int maxn = 1e6+5;
 const int inf = 0x3fffffff;
-#define Debug(x) printf("#x = %d\n",x);
+#define Debug(x) cout<<#x<<"="<<x;
 template <class T>
 struct Dinic
 {
