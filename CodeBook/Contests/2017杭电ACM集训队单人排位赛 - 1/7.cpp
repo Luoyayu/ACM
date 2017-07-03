@@ -1,33 +1,56 @@
 //吃巧克力 计算几何
-/*
-Problem Description
-CYF 喜欢吃巧克力，有一天，CYF收到了一份镶嵌在平面直角坐标系上的巧克力，这个巧克力的形状是一个正多边形。
-日子一天天过去，CYF吃完了这份巧克力，
-但是却忘记了自己吃的巧克力有几条边，只记得正多边形巧克力上三个点的坐标。
-CYF知道送自己巧克力的人非常小气，所以正多边形巧克力的边数不会超过100。
-现在的CYF非常想知道自己吃的正多边形巧克力到底有多少条边，你能帮他算一下吗？
- 
-Input
-每个样例包含一组输入。
-一个输入有三行每行是一个点的坐标
-Xi Yi
-坐标之间用空格隔开
- 
+/*Problem Description
+只记得正多边形上三个点的坐标。
+正多边形的边数不会超过100。
+想知道正多边形到底有多少条边
+
 Output
-输出CYF吃的巧克力最少有多少个角
- 
+输出正多边形最少有多少个角
+
 Sample Input
 0.000000 0.000000
 1.000000 1.000000
-0.000000 1.000000 
- 
+0.000000 1.000000
+
 Sample Output
 4
 */
 #include<bits/stdc++.h>
-const int maxn=1e6+7;
 using namespace std;
+const double pi = acos(-1);
+const double esp=1e-6;
+struct node
+{
+    double x,y;
+}a,b,c;
+inline double retLen(node aa,node bb)
+{
+    return sqrt((aa.x-bb.x)*(aa.x-bb.x)+(aa.y-bb.y)*(aa.y-bb.y)) ;
+}
+double fgcd(double aa,double bb)
+{
+    if(bb<esp)
+        return aa;
+    return fgcd(bb,fmod(aa,bb));
+}
+inline void solve(double ra,double rb,double rc)
+{
+    double gcd=fgcd(ra,rb);
+    gcd = fgcd(gcd,rc);
+    printf("%.0f\n",pi/gcd);
+}
 int main()
 {
+    while(scanf("%lf%lf%lf%lf%lf%lf",&a.x,&a.y,&b.x,&b.y,&c.x,&c.y)!=EOF)
+    {
+        double aa=retLen(b,c);
+        double bb=retLen(a,c);
+        double cc=retLen(a,b);
 
+        double A = acos((bb*bb+cc*cc-aa*aa) / (2*bb*cc));
+        double B = acos((aa*aa+cc*cc-bb*bb) / (2*aa*cc));
+        double C = acos((bb*bb+aa*aa-cc*cc) / (2*bb*aa));
+        solve(A,B,C);
+    }
+    return 0;
 }
