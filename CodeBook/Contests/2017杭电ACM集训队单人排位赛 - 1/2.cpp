@@ -41,7 +41,8 @@ int main()
             scanf("%d",&x);
             pq.push(x);
         }
-        while(s <= pq.top()){
+        while(s <= pq.top())
+        {
             int t = pq.top();pq.pop();
             t--;
             ans++,s++;

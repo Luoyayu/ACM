@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+//可以把一个序列搞成数字在比较即可
 const int maxn=1e6+7;
 using namespace std;
 int p1[10],p2[10],p3[10];
