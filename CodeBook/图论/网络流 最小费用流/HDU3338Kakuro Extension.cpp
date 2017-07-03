@@ -45,7 +45,7 @@ struct Dinic
             int u=q.front();q.pop();
             for(int i=0;i<G[u].size();i++)
             {
-                point e=edges[G[u][i]];//
+                point e=edges[G[u][i]];
                 if(!mark[e.to]&&e.cap>e.flow)
                 {
                     mark[e.to]=1;
