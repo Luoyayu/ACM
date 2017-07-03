@@ -1,12 +1,14 @@
 //SPJ 神奇(巨难想)网络流
 //题意: 给出N*M的数迷 每一行或每一列空白成为一个回,有些黑色格子左下角表示列的和,右上角表示行的和，每个回的数字可以重复
 //给出合适的数迷填法
-//结题报告：以白色空格为节点,假设流是从左流入,从上流出,那么流入的容量为行和,流出的容量为列和,再求最大流,填数要求1-9 但是流有限制故统统减为0-8
-//建图：
+//结题报告：以白色空格为节点,假设流是向右流入,向上流出,那么流入的容量为行和,流出的容量为列和,再求最大流,填数要求1-9 但是流有限制故统统减为0-8
+//建图：建点：1.源点S，汇点T 2.有行和格子的点A 3.空白格子的点B 4.有列和格子的点C
+//建边1.<S,A> 行和-向右拥有的格子数  2.<A,B> 8   3.<B,C> 8   4.<C,T> 列和-向下拥有的格子数 5.反向容量置为0
 #include<bits/stdc++.h>
-const int maxn = 1e6+5;
+const int maxn = 100+7;
 const int inf = 0x3fffffff;
 #define Debug(x) cout<<#x<<"="<<x;
+using namespace std;
 template <class T>
 struct Dinic
 {
@@ -43,7 +45,7 @@ struct Dinic
             int u=q.front();q.pop();
             for(int i=0;i<G[u].size();i++)
             {
-                point e=edges[G[u][i]];
+                point e=edges[G[u][i]];//
                 if(!mark[e.to]&&e.cap>e.flow)
                 {
                     mark[e.to]=1;
@@ -91,21 +93,130 @@ struct Dinic
         memset(d,0,sizeof d);
     }
 };
-using namespace std;
+
+struct node
+{
+    int color;
+    int x,y;
+}mm[maxn][maxn];
+
+inline int turn(char a,char b,char c)
+{
+    return (a-'0')*100+(b-'0')*10+(c-'0');
+}
 int main()
 {
     int n,m;
-    while(scanf("%d%d",&你，&m)!=EOF)
+    while(scanf("%d%d",&n,&m)!=EOF)
     {
-        Dinic __dinic;
+        Dinic<int> __dinic;
         __dinic.init();
-        string input;
-        for(int i=0;i<n;i++)
+
+        int S=n*m,T=n*m+1;
+        string input;//1 XXX X XXX 7
+
+        for(int i=0;i<n;i++)//read
             for(int j=0;j<m;j++)
+            {
+                scanf("%s",input.c_str());
+                if(input=="XXXXXXX")//黑色
                 {
-                    scanf("%s",input.c_str());
+                    mm[i][j].color=0;
+                    mm[i][j].x=mm[i][j].y=-1;
+                }
+                else if(input==".......")//白色 B
+                {
+                    mm[i][j].color=5;
+                    mm[i][j].x=mm[i][j].y=0;
+                }
+                else if(input[4]!='X')//有和
+                {
+                    if(input[1]!='X'&&input[5]=='X')//仅有纵和 C
+                    {
+                        mm[i][j].color=3;
+                        mm[i][j].x=-1;
+                        mm[i][j].y=turn(input[1],input[2],input[3]);
+                    }
+                    else if(input[1]=='X'&&input[5]!='X')//仅有横和 A
+                    {
+                        mm[i][j].color=2;
+                        mm[i][j].x=turn(input[5],input[6],input[7]);
+                        mm[i][j].y=-1;
+                    }
+                    else//都要 AC
+                    {
+                        mm[i][j].color=4;
+                        mm[i][j].x=turn(input[5],input[6],input[7]);
+                        mm[i][j].y=turn(input[1],input[2],input[3]);
+                    }
 
                 }
+            }
+
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+            {
+                int cnt=0;
+                if(mm[i][j].color==2)//仅有横向的
+                {
+                    for(int k=j+1;k<m;k++)//扫描向右的blank
+                    {
+                        if(mm[i][k].color!=5) break;
+                        __dinic.addedge(i*m+j,i*m+k,8);//连<A B> 8
+                        cnt++;
+                    }
+                    __dinic.addedge(S,i*m+j,mm[i][j].x-cnt);//<S,A>
+                }
+                else if(mm[i][j].color==3) //仅有纵向的
+                {
+                    for(int k=i+1;k<n;k++)
+                    {
+                        if(mm[k][j].color!=5) break;
+                        __dinic.addedge(k*m+j,i*m+j,8);//<B C>8
+                        cnt++;
+                    }
+                    __dinic.addedge(i*m+j,T,mm[i][j].y-cnt);
+                }
+                else if(mm[i][j].color==4)//都要填的,注意使用两个index
+                {
+                    for(int k=j+1;k<m;k++)//先看横向的
+                    {
+                        if(mm[i][k].color!=5) break;
+                        __dinic.addedge(i*m+j,i*m+k,8);//连<A B> 8
+                        cnt++;
+                    }
+                    __dinic.addedge(S,i*m+j,mm[i][j].x-cnt);//<S,A>
+                    cnt=0;
+                    for(int k=i+1;k<n;k++)//再看纵向的
+                    {
+                        if(mm[k][j].color!=5) break;
+                        __dinic.addedge(k*m+j,i*m+n*m+2,8);//<B C>8
+                        cnt++;
+                    }
+                    __dinic.addedge(i*m+j+n*m+2,T,mm[i][j].y-cnt);
+
+                }
+            }
+
+        int ans=__dinic.dinic(S,T);
+
+        for(int i=0;i<n;i++)//out
+            for(int j=0;j<m;j++)
+            {
+                if(mm[i][j].color!=5) printf("_");
+                else
+                {
+                    int flow=0;
+                    for(int k=i*m+j;k<__dinic.G[k].size();k++)
+                    {
+                        if(k%2==0)
+                            flow=8-
+                    }
+                }
+            }
+
+
+
 
     }
 }

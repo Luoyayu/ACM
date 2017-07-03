@@ -1,35 +1,33 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn=25;
-int p1[maxn],p2[maxn];
+const int maxn = 100 + 10;
+int a[maxn],b[maxn],vis[maxn];
 int main()
 {
     int n,m;
-    freopen("C:\\Users\\gavin\\Desktop\\input.txt","r",stdin);
-    while(scanf("%d%d",&n,&m)!=EOF)
+    while(~scanf("%d%d",&n,&m))
     {
-        int ans=0;
-        for(int i=0;i<n;i++) scanf("%d",&p1[i]),ans+=p1[i];
-        for(int i=0;i<m;i++) scanf("%d",&p2[i]);
+        memset(vis,0,sizeof vis);
+        for( int i = 1; i <= n; i++ )scanf("%d",&a[i]);
+        for( int i = 1; i <= m; i++ )scanf("%d",&b[i]);
+        int ans = 0;
 
-        for(int i=0;i<m;i++)
-            for(int j=0;j<n;j++)
-            {
-                if(p2[i]<p1[j])
-                    ans+=p2[i];
-            }
-        for(int i=0;i<m;i++)
+        for( int i = 1; i <= n; i++ )
         {
-            int cnt=0;
-            for(int j=0;j<n;j++)
+            for( int j = 1; j <= m; j++ )
             {
-
+                if(vis[j]==0 && b[j] == a[i])//对于行列控制的先打标记
+                {
+                    vis[j] = 1;
+                    break;
+                }
             }
-
+          ans += a[i];
         }
-
+        for( int i = 1; i <= m; i++ )
+          if(!vis[i])
+            ans += b[i];
         printf("%d\n",ans);
     }
     return 0;
-
 }
