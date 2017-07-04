@@ -1,3 +1,4 @@
+/* STL 做法
 #include<bits/stdc++.h>
 using namespace std;
 string s[102];
@@ -33,4 +34,38 @@ int main()
         printf("%d\n",maxn);
     }
     return 0;
+}
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+char str[102][102];
+int kmpnext[102];
+void getnext(char *x, int len)
+{
+    int j=kmpnext[0]=-1,i=0;
+    while(i<len)
+    {
+        while(j!=-1&&x[i]!=x[j])
+            j=kmpnext[j];
+        if(x[++i]==x[++j]) kmpnext[i]=kmpnext[j];
+        else kmpnext[i]=j;
+    }
+}
+int main()
+{
+    int t;scanf("%d",&t);
+    while(t--)
+    {
+        int n;scanf("%d",&n);
+        int len = 111,index=0;
+        for(int i=0;i<n;i++)//找到最短串及其序号
+        {
+            scanf("%s",str[i]);
+            int tmplen=strlen(str[i]);
+            if(len>tmplen)
+                len=tmplen,index=i;
+        }
+        
+    }
 }
