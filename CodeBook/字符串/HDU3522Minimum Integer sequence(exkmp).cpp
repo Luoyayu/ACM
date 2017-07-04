@@ -1,8 +1,7 @@
-//扩展KMP 可以在O(m+n)时间内求得s1的任意后缀与字符串s2的最长公共前缀(LCP)
-//此处的next为s2的任意后缀与s2的LCP kmpnext[i]==j 意思是s2的以s2[i]为起始的后缀与s2本身的LCP
-//ex[i]就表示以s1[i]为起始的后缀与s2的LCP
 #include<bits/stdc++.h>
+//题意给出大数A,B,讲B插入A中,求最小的插入后的值
 using namespace std;
+const int maxn=100000+10;
 int kmpnext[maxn],ex[maxn];
 char s1[maxn],s2[maxn];
 int exkmp()
@@ -33,12 +32,5 @@ int exkmp()
 }
 int main()
 {
-    int t;scanf("%d",&t);
-    while(t--)
-    {
-        scanf("%s%s",s1,s2);
-        exkmp(s2,s2,kmpnext,kmpnext+1);//求出s2的kmpnext
-        exkmp(s1,s2,kmpnext,ex);//求出ex
 
-    }
 }

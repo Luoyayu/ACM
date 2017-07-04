@@ -11,13 +11,10 @@ void getnext()
 	while(i<plen-1)
 	{
 		if(j==-1||p[i]==p[j])
-			i++,j++,Next[i] = j;
+			Next[++i] = ++j;
 		else
 			j = Next[j];
 	}
-	//for(int i=0;i<plen;i++)
-    //    printf("%2d ",Next[i]);
-    //printf("\n");
 }
 bool kmp()
 {
