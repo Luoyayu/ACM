@@ -56,3 +56,31 @@ int main()
 
     }
 }
+
+
+
+//kmpnext[0]=0;
+void exkmp(char s1[],char s2[],int _next[],int ex[]) 
+{
+    int i,j,p;
+    for (i=0,j=0,p=-1;s1[i]!='\0';i++,j++,p--) 
+    {
+        if (p==-1) 
+        {
+            j=0;
+            do 
+                p++; 
+            while (s1[i+p]!='\0'&&s1[i+p]==s2[j+p]);
+            ex[i]=p;
+        }
+        else if (_next[j]<p) ex[i]=_next[j];
+        else if (_next[j]>p) ex[i]=p;
+        else 
+        {
+            j=0;
+            while (s1[i+p]!='\0'&&s1[i+p]==s2[j+p]) p++;
+            ex[i]=p;
+        }
+    }
+    ex[i]=0;
+}
