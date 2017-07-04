@@ -1,4 +1,5 @@
 //HDU 1711 Number Sequence
+//KMP 的思想用在数字序列上
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn=1000115;

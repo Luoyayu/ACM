@@ -3,18 +3,15 @@ using namespace std;
 string s[102];
 int main()
 {
-    int cas;
-    
-    scanf("%d",&T);
+    int T;scanf("%d",&T);
     while(T--)
     {
-        int n;
-        scanf("%d",&n);
+        int n;scanf("%d",&n);
         int len=9999,sub=0;
         for(int i=0; i<n; i++)
         {
             scanf("%s",s[i].c_str());
-            if(len>s[i].size())
+            if(len>s[i].size())//找到最短的串
             {
                 len=s[i].size();
                 sub=i;

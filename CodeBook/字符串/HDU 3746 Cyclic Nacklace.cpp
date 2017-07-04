@@ -1,6 +1,6 @@
-//利用next[]求循环节长度
 #include<bits/stdc++.h>
 using namespace std;
+#define Debug(x) cout<<#x<<"= "<<x<<endl;
 const int maxn=100055;
 char p[maxn];
 int Next[maxn];
@@ -11,10 +11,9 @@ void getnext()
     Next[0]=-1;
     while(i<plen)
     {
-        if(j==-1||p[i]==p[j])
-            Next[++i]=++j;
-        else
+        while(j!=-1&&p[i]!=p[j])
             j=Next[j];
+        Next[++i]=++j;
     }
 }
 int main()
@@ -25,9 +24,9 @@ int main()
     {
         scanf("%s",p);
         plen=strlen(p);
-        getnext();
+        getnext();//Next[plen]为最小循环节
         int L=plen-Next[plen];
-        if(plen%L==0 && L!=plen)
+        if(plen%L==0&&L!=plen)//L为自身长度要排除
         {
             printf("0\n");
             continue;
