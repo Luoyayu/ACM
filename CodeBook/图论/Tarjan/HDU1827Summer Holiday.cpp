@@ -56,7 +56,7 @@ void Tajan(int i)
             t=S.top();
             S.pop();
             instack[t]=0;
-            Belong[t]=scnt;//scntÊÇËõµãÖ®ºóµÄµã
+            Belong[t]=scnt;//scntæ˜¯ç¼©ç‚¹ä¹‹åçš„ç‚¹
         }while(t!=i);
     }
 }
@@ -82,16 +82,16 @@ int main()
             {
                 int Next=edge[e].to;
                 if(Belong[i]!=Belong[Next])
-                    deg[Belong[Next]]++; //ËõµãµÄ¶È++
+                    deg[Belong[Next]]++; //ç¼©ç‚¹çš„åº¦++
             }
 
-        for(int i=1; i<=scnt; i++) //scnt ËõµãµÄ¸öÊı
-            if(!deg[i])//ËõµãÊÇ¶ÀÁ¢µã
+        for(int i=1; i<=scnt; i++) //scnt ç¼©ç‚¹çš„ä¸ªæ•°
+            if(!deg[i])//ç¼©ç‚¹æ˜¯ç‹¬ç«‹ç‚¹
             {
-                cont++;  //µãÊı+1
+                cont++;  //ç‚¹æ•°+1
                 int MIN=INF;
                 for(int j=1; j<=n; j++)
-                    if(Belong[j]==i)//ÔÚÊôÓÚÕâ¸ö¶ÀÁ¢¡±µã¡°µÄµãÀïÃæÕÒ»¨·Ñ×îĞ¡µÄ
+                    if(Belong[j]==i)//åœ¨å±äºè¿™ä¸ªç‹¬ç«‹â€ç‚¹â€œçš„ç‚¹é‡Œé¢æ‰¾èŠ±è´¹æœ€å°çš„
                         MIN=min(va[j],MIN);
                 ans+=MIN;
             }

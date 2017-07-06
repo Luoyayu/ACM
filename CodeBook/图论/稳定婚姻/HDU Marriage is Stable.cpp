@@ -1,16 +1,6 @@
 //稳定婚姻问题和Gale-Shapley算法 延迟认可算法
 //带权二分图 求稳定匹配
-#include<cstdio>
-#include<cstring>
-#include<queue>
-#include<cstdlib>
-#include<map>
-#include<set>
-#include<string>
-#include<iostream>
-#include<stack>
-#include<cctype>
-#include<algorithm>
+#include<bits/stdc++.h>
 #define next NEXT
 #define stack STACK
 #define rank RANK

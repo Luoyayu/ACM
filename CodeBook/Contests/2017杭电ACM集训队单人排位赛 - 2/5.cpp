@@ -11,6 +11,5 @@ int main()
     while(_t--)
     {
         string zz;cin>>zz;
-
     }
 }
