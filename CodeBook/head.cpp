@@ -1,4 +1,17 @@
-#include<bits/stdc++.h> //for G++
+/*
+#include<cstdio>
+#include<cstring>
+#include<cstdlib>
+#include<string>
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<queue>
+#include<stack>
+*/
+
+//#include<bits/stdc++.h> //for G++
+
 using namespace std;
 #define y2 Y2
 #define next Next;
@@ -6,6 +19,13 @@ using namespace std;
 #define IOS std::ios::stdio(flase)
 #define clr(x,num) memset(x,num,sizeof(x));
 #define Debug(x) cout<<#x<<" = "<<x<<endl;
+
+//#pragma comment(linker, "/STACK:102400000,102400000")//for C++
+/* for G++
+int size = 256 << 20; // 256MB  
+char *p = (char*)malloc(size) + size;  
+__asm__("movl %0, %%esp\n" :: "r"(p));
+*/
 typedef long long ll;
 typedef __int64 LL;
 const int maxn = 1e5 + 7;
@@ -15,9 +35,7 @@ const int MOD  = 1e9 + 7;
 const int inf  = 0x3f3f3f3f;
 const double esp = 1e-6;
 const double pi = acos(-1);
-//op1:change(i) op2:getsum(i,j) 获取两个终点为(i,j)色的所有可能路径权和
-//思想:分块维护 01 00 11 这样的边数
-int main()
+int mian()
 {
-    
+
 }

@@ -1,6 +1,6 @@
 //字符串好题
 #include<bits/stdc++.h>
-#define Debug(x) cout<<#x<<"= "<<x<<endl;
+#define Debug(x) cout<<#x<<" = "<<x<<endl;
 //题意:给出大数A,B,将B插入A中,求最小的插入后的值 转换问题为字符串的字典序大小比较
 //思路:明确ex_KMP对于s1 s2,可以求出相应kmpnext：s2的任意后缀与s2自身的LCP;ex:s1的任意后缀与s2的LCP(next与s2有关,ex与s1有关,都是与s2的LCP)
 using namespace std;

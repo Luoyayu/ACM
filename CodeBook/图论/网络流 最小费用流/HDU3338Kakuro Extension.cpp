@@ -254,7 +254,6 @@ int main()
                         mm[i][j].x=turn(input[5],input[6],input[7]);
                         mm[i][j].y=turn(input[1],input[2],input[3]);
                     }
-
                 }
             }
 
@@ -291,6 +290,7 @@ int main()
                         cnt++;
                     }
                     __dinic.addedge(S,i*m+j,mm[i][j].x-cnt);//<S,A>
+
                     cnt=0;
                     for(int k=i+1;k<n;k++)//再看纵向的
                     {
@@ -299,7 +299,6 @@ int main()
                         cnt++;
                     }
                     __dinic.addedge(i*m+j+n*m+2,T,mm[i][j].y-cnt);
-
                 }
             }
 

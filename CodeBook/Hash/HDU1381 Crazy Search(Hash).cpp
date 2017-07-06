@@ -13,7 +13,7 @@ int main()
     int t;
     scanf("%d",&t);
     {
-        scanf("%d %d",&n,&nc);
+        scanf("%d %d",&n,&nc);0
         memset(id,-1,sizeof id);
         memset(hash,false,sizeof hash);
         scanf("%s",w);
