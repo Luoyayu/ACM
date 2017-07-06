@@ -25,11 +25,12 @@ int _floyd(int n)
         for(int j=1; j<=n; j++)
         {
             if(i==j) continue;
-            for(int k=1; k<=n; k++)//floyd松弛比如1->3(12) 1->2(1) 1->3(2) 显然1->3这条边存在即不合理
-            {
+            for(int k=1; k<=n; k++)
+            {//比如 [1->3(12), 1->2(1), 1->3(2)]显然[1->3]这条边存在即不合理
                 if(i==k && j==k) continue;
-                if(g[i][j] > g[i][k] + g[k][j] && g[i][k] && g[k][j]) return -1;//判断这种不合理
-                else if(g[i][j]==g[i][k] + g[k][j] && g[i][k] && g[k][j])  ans++,break;
+                if(g[i][j] > g[i][k] + g[k][j] && g[i][k] && g[k][j]) return -1;
+                else if(g[i][j]==g[i][k] + g[k][j] && g[i][k] && g[k][j]) 
+                    {ans++;break;}
             }
         }
     return ans;
