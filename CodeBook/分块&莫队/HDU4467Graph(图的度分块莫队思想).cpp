@@ -50,10 +50,12 @@ int main()
             if(edge[i].u>edge[i].v) swap(edge[i].u,edge[i].v);//确保从小指向大点
         }
         sort(edge,edge+m);
-        int cnt=0;
+        int cnt=0;//去重合并
         for(int i=0;i<m;i=j)
         {
-            
+            for(int j=i+1;j<m&&edge[i].u==edge[j].u&&edge[i].v==edge[i].v;j++)
+                edge[i].w+=edge[j].w;
+            edge[cnt++]=edge[i];
         }
 
     }
