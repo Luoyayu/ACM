@@ -1,20 +1,16 @@
-//好题深入理解欧拉本质
+//好题,深入理解欧拉本质
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 #define scd(x) scanf("%d",&x)
-#define scl(x) scanf("%lld",&x)
 #define scll(x,y) scanf("%lld %lld",&x,&y)
 #define ptd(x) printf("%d\n",x)
 /*题意:求gcd(X,N)>=M 且1<=X<=N;
 * 发现X只能是N的因子,似乎可以枚举瞎N的因子,那么问题就转换为
-* 于是 gcd(X,N) = X;
-* 在1~N内有多少N的因子满足gcd(X,N)=P>=M
-* 1) 观察一满足条件的X,因为gcd(X,N)=P>=M 所以有X/P 与 N/P 互质(不互质的话显然P不是gcd)
-* 2) 又由X<=N 有 X/P<=N/P
-* 由此可得求X 的个数就是求不大于N/P的且与其互质的数的个数<=>求 N/p的欧拉函数值
+* 在1~N内有多少N的因子X满足 gcd(X,N)=X>=M 
+* 因为gcd(X,N)=X>=M 设y=N/X 记与y互质的数为p1,p2,p3...pn, 可得gcd(X*pn,N)>=M 则即求小于等于N/X且与其互质的数的个数
+* 由此可得求x个数<=>求 N/X的欧拉函数值之和
 */
-ll n,m;
 ll euler(ll x)
 {
     ll res = x;
@@ -31,16 +27,14 @@ int main()
     int t;scd(t);
     while(t--)
     {
-        scll(n,m);
-        ll ans = 0;
-        int nn = int(sqrt(n));
-        for(int p=1; p<=nn; p++) if(n%p==0)
-        {//枚举N的约数P
-            if(p>=m)
-                ans += euler(n/p);
+        ll n, m, ans = 0; scll(n, m);
+        for(int x=1; x*x<=n; x++) if(n%x==0)//枚举N的约数P
+        {
+            if(x>=m) //加速枚举,比如n=12 (1,2,3,4,6,12) 当 x=1 时同时搞 1 和 12 x=2时搞 2和 6
+                ans += euler(n/x);
 
-            if((n/p)>=m && (n/p)!=p)//判断是否为平方数??????
-                ans += euler(p);
+            if( (n/x)>=m && (n/x)!=x)//判断是否为平方数
+                ans += euler(x);
         }
         ptd(ans);
     }
