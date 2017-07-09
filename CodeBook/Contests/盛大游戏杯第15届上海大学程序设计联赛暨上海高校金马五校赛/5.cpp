@@ -10,22 +10,23 @@ int main()
     while (cin>>s>>num)
     {
         ll ans=0;
-        int now=0;
         int l=s.size();
-        rep(i,0,l) a[i]=s[i]-'a';
-        rep(i,0,l) ans+=a[i]*pow(26,l-i-1);
-
+        for(int i=0;i<l;i++)
+            a[i]=s[i]-'a';
+        for(int i=0;i<l;i++)
+            ans+=a[i]*pow(26,l-i-1);
         if(ans == 0)
         {
             printf("0\n");
             continue;
         }
-        while (ans)
+        int cnt =0;
+        while(ans)
         {
-            a[now++]=ans%num;
+            a[cnt++]=ans%num;
             ans /= num;
         }
-        for (int i=now-1;i>=0;--i)
+        for (int i=cnt-1;i>=0;i--)
             printf("%d",a[i]);
         printf("\n");
     }

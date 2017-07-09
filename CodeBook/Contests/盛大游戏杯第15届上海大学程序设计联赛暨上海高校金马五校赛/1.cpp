@@ -6,12 +6,6 @@ using namespace std;
 #define IOS std::ios::stdio(flase)
 #define clr(x,num) memset(x,num,sizeof(x));
 #define Debug(x) cout<<#x<<" = "<<x<<endl;
-//#pragma comment(linker, "/STACK:102400000,102400000")//for C++
-/* for G++
-int size = 256 << 20; // 256MB
-char *p = (char*)malloc(size) + size;
-__asm__("movl %0, %%esp\n" :: "r"(p));
-*/
 typedef long long ll;
 const int maxn = 1e5 + 7;
 const int maxc = 1e3 + 5;
