@@ -33,7 +33,7 @@ const int inf  = 0x3f3f3f3f;
 const double esp = 1e-6;
 const double pi = acos(-1);
 //
-int mian()
+int main()
 {
 
 }
