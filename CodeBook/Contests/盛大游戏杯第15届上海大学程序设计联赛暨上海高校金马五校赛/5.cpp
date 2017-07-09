@@ -1,28 +1,33 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define rep(i,s,t) for (int i=s;i<t;++i)
 using namespace std;
-#define y2 Y2
-#define next Next;
-#define lowbit(x) x&(-x)
-#define IOS std::ios::stdio(flase)
-#define clr(x,num) memset(x,num,sizeof(x));
-#define Debug(x) cout<<#x<<" = "<<x<<endl;
-//#pragma comment(linker, "/STACK:102400000,102400000")//for C++
-/* for G++
-int size = 256 << 20; // 256MB
-char *p = (char*)malloc(size) + size;
-__asm__("movl %0, %%esp\n" :: "r"(p));
-*/
 typedef long long ll;
-typedef __int64 LL;
-const int maxn = 1e5 + 7;
-const int maxc = 1e3 + 5;
-const int maxr = 1e5 + 5;
-const int MOD  = 1e9 + 7;
-const int inf  = 0x3f3f3f3f;
-const double esp = 1e-6;
-const double pi = acos(-1);
-//
+int a[20];
 int main()
 {
+    string s;
+    int num;
+    while (cin>>s>>num)
+    {
+        ll ans=0;
+        int now=0;
+        int l=s.size();
+        rep(i,0,l) a[i]=s[i]-'a';
+        rep(i,0,l) ans+=a[i]*pow(26,l-i-1);
 
+        if(ans == 0)
+        {
+            printf("0\n");
+            continue;
+        }
+        while (ans)
+        {
+            a[now++]=ans%num;
+            ans /= num;
+        }
+        for (int i=now-1;i>=0;--i)
+            printf("%d",a[i]);
+        printf("\n");
+    }
+    return 0;
 }

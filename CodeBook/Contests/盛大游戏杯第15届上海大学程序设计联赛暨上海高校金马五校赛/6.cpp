@@ -1,28 +1,41 @@
-#include<bits/stdc++.h>
+#include<stdio.h>
+#include<string.h>
+#include<algorithm>
+#include<iostream>
 using namespace std;
-#define y2 Y2
-#define next Next;
-#define lowbit(x) x&(-x)
-#define IOS std::ios::stdio(flase)
-#define clr(x,num) memset(x,num,sizeof(x));
-#define Debug(x) cout<<#x<<" = "<<x<<endl;
-//#pragma comment(linker, "/STACK:102400000,102400000")//for C++
-/* for G++
-int size = 256 << 20; // 256MB
-char *p = (char*)malloc(size) + size;
-__asm__("movl %0, %%esp\n" :: "r"(p));
-*/
-typedef long long ll;
-typedef __int64 LL;
-const int maxn = 1e5 + 7;
-const int maxc = 1e3 + 5;
-const int maxr = 1e5 + 5;
-const int MOD  = 1e9 + 7;
-const int inf  = 0x3f3f3f3f;
-const double esp = 1e-6;
-const double pi = acos(-1);
-//
+int n,a[500005],dp[500005],dp1[500005];
 int main()
 {
 
+    while(~scanf("%d",&n))
+    {
+        for(int i=1;i<=n;i++)
+            scanf("%d",&a[i]);
+        for(int i=1;i<=n/2;i++)
+        {
+             dp[i]=1;
+             for(int j=0;j<i;j++)
+             {
+                 if(a[j]<a[i])
+                    dp[i]=max(dp[i],dp[j]+1);
+             }
+        }
+
+        for(int i=n-1;i>=n/2;i--)
+        {
+            dp1[i]=1;
+            for(int j=n-1;j>i;j--)
+            {
+                if(a[j]<a[i])
+                {
+                    dp1[i]=max(dp1[i],dp1[j]+1);
+                }
+            }
+        }
+        int maxx=-1;
+        for(int i=0;i<n;i++)
+            maxx=max(maxx,dp[i]+dp1[i]-1);
+        printf("%d\n",maxx);
+    }
+    return 0;
 }

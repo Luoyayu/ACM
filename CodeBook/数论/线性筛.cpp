@@ -24,7 +24,7 @@ int main()
 {
     init();
     for(int i=1;i<tot;i++)
-        printf("%d ",p[i]);
+        printf("%d,",p[i]);
     printf("OK\n");
     return 0;
 }
