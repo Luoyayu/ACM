@@ -12,7 +12,6 @@ const int maxn=1e5+7;
 int prime[maxn];//prime[i]==0为质数
 void getPrime()
 {
-    memset(prime,0,sizeof prime);
     for(int i=2;i<=maxn;i++)
     {
         if(!prime[i]) prime[++prime[0]]=i;
@@ -36,10 +35,10 @@ void getPrime2()//计算区间素数
         if(s==1)s=2;//注意s==1时会把2筛成合数
         for(int j=s;(long long)j*prime[i]<=R;j++)
             if((long long)j*prime[i]>=L)
-                notprime[j*prime[i]-L]=1;//区间映射x-L
-    }//懵圈写错位置T出天际
+                notprime[j*prime[i]-L]=1;//区间映射 X-L
+    }//懵圈写错位置 T出天际
         prime2[0]=0;
-        for(int i=0;i<=R-L;i++)//开新数组区间映射回去
+        for(int i=0;i<=R-L;i++)//开新数组区间映射回去X+L
             if(!notprime[i])
                 prime2[++prime2[0]]=i+L;
 }

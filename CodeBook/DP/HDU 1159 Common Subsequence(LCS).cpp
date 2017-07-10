@@ -1,5 +1,5 @@
-//最长公共不连续子序列 LCS DP
-//思想母串
+//最长公共不连续子序列 LCS (DP)
+//思想:母串
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn=10005;
