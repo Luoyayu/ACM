@@ -1,17 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define y2 Y2
-#define next Next;
-#define lowbit(x) x&(-x)
-#define IOS std::ios::stdio(flase)
-#define clr(x,num) memset(x,num,sizeof(x));
-#define Debug(x) cout<<#x<<" = "<<x<<endl;
-//#pragma comment(linker, "/STACK:102400000,102400000")//for C++
-/* for G++
-int size = 256 << 20; // 256MB
-char *p = (char*)malloc(size) + size;
-__asm__("movl %0, %%esp\n" :: "r"(p));
-*/
 typedef long long ll;
 typedef __int64 LL;
 const int maxn = 1e5 + 7;

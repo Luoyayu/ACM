@@ -3,10 +3,10 @@ using namespace std;
 typedef long long ll;
 #define clr(a,b) memset(a,b,sizeof (a))
 int dp[20][2],a[20];//dp[pos][sta]表示当前第pos位,前一位是否位6的状态
-int dfs(int pos, int pre, int statue, bool limit)
+int dfs(int pos, int pre, int state, bool limit)
 {
     if(pos == -1) return 1;//递归边界
-    if(!limit && dp[pos][statue]!=-1) return dp[pos][statue];
+    if(!limit && dp[pos][state]!=-1) return dp[pos][state];
     int up = limit?a[pos]:9 ;//定枚举上界
     int ans = 0;
     for(int i=0;i<=up;i++)
@@ -15,7 +15,7 @@ int dfs(int pos, int pre, int statue, bool limit)
         if(i==4) continue;
         ans += dfs(pos-1,i,i==6,limit && i==a[pos]);
     }
-    if(!limit) dp[pos][statue]=ans;
+    if(!limit) dp[pos][state]=ans;
     return ans;
 }
 int solve(int n)

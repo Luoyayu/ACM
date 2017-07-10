@@ -30,7 +30,7 @@ int main()
         {
             for(int k = 0;k < cnt;k++)
             {
-                if(i + p[k] > 500&&j + p[k] > 500)
+                if(i + p[k] > 500 && j + p[k] > 500)
                     break;
                 if(i + p[k] <= 500)
                 {

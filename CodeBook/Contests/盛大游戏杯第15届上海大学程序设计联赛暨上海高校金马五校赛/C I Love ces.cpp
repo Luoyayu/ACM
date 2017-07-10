@@ -23,7 +23,7 @@ int main()
 
         }
         /*
-        a[5]=a[5]/2;
+        a[5]=a[5]/2;//正确姿势
         long long m=100000;
         for (int i=1;i<=7;i++)
             m=min(a[i],m);
@@ -43,7 +43,7 @@ int main()
             else if(str[i]=='S'||str[i]=='s') a[6]++;
         }
         a[0]/=2;
-        sort(a,a+6);
+        sort(a,a+6);//居然这样写会超时醉了小数据还是别用sort了
         printf("%d\n",a[0]);
     }
     return 0;

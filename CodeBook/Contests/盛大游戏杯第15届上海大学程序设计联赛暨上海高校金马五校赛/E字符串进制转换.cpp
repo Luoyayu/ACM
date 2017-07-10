@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define rep(i,s,t) for (int i=s;i<t;++i)
 using namespace std;
 typedef long long ll;
 int a[20];
@@ -13,8 +12,9 @@ int main()
         int l=s.size();
         for(int i=0;i<l;i++)
             a[i]=s[i]-'a';
+
         for(int i=0;i<l;i++)
-            ans+=a[i]*pow(26,l-i-1);
+            ans+=a[i] * pow(26,l-i-1);
         if(ans == 0)
         {
             printf("0\n");

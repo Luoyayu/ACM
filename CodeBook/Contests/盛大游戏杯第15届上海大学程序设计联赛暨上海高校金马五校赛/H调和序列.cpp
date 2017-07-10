@@ -1,28 +1,32 @@
-#include<bits/stdc++.h>
+#include<bits/stdc++.h> 
 using namespace std;
-#define y2 Y2
-#define next Next;
-#define lowbit(x) x&(-x)
 #define IOS std::ios::stdio(flase)
 #define clr(x,num) memset(x,num,sizeof(x));
 #define Debug(x) cout<<#x<<" = "<<x<<endl;
 //#pragma comment(linker, "/STACK:102400000,102400000")//for C++
-/* for G++
-int size = 256 << 20; // 256MB
-char *p = (char*)malloc(size) + size;
-__asm__("movl %0, %%esp\n" :: "r"(p));
-*/
 typedef long long ll;
-typedef __int64 LL;
-const int maxn = 1e5 + 7;
-const int maxc = 1e3 + 5;
-const int maxr = 1e5 + 5;
-const int MOD  = 1e9 + 7;
+const int maxn = 20000 + 7;
+const int mod  = 1e9 + 7;
 const int inf  = 0x3f3f3f3f;
 const double esp = 1e-6;
 const double pi = acos(-1);
-//
+int a[maxn];
+//定义sequence(K)表示以下标为K的倍数组成的子序列[0,K,2K,...]
+//query(K,S) 询问sequence(K)中第S大的数字
 int main()
 {
+    int t;scanf("%d",&t);
+    while(t--)
+    {
+        int n,m;
+        scanf("%d%d",&n,&m);
+        for(int i=1;i<=n;i++)
+            scanf("%d",&a[i]);
+        while(m--)
+        {
+            int K,S;scanf("%d%d",&K,&S);
+            
+        }
 
+    }
 }
