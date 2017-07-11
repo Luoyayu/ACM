@@ -28,7 +28,7 @@ int solve(int n)
         a[pos++]=n%10;
         n/=10;
     }
-    return dfs(pos-1,0,true);
+    return dfs(pos-1,0,true);//最高位限制+前导0限制
 }
 int main()
 {
