@@ -1,55 +1,40 @@
-///数位DP入门题
-///查看1~n中有多少个数字中含有 49
-///dp[i][j]表示的是i位数字并且第i位上的数字为j所不含49的个数
-#include<cstdio>
-#include<cstring>
+#include<bits/stdc++.h>
 using namespace std;
-typedef __int64 ll;
-ll n,dp[20][10];
-void init()
+typedef long long ll;
+int a[20];
+ll dp[20][2];//设计状态 dp[pos][当前pos位是否含有4]
+ll dfs(int pos, bool state, bool limit)//state记录当情况pos是否含有4
 {
-    memset(dp,0,sizeof dp);
-    dp[0][0]=1;
-    for(int i=1;i<20;i++)
-        for(int j=0;j<10;j++)///枚举第i位
-            for(int k=0;k<10;k++)///枚举第i-1位
-                if(!( j== 4 && k==9))
-                    dp[i][j]+=dp[i-1][k];
+    if(pos==-1) return 1;
+    if(!limit&&~dp[pos][state]) return dp[pos][state];
+    int up =limit?a[pos]:9;
+    ll ans=0;
+    for(int i =0;i<=up;i++)
+    {
+        if(state&&i==9) continue;//如果当前pos位时4continue i==9的情况
+        ans+=dfs(pos-1,i==4,limit&&i==up);
+    }
+    if(!limit) dp[pos][state] = ans;
+    return ans;
 }
-
 ll solve(ll n)
 {
-    int digit[20];//分|数
-    int len=1;
-    ll m=n;
-    while(m)
+    int pos = 0;
+    while(n)
     {
-        digit[len++]=m%10;
-        m/=10;
+        a[pos++] = n % 10;
+        n /= 10;
     }
-
-    digit[len+1]=0;
-    ll ans=0;
-    for(int i=len;i>0;i--)
-    {
-        for(int j=0;j<digit[i];j++)
-            if(!digit[i+1]==4&&j==9)
-                ans+=dp[i][j];
-
-        if(digit[i]==9 && digit[i+1]==4)
-            break;
-    }
-    return n-ans;
+    return dfs(pos-1,0,1);
 }
 int main()
 {
-    int t;
-    init();
-    scanf("%d",&t);
+    int t;scanf("%d",&t);
+    memset(dp,-1,sizeof dp);
     while(t--)
     {
-        scanf("%I64d",&n);
-        printf("%I64d\n",solve(n+1));
+        ll n;scanf("%lld",&n);
+        printf("%lld\n",n-solve(n)+1);
     }
     return 0;
 }

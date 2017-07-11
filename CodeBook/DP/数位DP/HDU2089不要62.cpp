@@ -3,17 +3,19 @@ using namespace std;
 typedef long long ll;
 #define clr(a,b) memset(a,b,sizeof (a))
 int dp[20][2],a[20];//dp[pos][sta]表示当前第pos位,前一位是否位6的状态
-int dfs(int pos, int pre, int state, bool limit)
+int dfs(int pos, int state, bool limit)//state记录当前位置是否有6
 {
     if(pos == -1) return 1;//递归边界
-    if(!limit && dp[pos][state]!=-1) return dp[pos][state];
+    if(!limit && ~dp[pos][state]) return dp[pos][state];
     int up = limit?a[pos]:9 ;//定枚举上界
     int ans = 0;
     for(int i=0;i<=up;i++)
     {
-        if(pre==6&&i==2) continue;
-        if(i==4) continue;
-        ans += dfs(pos-1,i,i==6,limit && i==a[pos]);
+        if(i!=4)
+        {
+            if(state&&i==2) continue;//
+            ans += dfs(pos-1,i==6,limit && i==up);
+        }
     }
     if(!limit) dp[pos][state]=ans;
     return ans;
@@ -26,7 +28,7 @@ int solve(int n)
         a[pos++]=n%10;
         n/=10;
     }
-    return dfs(pos-1,-1,0,true);
+    return dfs(pos-1,0,true);
 }
 int main()
 {
