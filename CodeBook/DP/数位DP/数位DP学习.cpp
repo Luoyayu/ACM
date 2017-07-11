@@ -1,4 +1,4 @@
-#include<bits.stdc++.h>
+#include<bits/stdc++.h>
 //数位DP再学
 //数位DP是一种控制上界的枚举,dp[pos][state]保存枚举到pos位置状态为state的个数
 typedef long long ll;
@@ -10,7 +10,7 @@ ll dfs(int pos, int pre, bool limit)
 {
     if(pos==-1)//枚举到边界,既pos=0(最低位)-1==-1
         return 1;
-    if(!limit && dp[pos][state]!=-1)
+    if(!limit && ~dp[pos][state])
         return dp[pos][state];
     int up = limit ? a[pos] : 9;//根据limit判断上界1
     ll ans = 0;
@@ -18,7 +18,7 @@ ll dfs(int pos, int pre, bool limit)
     {
         if()....
         else if()....
-        ans+=dfs(pos-1,lead && i=,limit && i==a[pos])//pos-1记录最高位,pos==0为最低位
+        ans+=dfs(pos-1,lead && i=,limit && i==up)//pos-1记录最高位,pos==0为最低位
     }
     if(!limit )
         dp[pos][state]=ans;

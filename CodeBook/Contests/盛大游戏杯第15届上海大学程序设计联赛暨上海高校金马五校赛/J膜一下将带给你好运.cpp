@@ -90,3 +90,60 @@ int main()
     }
 return 0;
 }
+
+//高神太强了,Σ phi(n)*(n/i)=n/2*(n+1)
+//证明:
+#include<bits/stdc++.h>
+using namespace std;
+#define LL long long int
+const LL mod = 1000000007LL;
+LL phi(LL n)
+{
+    LL result=n;
+    LL limit=(LL)sqrt(n+0.5);
+    for(int i=2;i<=limit;i++)
+    {
+        if(n%i==0)
+        {
+            result=result/(i)*(i-1);
+            while(n%i==0) n/=i;
+        }
+    }
+    if(n>1)result=result/n*(n-1);
+    return result;
+}
+LL muti(LL a,LL b)
+{
+    return (a%mod)*(b%mod)%mod;
+}
+LL f(LL n)
+{
+    if(n&1)return muti((n+1)/2,n);
+    else return muti(n/2,n+1);
+}
+int main()
+{
+    int T;
+    LL n;
+    scanf("%d",&T);
+    for(int cnt=1;cnt<=T;cnt++)
+    {
+        scanf("%lld",&n);
+        LL a=f(n);
+        LL b=0;
+        for(int i=1;i<=232;i++)
+        {
+            b=b+(n/i)*phi(i)%mod;
+            b%=mod;
+        }
+        for(int i=n-232;i<=n;i++)
+        {
+            b=b+(n/i)*phi(i)%mod;
+            b%=mod;
+        }
+        a-=b;a%=mod;a+=mod;a%=mod;
+        printf("%lld\n",a);
+
+    }
+    return 0;
+}

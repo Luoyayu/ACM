@@ -5,10 +5,39 @@
 *定义μ(d) = d=1 μ(1)=1;
 *2)         d=奇数个素数之积 μ(d)=-1;
 *3)         d=偶数个素数之积 μ(d)=1;
-*其他情况下μ(d) = 0;
+*其他情况下如含有平方因子μ(d) = 0;(可以用Pollard_Rho分解出质因子然后YY)
 
 *对于μ(d) 函数的常见性质
 *1) Σ(d|n) μ(d) = 1(n==1)
 *   Σ(d|n) μ(d) = 0(n>1)
 *2) 对于任意正整数n有Σ(d|n) μ(d)/n = φ(n)/n
 */
+//线筛法求解mobius函数值
+int mob[maxn],prime[maxn],tot;
+bool notprime[maxn];
+void getMobius()
+{
+    mob[1]=1;
+    for(int i=2;i<maxn;i++)
+    {
+        if(!notprime[i])
+        {
+            prime[tot++]=i;
+            mob[i] = -1;//若i是质数
+        }
+        for(int j=1;j<tot && i*prime[j]<maxn;j++)
+        {
+            notprime[ i * prime[j] ] = 1;//其他情况
+            if( i % prime[j]==0)
+            {
+                mob[i*prime[j]]=0;
+                break;
+            }
+            mob[i*prime[j]]=-mob[i];
+        }
+    }
+}
+//莫比乌斯反演的证明
+
+
+
