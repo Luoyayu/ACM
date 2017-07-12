@@ -1,6 +1,5 @@
 //DFS
-#include <cstdio>
-#include <cstring>
+#include<bits/stdc++.h>
 int len = 0,flag = 0;
 struct Node
 {

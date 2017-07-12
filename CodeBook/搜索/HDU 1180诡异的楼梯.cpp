@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <algorithm>
-#include <iostream>
-#include <queue>
-#include <string.h>
+#include<bits/stdc++.h>
 using namespace std;
 const int N = 50;
 char Map[N][N];
@@ -10,7 +6,6 @@ bool vis[N][N];
 int n, m;
 int sx,sy;
 int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-
 struct node
 {
     int x, y;

@@ -13,9 +13,9 @@ int bfs(int a,int b)
     {
         int u=Q.front();
         Q.pop();
-        if(u+k[u]>0&&u+k[u]<=n&&!vis[u+k[u]])
+        if(u+k[u]>0 && u+k[u]<=n && !vis[u+k[u]])
             Q.push(u+k[u]),vis[u+k[u]]=vis[u]+1;
-        if(u-k[u]>0&&u-k[u]<=n&&!vis[u-k[u]])
+        if(u-k[u]>0 && u-k[u]<=n && !vis[u-k[u]])
 			Q.push(u-k[u]),vis[u-k[u]]=vis[u]+1;
         if(u==b) 
 			return vis[u]-vis[a];
@@ -25,7 +25,7 @@ int bfs(int a,int b)
 int main()
 {
     int a,b;
-    while(cin>>n&&n)
+    while(cin>>n,n)
     {
         memset(vis,0,sizeof(vis));
         cin>>a>>b;

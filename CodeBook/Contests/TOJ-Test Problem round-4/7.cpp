@@ -1,23 +1,20 @@
 #include<bits/stdc++.h>
-//贪心算吗
 using namespace std;
 const int maxn = 100000+7;
 int nums[maxn];
 typedef long long ll;
 int solve(int n,int len)
 {
-    int i=0;ll miss=1;//miss为[0,n)中缺少的最小整数
-    int cnt=0;
-    while(miss<=n)
+    int i=0,curMIN=1,cnt=0;
+    while(curMIN<=n)
     {
-        if(i<len&&nums[i]<=miss)
-            miss+=nums[i++];
+        if(i<len && nums[i]<=curMIN)
+            curMIN += nums[i++];
         else
-            miss=<<1,cnt++;//扩展区间
+            curMIN=<<1,cnt++;//ex
     }
     return cnt;
 }
-
 int main()
 {
     int t;scanf("%d",&t);

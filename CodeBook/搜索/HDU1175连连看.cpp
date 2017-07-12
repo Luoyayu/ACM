@@ -1,11 +1,10 @@
-# include<stdio.h>
-# include<string.h>
-# include<queue>
+#include<bits/stdc++.h>
 using namespace std;
 int map[1050][1050]; 
 int vis[1050][1050];    
 int n,m;
-struct Node{
+struct Node
+{
     int x,y,dir,times;    //dir表示方向 ，times表示转弯的次数
 }st,en;
 queue<Node> q;
@@ -13,8 +12,7 @@ int dx[]={-1,0,0,1};
 int dy[]={0,-1,1,0};
 bool ismap(int x,int y)
 {
-    if(x<1 || y<1 || x>n ||y>m)
-        return false;
+    if(x<1 || y<1 || x>n ||y>m) return false;
     return true;
 }
 void BFS()
@@ -25,14 +23,14 @@ void BFS()
     vis[st.x][st.y] = 1;
     q.push(st);
     bool tmp = false;
-    int i;
     while(!q.empty()){
         Node a = q.front();    q.pop();      
         if(a.x == en.x && a.y ==en.y){
             tmp = true;
             break;
         }
-        for(i=0;i<4;i++){
+        for(int i=0;i<4;i++)
+        {
             Node b;
             b.x = a.x + dx[i];
             b.y = a.y + dy[i];
@@ -48,17 +46,16 @@ void BFS()
             q.push(b);
         }
     }
-    if(tmp)
-        puts("YES");
-    else
-        puts("NO");
+    if(tmp) puts("YES");
+    else puts("NO");
 }
 int main()
 {
-    while(scanf("%d%d",&n,&m)&&n&&m){
-        int i,j,T;
-        for(i=1;i<=n;i++)
-            for(j=1;j<=m;j++)
+    while(scanf("%d%d",&n,&m)&&n&&m)
+    {
+        int T;
+        for(int i=1;i<=n;i++)
+            for(int j=1;j<=m;j++)
                 scanf("%d",&map[i][j]);   
 
             scanf("%d",&T);
@@ -70,8 +67,7 @@ int main()
                     puts("NO");
                 else if(map[st.x][st.y] == 0 || map[en.x][en.y] == 0)
                     puts("NO");
-                else
-                    BFS();
+                else BFS();
             }                
     }
     return 0;
