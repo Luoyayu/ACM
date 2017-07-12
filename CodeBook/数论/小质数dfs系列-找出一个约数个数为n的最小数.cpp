@@ -3,16 +3,11 @@
 ///即给出约数个数求最小满足的整数
 ///基本原理——建立搜索树，枚举小质因子，小质因子大法好
 ///CF 27E/ Number With The Given Amount Of Divisors
-#include <iostream>
-#include <string.h>
-#include <stdio.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 typedef unsigned long long ULL;
 const ULL INF = -1ULL;
-
 int prime[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
-
 int n;
 ULL ans;
 

@@ -1,5 +1,5 @@
 
-//1000000 质因子的乘积%471115667135
+//1000000 质因子的乘积 %471115667135
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
