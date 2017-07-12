@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-//I 题 sb了 忘了关a数组 T了2遍
+// I 题 sb了 忘了划掉a数组 T了2次
 using namespace std;
 const int maxn = 1e7;
 int diff[maxn];
@@ -13,7 +13,6 @@ int main()
         int sum = 0,maxsum = 0;
         for(int i=1;i<n;i++)
         {
-
             scanf("%d",&diff[i]);
             diff[i-1]=diff[i]-diff[i-1];
             sum+=diff[i-1];
