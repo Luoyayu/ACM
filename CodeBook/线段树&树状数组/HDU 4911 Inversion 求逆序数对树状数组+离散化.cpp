@@ -4,6 +4,7 @@
 #include<algorithm>
 using namespace std;
 typedef long long ll;
+#define lowbit(x) x&(-x)
 const int maxn=1000005;
 ll c[maxn];
 int n;
@@ -15,12 +16,7 @@ bool cmp(node &a, node &b)
 {
     return a.x<b.x;
 }
- ll lowbit(ll x)
-{
-    return x&(-x);
-}
-
- void add(ll x,ll d)
+inline void add(ll x,ll d)
 {
     while(x<=n)
         c[x]+=d,x+=lowbit(x);
@@ -43,7 +39,6 @@ int main()
             scanf("%lld",&s[i].x);
             s[i].index=i;//记录x对应的索引
         }
-
         sort(s+1,s+n+1,cmp);//将有序数列索引与原数列索引对比
 
         ll ret=0;//交换次数
@@ -52,7 +47,6 @@ int main()
             add(s[i].index,1);
             ret+=i-sum(s[i].index);//sum(i)表示比i小的个数，i-sum(i)即表示比i大的个数
         }
-
         //if(ret==k) ret=k;
         printf("%lld\n",ret);
     }

@@ -1,8 +1,4 @@
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-#include <string>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 const int maxn=106;
 int g[maxn][maxn],dp[maxn],stk[maxn][maxn],best;
