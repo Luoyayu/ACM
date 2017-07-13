@@ -3,7 +3,7 @@
 using namespace std;
 int main()
 {
-    int n;// H 先 每次拿n%x==0 x个
+    int n;// H 先 每次拿n%x==0 x个拿完的败
     while(scanf("%d",&n)!=EOF)
     {
         if(n&1)
