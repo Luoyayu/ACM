@@ -27,7 +27,7 @@ struct Edge
 {
     int u,v;
     ll w;
-    bool operator<(const edge &b)const //将所有的边按起点<=>终点大小排序
+    bool operator<(const Edge &b)const //将所有的边按起点<=>终点大小排序
     {
         if(u==b.u) return v<b.v;
         return u<b.u;
@@ -35,11 +35,11 @@ struct Edge
 }edge[maxn];
 inline void add(int type,int x,int y,ll z)
 {
-    v[++ed]=y,w[ed]=z,nex[ed]=g[x][type],g[x][type]=ed;
+    v[++ed]=y,w[ed]=z,nxt[ed]=g[x][type],g[x][type]=ed;
 }
 int main()
 {
-    int kase,n,mx;
+    int kase=1,n,m,x;
     while(scanf("%d%d",&n,&m)!=EOF)
     {
         for(int i=1;i<=n;i++)
@@ -50,13 +50,74 @@ int main()
             if(edge[i].u>edge[i].v) swap(edge[i].u,edge[i].v);//确保从小指向大点
         }
         sort(edge,edge+m);
+
         int cnt=0;//去重合并
-        for(int i=0;i<m;i=j)
+        for(int i=0,j;i<m;i=j)
         {
-            for(int j=i+1;j<m&&edge[i].u==edge[j].u&&edge[i].v==edge[i].v;j++)
-                edge[i].w+=edge[j].w;
+            for(j=i+1;j<m && edge[i].u==edge[j].u && edge[i].v==edge[j].v; j++)
+                edge[i].w += edge[j].w;
             edge[cnt++]=edge[i];
         }
 
+        sqr = int (sqrt(cnt<<1));
+        memset(deg,0,sizeof deg);
+        for(int i=0;i<cnt;i++)
+            deg[edge[i].u]++,deg[edge[i].v]++;
+
+        for(int i=1;i<=n;i++)
+            sp[i]=(deg[i]>=sqr);
+
+        memset(g,0,sizeof g);
+        ed = 0;
+        for(int i=0;i<cnt;i++)
+        {
+            int x = edge[i].u, y = edge[i].v;ll w = edge[i].w;
+            if(sp[x]) add(1,y,x,w);else add(0,x,y,w);
+            if(sp[y]) add(1,x,y,w);else add(0,y,x,w);
+        }
+        memset(ans,0,sizeof ans);
+        memset(sum,0,sizeof sum);
+        for(int i=0;i<cnt;i++)
+        {
+            int x = edge[i].u, y = edge[i].v;ll w = edge[i].w;
+            if(sp[x]) sum[x][type[y]]+=w;
+            if(sp[y]) sum[y][type[x]]+=w;
+            ans[type[x]+type[y]]+=w;
+        }
+        int q;scanf("%d",&q);
+        printf("Case %d:\n",kase++);
+        while(q--)
+        {
+            int a,b;char s[20];
+            scanf("%s",s);
+            if(s[0]=='A') scanf("%d%d",&a,&b),printf("%lld\n",ans[a+b]);
+            else//modify
+            {
+                scanf("%d",&x);
+                type[x]^=1;
+                if(sp[x])//修改重点
+                {
+                    for(int i=0;i<=1;i++)
+                    {
+                        ans[(type[x]^1)+i]-=sum[x][i];
+                        ans[type[x]+i]+=sum[x][i];
+                    }
+                }
+                else//暴力修改轻点
+                {
+                    for(int i=g[x][0];i;i=nxt[i])
+                    {
+                        ans[(type[x]^1)+type[v[i]]]-=w[i];
+                        ans[type[x]+type[v[i]]]+=w[i];
+                    }
+                }
+                for(int i=g[x][1];i;i=nxt[i])//更新重点的sum
+                {
+                    sum[v[i]][type[x]^1]-=w[i];
+                    sum[v[i]][type[x]]+=w[i];
+                }
+            }
+        }
     }
+    return 0;
 }
