@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <algorithm>
-#include <string.h>
+#include<bits/stdc++.h>
 using namespace std;
 const int maxn=30*100000+5;
 int dp[maxn];
