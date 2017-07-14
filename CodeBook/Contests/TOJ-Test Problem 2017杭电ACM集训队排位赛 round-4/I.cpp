@@ -12,16 +12,19 @@ int main()
     {
         int n;scanf("%d",&n);
         scanf("%d",&diff[0]);
+        int SUM = 0;
+        if(diff[0]==0) SUM ++;
         int sum = 0,maxsum = 0;
         for(int i=1;i<n;i++)
         {
             scanf("%d",&diff[i]);
+            if(diff[i]==0) SUM++;
             diff[i-1]=diff[i]-diff[i-1];
             sum+=diff[i-1];
             if(sum>maxsum) maxsum = sum;
             if(sum<0) sum=0;
         }
-        printf("%d\n",maxsum);
+        printf("%d\n",maxsum+SUM);
     }
     return 0;
 }
