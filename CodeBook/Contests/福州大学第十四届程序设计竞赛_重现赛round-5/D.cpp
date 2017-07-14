@@ -33,7 +33,7 @@ void dfs(int u)
                 root=father[root];
             }
             if(root==1)
-                dp[to]=min(dp[to],a[1]);
+            dp[to]=min(dp[to],a[1]);
             dfs(to);
         }
     }

@@ -112,6 +112,7 @@ void SPFA01(int s)//邻接表
 			}
 		}
 	}
+	return ;
 }
 int main()
 {
