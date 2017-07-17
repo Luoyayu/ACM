@@ -7,7 +7,6 @@ using namespace std;
 #define clr(x,num) memset(x,num,sizeof(x));
 #define Debug(x) cout<<#x<<" = "<<x<<endl;
 typedef long long ll;
-typedef __int64 LL;
 const int maxn = 1e5 + 7;
 const int maxc = 1e3 + 5;
 const int maxr = 1e5 + 5;

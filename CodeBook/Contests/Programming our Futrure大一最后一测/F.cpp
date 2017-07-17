@@ -15,6 +15,7 @@ bool check(int x,int y)
         return 0;
     return 1;
 }
+
 int bfs(node s,node e)
 {
    queue<node> q;
