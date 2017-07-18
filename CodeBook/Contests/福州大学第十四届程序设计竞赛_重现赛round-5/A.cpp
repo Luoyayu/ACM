@@ -1,5 +1,5 @@
 #include<cstdio>
-#include<cstring >
+#include<cstring>
 //xjb搞太菜
 //思路:把原串0按1反转,记反转后为0串,
 //用0串减原串得到新串,求这个新串的最长连续子串的最大值加上原串有的1的个数
