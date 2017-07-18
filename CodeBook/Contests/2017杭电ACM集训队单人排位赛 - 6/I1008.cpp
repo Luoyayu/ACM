@@ -29,19 +29,18 @@ void solve()
             int top = q.top(); q.pop();
             vis[i] = 1; ans[i] = a[i] + top;
         }
-        else//replace
+
+        else//replace i
         {
-            while(vis[id] ==0 && id++ < i) ;
+            while(vis[id] == 0 && id++ < i) ;
 
             if(vis[id])
             {
-                ans[i] = ans[id] - a[id] + a[i];
-                vis[i] = 1, vis[id] = 0;
-                ans[id++] = 0;
+                ans[i] = ans[id]-a[id]+a[i];
+                vis[i] = 1, vis[id] = 0;ans[id++] = 0;
             }
         }
     }
-
     LL res = 0;
     for(int i = 1; i <= n; i++)
         if(vis[i]&&ans[i]>0) res += ans[i];
