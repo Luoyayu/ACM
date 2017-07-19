@@ -12,20 +12,16 @@ int main()
         int n;scanf("%d",&n);
         for(int i=1;i<=n;i++)
             scanf("%d",&a[i]);
-        sort(a+1,a+n+1);
+        for(int i=1;i<=n;i++)
+            scanf("%d",&b[i]);
         int cnt = 0;
+        int i=1,j=1;
         for(int i=1;i<=n;i++)
         {
-            scanf("%d",&b[i]);
-            for(int j=1;j<=n;j++)
-            if(a[j]>b[i])
-            {
+            if(a[i]+b[i]>10)
                 cnt++;
-                a[j]=0;
-                break;
-            }
         }
-        printf("Case %d: %.2f\n",kase++,cnt*1.0/2);
+        printf("Case %d: %d\n",kase++,cnt);
     }
     return 0;
 }
