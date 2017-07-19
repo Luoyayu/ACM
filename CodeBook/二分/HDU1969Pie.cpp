@@ -25,17 +25,17 @@ int main()
             if(S[i]>MAX)
                 MAX=S[i];
         }
-        double mid,r=MAX,l=0;
+        double mid,r = MAX,l = 0;
         while(r-l>=0.00001)
         {
             mid=(r+l)/2.0;
             int sum=0;
             for(int i=0;i<n;i++)
-                sum += int(1.0*S[i]/mid);
+                sum += int(1.0 * S[i]/mid);
             if(sum>=f)
-                l=mid;
+                l = mid;
             else
-                r=mid;
+                r = mid;
         }
         printf("%.4lf\n",(l+r)/2.0);
     }

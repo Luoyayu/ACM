@@ -57,7 +57,8 @@ int main()
     }
     return 0;
 }
-//使用STL的nlong写法
+
+//使用STL的nlogn写法
 int a[maxn];
 int dp[maxn];
 int main2()
@@ -85,6 +86,7 @@ int main2()
     }
     return 0;
 }
+
 //浙大模板
 const int  MAX = 1000010 ;
 #define cmp(a,b) ((a)>(b))
@@ -93,8 +95,9 @@ int binary_search(int a,int b,int k)
 {
     int mid;
     while(a<b)
-    if(cmp(k,len_min[mid=(a+b)>>1])) a=mid+1;
-    else b=mid;
+        if(cmp(k,len_min[mid=(a+b)>>1])) 
+            a=mid+1;
+        else b=mid;
     return a;
 }
 int LIS()

@@ -24,9 +24,9 @@ int main()
                 M=(r+l)/2;
                 double ans=F(M);
                 if(ans<y)
-                    l=M;
+                    l = M;
                 else
-                    r=M;
+                    r = M;
             }
             printf("%.4lf\n",(l+r)/2);
         }
