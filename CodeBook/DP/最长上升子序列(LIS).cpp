@@ -3,7 +3,7 @@
 using namespace std; 
 int main()
 /*O(n^2)解法 
-* 定义dp[i]表示为以第i个位置的数作为子序列中的最后一个元素时,能够构成子序列的最大长度.
+* 定义dp[i]表示为以第i个位置的数作为子序列中的最后一个元素时,能够构成子序列的最大长度. fgogg                                                    bb
 * 建立转移方程: dp[i] = max(dp[i], dp[j] + 1) (j<i && a[j]<a[i])
 */
 int getMaxlen()
@@ -20,13 +20,14 @@ int getMaxlen()
     return MAXlen;
 }
 
+//对于长度相同的的子序列显然最末尾元素较小的更加有优势
 /*O(nlogn)解法 就是在j(0~i)找最大值时采用二分的思想
 * 定义dp[i] 表示在处理当前位置时,由之前元素构成的所有长度为i的子序列中,最后一个元素的最小值,
 * 可知dp[]具有单调性,遂可以借助二分优化到(logn)
 */
 //边读边处理的写法
 #include<bits/stdc++.h>
-using namespace std;
+using namespace st  d;
 const int maxn = 1e8+10;
 int dp[maxn];
 int main()
@@ -87,26 +88,24 @@ int main2()
     return 0;
 }
 
-//浙大模板
-const int  MAX = 1000010 ;
-#define cmp(a,b) ((a)>(b))
-int n,num[MAX],len_min[MAX];
-int binary_search(int a,int b,int k)
+//算法设计挑战 模板二 
+#include <bits/stdc++.h>
+using namespace std;
+const int maxn = 1e6+7;
+int a[maxn],n,dp[maxn];//dp[i]表示长度为i+1 的上升子序列的中末尾元素的最小值,不存在置为inf
+const int inf = 0x3f3f3f3f;
+void solve()
 {
-    int mid;
-    while(a<b)
-        if(cmp(k,len_min[mid=(a+b)>>1])) 
-            a=mid+1;
-        else b=mid;
-    return a;
-}
-int LIS()
-{
-    int a=0,b=0,k;
+    fill(dp,dp+maxn,inf);
     for(int i=0;i<n;i++)
-    { 
-        if(len_min[k=binary_search(a,b-1,num[i])]>=num[i]) len_min[k]=num[i];
-        else len_min[b++]=num[i];
-    }
-    return b;
+        *lower_bound(dp,dp+n,a[i])= a[i];
+    printf("%lu\n",lower_bound(dp,dp+n,inf)-dp);
+}
+int main()
+{
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    solve();
+    return  0;
 }
