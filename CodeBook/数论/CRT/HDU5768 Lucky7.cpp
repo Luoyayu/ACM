@@ -34,10 +34,6 @@ ll crt(int *a,int *m,int n)
 }
 int main()
 {
-    #ifdef Local
-    freopen("C://Users//gavin//Desktop//input.txt","r",stdin);
-    #endif
-
     int T;
     scanf("%d",&T);
     for(int kase=1;kase<=T;kase++)

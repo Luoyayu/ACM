@@ -4,26 +4,18 @@
 //令做一个数组存下初始状态，每次询问时补上最后一列，求出得未知变元得个数ans 即为不清状况的数量那么答案为2*ans 
 using namespace std;
 const int maxn=55;
-int a[maxn][maxn];
-int b[maxn][maxn];
+int a[maxn][maxn],b[maxn][maxn];
 int x[maxn];
 bool free_x[maxn];
 int equ, var;
-inline int lcm(int a,int b)
-{return a/__gcd(a,b)*b; }
+inline int lcm(int a,int b){return a/__gcd(a,b)*b;}
 
 int Gauss()
 {
-    int i,j,k;
-    int MaxRow;
-    int col = 0;
-    int Lcm;
-    int ta,tb;
-    int temp;
-    int FreeXNum;
-    int FreeIndex;
+    int k, MaxRow,col = 0, Lcm, ta, tb, temp;
+    int FreeXNum, FreeIndex;
 
-    for(i = 0; i < var; ++i)
+    for(int i = 0; i < var; ++i)
     {
         x[i] = 0;
         free_x[i] = true;
@@ -39,7 +31,7 @@ int Gauss()
         }
         if(MaxRow != k)
         {
-            for(j = k; j < var+1; ++j)
+            for(int j = k; j < var+1; ++j)
                 swap(a[k][j],a[MaxRow][j]);
         }
         if(a[k][col] == 0)
@@ -47,7 +39,7 @@ int Gauss()
             k--;
             continue;
         }
-        for(i = k+1; i < equ; ++i)
+        for(int i = k+1; i < equ; ++i)
         {
             if(a[i][col])
             {
@@ -56,7 +48,7 @@ int Gauss()
                 tb = Lcm / abs(a[k][col]);
                 if(a[i][col] * a[k][col] < 0)
                     tb = -tb;
-                for(j = col; j < var+1; ++j)
+                for(int j = col; j < var+1; ++j)
                 {
                     a[i][j] = (a[i][j]*ta%2 - a[k][j]*tb%2 + 2) % 2;
                 }
@@ -64,7 +56,7 @@ int Gauss()
         }
     }
 
-    for(i = k; i < equ; ++i)
+    for(int i = k; i < equ; ++i)
     {
         if(a[i][col])
             return -1;
