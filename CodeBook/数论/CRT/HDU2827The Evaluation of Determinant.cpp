@@ -1,6 +1,5 @@
 //求矩阵行列式mod m = p_1*p_2*····p_n
-
-
+//思想：高消
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -18,15 +17,15 @@ ll Gauss()//高斯消元化为上三角形
         {
             while(a[j][i])
             {
-                ll d = a[i][i]/a[j][i];
-                for(int k = i;k<n;k++)
+                ll d = a[i][i] / a[j][i];
+                for(int k=i;k<n;k++)
                 {
-                    a[i][k]=((a[i][k]-d*a[j][k])%p+p)%p;
+                    a[i][k]=( (a[i][k]-d*a[j][k])%p+p )%p;
                     swap(a[i][k],a[j][k]);
                 }
-                ret *=-1;
+                ret *= -1;
             }
-            if(a[i][i]==0) return 0;
+            if(!a[i][i]) return 0;
         }
     }
     for(int i=0;i<n;i++)
