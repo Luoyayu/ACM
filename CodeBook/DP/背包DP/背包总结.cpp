@@ -41,4 +41,31 @@ for(int i=1;i<=N;i++)
 
 
 
+//<****************抄来的板子***********************>
+void ZeroOnePack(int cost, int weight){
+    for (int i = m; i >= cost; i--)
+        dp[i] = max(dp[i-cost]+weight, dp[i]);
+}
+
+void CompletePack(int cost, int weight){
+    for (int i = cost; i <= m; i++)
+        dp[i] = max(dp[i-cost]+weight, dp[i]);
+}
+
+void MultiplePack(int cost, int weight, int amount){
+    if (cost*amount >= m) CompletePack(cost, weight);
+    else{
+        int k = 1;
+        while(k < amount){
+            ZeroOnePack(k*cost, k*weight);
+            amount -= k;
+            k <<= 1;
+        }
+        ZeroOnePack(amount*cost, amount*weight);//不要漏解
+    }
+}
+
+
+
+
 

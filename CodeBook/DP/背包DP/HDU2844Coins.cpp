@@ -5,23 +5,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn = 111;
-#define clr(a,b) memset(a,b,sizeof a);
-int A[maxn],C[maxn];
+#define clr(a,b) memset(a,b,sizeof(a));
+int A[maxn],C[maxn],w[maxn];;
 bool dp[maxn];//dp[i]==1表示可由这些数量有限制的硬币组成价格i;
 //转移方程：dp[i]=dp[i] | dp[i-A[i]] | dp[i-A[i]*2] |···| dp[i-A[i]*C[i]] 使用或运算来判断
 //单纯的这样处理每个硬币总复杂度取决于每种硬币的数量O(m*Ci)虽然n只有100但是数量上限为1000
 //对每种硬币分组
 //使用单调栈
-int w[maxn];
+
 int main()
 {
     int n,m;
     while(scanf("%d%d",&n,&m)!=EOF&&(n|m))
     {
-        for(int i=0;i<n;i++)
-            scanf("%d",&A[i]);
-        for(int i=0;i<n;i++)
-            scanf("%d",&C[i]);
+        for(int i=0;i<n;i++) scanf("%d",&A[i]);
+        for(int i=0;i<n;i++) scanf("%d",&C[i]);
 
         int cnt = 0;
 
@@ -35,17 +33,12 @@ int main()
         
         clr(dp,0);dp[0]=1;
         for(int i=0;i<cnt;i++)
-        {
             for(int j=m;j>=w[i];j--)
-            {
-                if(dp[j-w[i]]) dp[j]=1;
-            }
-        }
-
+                if(dp[j-w[i]]) dp[j] = 1;
+    
         int ans = 0;
         for(int i=1;i<=m;i++)
-            if(dp[i])
-                ans++;
+            if(dp[i]) ans++;
         printf("%d\n",ans);
     }
     return 0;
