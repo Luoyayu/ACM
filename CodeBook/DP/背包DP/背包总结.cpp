@@ -42,21 +42,25 @@ for(int i=1;i<=N;i++)
 
 
 //<****************抄来的板子***********************>
-void ZeroOnePack(int cost, int weight){
+void ZeroOnePack(int cost, int weight)
+{
     for (int i = m; i >= cost; i--)
         dp[i] = max(dp[i-cost]+weight, dp[i]);
 }
 
-void CompletePack(int cost, int weight){
+void CompletePack(int cost, int weight)
+{
     for (int i = cost; i <= m; i++)
         dp[i] = max(dp[i-cost]+weight, dp[i]);
 }
 
-void MultiplePack(int cost, int weight, int amount){
-    if (cost*amount >= m) CompletePack(cost, weight);
-    else{
+void MultiplePack(int cost, int weight, int amount)
+{
+    if (cost*amount >= m) CompletePack(cost, weight);//如果总容量比物品容量要小,转换成完全背包
+    else{//否则转换成01背包
         int k = 1;
-        while(k < amount){
+        while(k < amount)
+        {
             ZeroOnePack(k*cost, k*weight);
             amount -= k;
             k <<= 1;

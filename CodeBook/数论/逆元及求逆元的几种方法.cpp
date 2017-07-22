@@ -52,7 +52,7 @@ ll ex_gcd(ll a,ll b,ll &x,ll &y)//x是a关于b的逆元
 int main()
 {
     ll x,y,a,b;
-    ex_gcd(a,b,x,y); ax==1(mod b)
+    ex_gcd(a,b,x,y); //ax==1(mod b)
     printf("%lld\n",x);
 }
 
