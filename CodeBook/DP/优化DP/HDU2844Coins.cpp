@@ -16,7 +16,7 @@ bool dp[maxn];//dp[i]==1表示可由这些数量有限制的硬币组成价格i;
 int main()
 {
     int n,m;
-    while(scanf("%d%d",&n,&m)!=EOF&&(n|m))
+    while(scanf("%d%d",&n,&m)!=EOF&&(n||m))
     {
         for(int i=0;i<n;i++) scanf("%d",&A[i]);
         for(int i=0;i<n;i++) scanf("%d",&C[i]);

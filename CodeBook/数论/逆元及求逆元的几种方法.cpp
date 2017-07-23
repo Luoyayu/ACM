@@ -46,13 +46,14 @@ ll ex_gcd(ll a,ll b,ll &x,ll &y)//x是a关于b的逆元
     }
     ll ret=ex_gcd(b,a%b,y,x);
     y-=a/b*x;
-    x=(x>0?x:(x%b+b)%b);//保证inv>0
+    
     return ret;
 }
 int main()
 {
     ll x,y,a,b;
     ex_gcd(a,b,x,y); //ax==1(mod b)
+    x=(x>0?x:(x%b+b)%b);//保证inv>0
     printf("%lld\n",x);
 }
 
