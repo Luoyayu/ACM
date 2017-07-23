@@ -19,7 +19,7 @@ int main()
                 int x4,y4,x5,y5,x6,y6;
                 scanf("%d%d%d%d%d%d%d%d%d%d%d%d",&x1,&y1,&x2,&y2,&x3,&y3,&x4,&y4,&x5,&y5,&x6,&y6);
                 int flag=0;
-                if(cha( x1,y1,x2,y2,x3,y3)>0&&cha( x1,y1,x2,y2,x4,y4)<=0&&cha( x1,y1,x2,y2,x5,y5)<=0&&cha( x1,y1,x2,y2,x6,y6)<=0)
+if(cha( x1,y1,x2,y2,x3,y3)>0&&cha( x1,y1,x2,y2,x4,y4)<=0&&cha( x1,y1,x2,y2,x5,y5)<=0&&cha( x1,y1,x2,y2,x6,y6)<=0)
                 {
                         if(cha( x1,y1,x2,y2,x4,y4)==0||cha( x1,y1,x2,y2,x5,y5)==0||cha( x1,y1,x2,y2,x6,y6)==0)
                                 flag=2;
@@ -91,6 +91,7 @@ int main()
                                 flag=2;
                         else flag=1;
                 }
+
                 if(flag==0) printf("contain\n");
                 else  if(flag==2) printf("intersect\n");
                  else  if(flag==1) printf("disjoint\n");

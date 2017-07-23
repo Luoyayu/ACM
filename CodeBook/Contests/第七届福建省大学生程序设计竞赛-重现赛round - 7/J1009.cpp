@@ -33,6 +33,7 @@ int main()
             if(d[x][y]<inf) ans++;
             d[x][y]=d[y][x]=min(d[x][y],s);
         }
+        
         floyd(n);
         for(int i=1;i<=n;i++)
             for(int j=i+1;j<=n;j++)
