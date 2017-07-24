@@ -1,5 +1,5 @@
 #include<stdio.h>  
-#include<string.h>
+#include<cstring>
 #define M 2002  
 int bin[M], MARK[M], LOVE[M];
 int find(int x)
