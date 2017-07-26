@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-///最小费用最大流
+///最小费用最大流模板
 
 class MCMF
 {
@@ -9,7 +9,8 @@ public:
     {
     public:
             int from,to,cap,flow,cost;
-            point(int from,int to,int cap,int flow,int cost):from(from),to(to),cap(cap),flow(flow),cost(cost){}
+            point(int from,int to,int cap,int flow,int cost):from(from),
+            to(to),cap(cap),flow(flow),cost(cost){}
     };
     int n,m;
     int start,ending;
@@ -90,7 +91,7 @@ public:
         return cost;
     }
 };
-MCMF __mcmf;
+MCMF _mcmf;
 int main()
 {
 
