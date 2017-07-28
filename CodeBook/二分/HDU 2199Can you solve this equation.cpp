@@ -16,7 +16,7 @@ int main()
     {
         double y;
         scanf("%lf",&y);
-        if(y>=MIN&&y<=MAX)
+        if(y>=MIN && y<=MAX)
         {
             double l=0.0,r=100.0,M;
             while(r-l>1e-7)
