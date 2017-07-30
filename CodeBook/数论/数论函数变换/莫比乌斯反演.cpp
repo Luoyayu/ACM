@@ -11,8 +11,9 @@
 *1) Σ(d|n) μ(d) = 1(n==1)
 *   Σ(d|n) μ(d) = 0(n>1)
 *2) 对于任意正整数n有Σ(d|n) μ(d)/n = φ(n)/n
+如果f(d) 让g(m)是积性函数。那么f(d) 是积性函数(这个结论很重要)。
 */
-//线筛法求解mobius函数值
+//线筛求解mobius函数值
 int mob[maxn],prime[maxn],tot;
 bool notprime[maxn];
 void getMobius()
@@ -22,10 +23,10 @@ void getMobius()
     {
         if(!notprime[i])
         {
-            prime[tot++]=i;
+            prime[++tot]=i;
             mob[i] = -1;//若i是质数
         }
-        for(int j=1;j<tot && i*prime[j]<maxn;j++)
+        for(int j=1;j<=tot && i*prime[j]<maxn;j++)
         {
             notprime[ i * prime[j] ] = 1;//其他情况
             if( i % prime[j]==0)
@@ -37,7 +38,10 @@ void getMobius()
         }
     }
 }
+//单次求解莫比乌斯函数
 //莫比乌斯反演的证明
 
 
+//莫比乌斯函数的应用
+1.求1~N对质数p的乘法逆元
 

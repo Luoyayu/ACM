@@ -116,25 +116,32 @@ RMQ(区间最值查询) ST 算法
 初状态dp[i][0]=a[i]
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1e4+7;
-int dp[maxn][11];
-int a[manx];
-void init()
+const int N = 50005;
+int dp[N][20];
+
+void RMQ(int n)
 {
-    for(int j=0;(1<<j)<maxn;j++)
-        for(int i=0;i+(1<<j)-1<maxn;i++)
-            if(j)
-                dp[i][j]=max(dp[i][j-1],dp[i+(1<<(j-1)][j-1]);
-            else
-                dp[i][j]=a[i];//初始化
+    for(int j = 1; j != 20; ++j)
+        for(int i = 1; i <= n; ++i)
+            if(i + (1 << j) - 1 <= n)
+                dp[i][j] = max(dp[i][j - 1], dp[i + (1 << (j - 1))][j - 1]);
 }
-int query(int l,int r)
-{
-    int k =log(r-l+1);
-    if((1<<k)<r-l+1)k++;
-    return max(dp[l][k],dp[r-(1<<k)+1][k]);
-}
+
 int main()
 {
-
+    int num, query;
+    while(scanf("%d %d", &num, &query) != EOF)
+    {
+        for(int i = 1; i <= num; ++i)
+            scanf("%d", &dp[i][0]);
+        RMQ(num);
+        while(query--)
+        {
+            int a,b;scanf("%d%d", &a, &b);
+            int k = (int)(log(b - a + 1.0) / log(2.0));
+            int maxsum = max(dp[a][k], dp[b - (1 << k) + 1][k]);
+            printf("%d\n", maxsum);
+        }
+    }
+    return 0;
 }

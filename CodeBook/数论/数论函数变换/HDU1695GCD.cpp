@@ -81,8 +81,8 @@ return 0;
 
 #include<bits/stdc++.h>
 using namespace std;
-//题意:给定x∈[1,b] y∈[1,d]求gcd(x,y)==k的对数,x,y==y,x
-//解法一:容斥过法 等价于求gcd(x/k,y/k)==1的对数 即x∈[1,b/k],y∈[1,d/k] gcd(x,y)==1
+//题意:给定x∈[1,b] y∈[1,d]求gcd(x,y)==k的对数,x,y与y,x属于相同的情况
+//解法一:容斥 等价于求gcd(x/k,y/k)==1的对数 即x∈[1,b/k],y∈[1,d/k] gcd(x,y)==1
 //问题转换为,限制x<y枚举[1,b]中的x再确定另一个区间里与x互质的数的个数 即问题变成 在区间[1,d]中与x互质的数的个数
 //可以先求出x的所有质因数,那么在[1,d/k]里是其质因子倍数的数都可以删去,余下的就是互素的数的个数
 //if w是x的素因子,那么(1,d)内中是w的倍数的数的个数有d/w个 然后愉快的容斥求出即可
@@ -135,3 +135,68 @@ int main()
     }
     return 0;
 }
+
+
+//解法二：莫比乌斯反演
+//欠下的还是要换的
+//设F(d)=gcd(x,y)==1的倍数的对数
+//设f(d)=gcd(x,y)==1 题设求f(1)
+//由莫比乌斯反演的f(x)=Σ(x|d) u(d/x)F(d);
+//F(n)=a/k/n*(b/k/n);
+//f(1)=Σ(i=1)
+//得:ans = mu[1]*F[1]+mu[2]*F[2]+···+mu[min(a,b)]*F(min(a,b));
+#include<bits/stdc++.h>
+using namespace std;
+const int maxn = 1e5+7;
+int mob[maxn],prime[maxn],tot;
+bool notprime[maxn];
+void init()
+{
+    mob[1] = 1;
+    for(int i=2;i<maxn;i++)
+    {
+        if(!notprime[i])
+        {
+            prime[++tot] = i;//更正板子问题 ++前置!
+            mob[i] = -1;//若i是质数
+        }
+        for(int j=1; j<=tot && i*prime[j]<maxn; j++)
+        {
+            notprime[ i * prime[j] ] = true;//其他情况
+            if( i % prime[j]==0)
+            {
+                mob[i*prime[j] ] = 0;//含有质因子平方的情况
+                break;
+            }
+            mob[i*prime[j]] = -mob[i];
+        }
+    }
+}
+
+int main()
+{
+    int a,b,c,d,k;
+    init();
+    int t;scanf("%d",&t);
+    for(int kase = 1;kase <= t;kase++)
+    {
+        scanf("%d%d%d%d%d",&a,&b,&c,&d,&k);
+        printf("Case %d: ",kase);
+        if(k==0)
+        {
+            printf("0\n");
+            continue;
+        }
+        b/=k,d/=k;
+        long long ans1 = 0,ans2 = 0;
+        int MIN = min(b,d);
+        for(int i=1;i<=MIN;i++)
+            ans1+=(long long)mob[i]*(b/i)*(d/i);
+        for(int i=1;i<=MIN;i++)
+            ans2+=(long long)mob[i]*(MIN/i)*(MIN/i);
+        printf("%lld\n",ans1-ans2/2);
+    }
+    return 0;
+}
+
+

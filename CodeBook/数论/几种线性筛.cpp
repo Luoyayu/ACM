@@ -32,28 +32,28 @@ int main()
 * 若i有平方因子(既把n质分解后有某项质数的质数>1)mob[i]=0;(其他情况)
 * 由积性函数的性质知mob[a*b]=mob[a]*mob[b] 若b有平方因子那么通过n*b可以筛去
 */
-int mob[maxn],prime[manx],tot;
+int mob[maxn],prime[maxn],tot;
 bool notprime[maxn];
-prime[manx];
-void getMobius()
+prime[maxn];
+void init()
 {
-    moi[1] = 1;
+    mob[1] = 1;
     for(int i=2;i<maxn;i++)
     {
         if(!notprime[i])
         {
-            prime[tot++] = i;
+            prime[++tot] = i;
             mob[i] = -1;//若i是质数
         }
-        for(int j=1; j<tot && i*prime[j]<maxn; j++)
+        for(int j=1; j<=tot && i*prime[j]<maxn; j++)
         {
-            notprime[ i * p[j] ] = true;//其他情况
+            notprime[ i * prime[j] ] = true;//其他情况
             if( i % prime[j]==0)
             {
                 mob[i*prime[j] ] =0;
                 break;
             }
-            mob[i*p[j]] = -mob[i];
+            mob[i*prime[j]] = -mob[i];
         }
     }
     return ;
