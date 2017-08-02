@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
+嗯该学树链剖分了(轻重链剖分) 
+TODO: 长链剖分 
 树链剖分解决的问题; 复杂 O(logn)
 对于一颗无根树，每条边有边权，实现以下操作：
 1.查询u到v的路径上边权之和
@@ -25,7 +25,7 @@ const int maxn = int(1e6+7);
 
 int edge_tot;
 int head[maxn];
-vector<int> G[maxn];//不含边权
+//vector<int> G[maxn];//不含边权
 struct Edge
 {
     int to,next,w;

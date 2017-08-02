@@ -16,14 +16,14 @@ void init()
     {
         for(int j = 1,r = 1;i-(3*j*j-j)/2>=0;j++,r*=-1)
         {
-            dp[i]+=dp[i-(3*j*j-j)/2]*r;
-            dp[i]%=mod;
-            dp[i]=(dp[i]+mod)%mod;
+            dp[i] += dp[i-(3*j*j-j)/2] * r;
+            dp[i] %= mod;
+            dp[i]=(dp[i] + mod) % mod;
             if(i-(3*j*j+j)/2>=0)
             {
-                dp[i]+=dp[i-(3*j*j+j)/2]*r;
-                dp[i]%=mod;
-                dp[i]=(dp[i]+mod)%mod;
+                dp[i] += dp[i-(3*j*j+j)/2]*r;
+                dp[i] %= mod;
+                dp[i] = (dp[i]+mod)%mod;
             }
         }
     }
@@ -31,10 +31,10 @@ void init()
 int main()
 {
     init();
-    int t;scanf("%d",&t);
+    int t;scanf("%d", &t);
     while(t--)
     {
-        int n;scanf("%d",&n);
+        int n;scanf("%d", &n);
         printf("%d\n",dp[n]);
     }
     return 0;
