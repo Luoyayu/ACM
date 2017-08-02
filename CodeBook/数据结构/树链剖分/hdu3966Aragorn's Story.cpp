@@ -91,24 +91,28 @@ int sum(int pos)
     }
     return s;
 }
-
-void Update(int u, int v, int k)
+//**********************************************************树链操作
+void Update(int u, int v, int k) //更新从u到v路径上的点权
 {
     int tu = Top[u], tv = Top[v];
-    while(tu != tv) //u ,v 在不同的树链上时我们需要逼近
+
+    while(tu != tv) //u, v在不同的树链上时我们需要不断逼近到同一条链上
     {
-        if (dep[tu] < dep[tv]) //保证u处于树链靠下的位置较深的位置
+        if (dep[tu] < dep[tv]) //保证u这条树链处于靠下的位置也就是较深的位置
         {
             swap(tu,tv);
             swap(u,v);
         }
-        add(id[tu],k);add(id[u]+1,-k);
-        u = fa[tu];
+        add(id[tu],k);add(id[u]+1,-k);//此时处理这条树链的值即,[id[tu], id[u]+1] 打上加k标记
+        u = fa[tu];//令向上逼近的节点u 为 原先树链顶端节点的父亲
         tu = Top[u];
-    }
-    if(dep[u]>dep[v]) swap(u,v);
+    }//这样不断逼近的结果使u上升到成为v的某祖先
+
+    //由于在同一条链上深度递增,id递增
+    if(dep[u]>dep[v]) swap(u,v);//u, v在同一条链上啦且保持u的深度小于v的深度,及u在v的上方
     add(id[u], k);add(id[v]+1,-k);
 }
+
 //*************************************************************//初始化
 void init()
 {
@@ -119,6 +123,7 @@ void init()
 }
 int main()
 {
+
 #ifdef Local
     freopen("input.txt","w",stdin);
     freopen("output.txt","r",stdout);
