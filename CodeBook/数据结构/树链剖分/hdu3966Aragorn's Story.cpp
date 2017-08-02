@@ -42,7 +42,7 @@ void dfs1(int u, int pre, int d)//建有根树 求出sz[],depth[],fa[],son[]
     dep[u] = d; fa[u] = pre; sz[u] = 1;
     for(int i = head[u]; ~i; i = edge[i].next)
     {
-        int v =  edge[i].to;
+        int v = edge[i].to;
         int w = edge[i].w;
         if(v != pre)
         {
@@ -95,7 +95,7 @@ int sum(int pos)
 void Update(int u, int v, int k) //更新从u到v路径上的点权
 {
     int tu = Top[u], tv = Top[v];
-
+    //将两个节点毕竟最多需要跳转O(logn)次
     while(tu != tv) //u, v在不同的树链上时我们需要不断逼近到同一条链上
     {
         if (dep[tu] < dep[tv]) //保证u这条树链处于靠下的位置也就是较深的位置

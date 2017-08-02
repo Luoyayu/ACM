@@ -53,7 +53,7 @@ void dfs1(int u, int pre, int d)//建有根树 求出sz[],depth[],fa[],son[]
     for(int i = head[u]; ~i; i = edge[i].next)
     {
         int v =  edge[i].to;
-        int w = edge[i].w;
+        //int w = edge[i].w;
         if(v != pre)
         {
             dfs1(v,u,d+1);

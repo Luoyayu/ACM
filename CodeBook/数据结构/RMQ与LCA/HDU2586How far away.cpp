@@ -1,5 +1,4 @@
 //离线算法
-/*
 #include <bits/stdc++.h>
 //LCA-tarjan+并查集的离线算法
 //题意：给出一个无环无向图,Q次询问任意两点距离
@@ -30,7 +29,7 @@ struct Edge
 {
     int to,next,w;
 }e[maxn<<1];
-int tot=0, head[maxn<<1];
+int tot=0, head[maxn];
 void addedge(int u,int v,int w)
 {
     e[tot].to =v;
@@ -103,9 +102,9 @@ int main()
     return 0;
 }
 
- */
+ 
 在线算法
-预备指示 RMQ dp
+预备知识 RMQ dp
 RMQ(区间最值查询) ST+dfs 算法
 对于长度为n的序列a定义dp[i][j]表示从a[i]开始长度为2^j的区间的最值。
 对于dp[i][j]这偶数个数字a[i,i+1,i+2···i+2^j-1],
@@ -161,7 +160,7 @@ int main()
 }
 
 
-//补在线做法
+//补ST+dfs在线做法 神查询
 #include<bits/stdc++.h>
 const int maxn = 40000+111;
 using namespace std;
@@ -204,7 +203,7 @@ void dfs(int u,int dfn)
         int w = edge[i].w;
         if(!vis[v])
         {
-            dir[v] = dir[u]+w;
+            dir[v] = dir[u] + w;
             dfs(v,dfn+1);
             ver[++cnt] = u;
             dep[cnt] = dfn;
@@ -266,3 +265,111 @@ int main()
     }
     return 0;
 }
+
+
+//补一发树剖LCA写法太快啦,太省内存啦
+//要用树剖干大事
+#include <bits/stdc++.h>
+using namespace std;
+const int maxn = 40000+5;
+int head[maxn];
+int edge_tot;
+struct Edge
+{
+    int to,next,w;
+}edge[maxn<<1];
+void addedge(int u,int v,int w)
+{
+    edge[edge_tot].to = v;
+    edge[edge_tot].next = head[u];
+    edge[edge_tot].w = w;
+    head[u] = edge_tot ++;
+}
+
+int dir[maxn];//点到树根的距离
+int son[maxn];
+int dep[maxn];
+int fa[maxn];
+int id[maxn]; //剖分后的边在新的数据结构中的位置着重记录一条重链上的相对位置
+//这个id[u]存的是(v,u)边的编号v是u其的父亲，也可以代表u的相对编号
+int fid[maxn];
+int sz[maxn];
+int Top[maxn];
+int cnt;////已编号数量 
+
+void dfs(int u,int pre,int d)
+{
+    dep[u] = d; fa[u] = pre; sz[u] = 1;
+    for(int i = head[u]; ~i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        int w = edge[i].w;
+        if(v != pre)
+        {
+            dir[v] = dir[u] + w;
+            dfs(v,u,d+1);
+            sz[u]+=sz[v];
+            if(son[u]==-1 || sz[v]>sz[son[u]])
+                son[u]=v;
+        }
+    }
+}
+void dfs2(int u,int sp)
+{
+    Top[u] = sp; //根节点是第一条链
+    id[u] = cnt ++;
+    fid[id[u]] = u;
+    if(son[u]==-1) return;//没有重儿子推出分支
+    dfs2(son[u], sp);
+    for(int i=head[u]; ~i; i =edge[i].next)
+    {
+        int v = edge[i].to;
+        if(v != son[u] && v != fa[u])
+            dfs2(v,v); //其他点的top标号为自身
+    }
+}
+
+int LCA(int x,int y)
+{
+    for(;Top[x]!=Top[y];dep[Top[x]]>dep[Top[y]]?x=fa[Top[x]]:y=fa[Top[y]]){}
+    return dep[x]<dep[y]?x:y;
+}
+
+void init()
+{
+    memset(son,-1, sizeof(son));
+    edge_tot = 0; 
+    cnt = 0;//树状数组从1开始
+    memset(dir,0, sizeof(dir));
+    memset(head,-1, sizeof(head));
+}
+int main()
+{
+    int t;scanf("%d",&t);
+    while(t--)
+    {
+        init();
+        int n,m;scanf("%d%d",&n,&m);
+        for(int i=1;i<n;i++)
+        {
+            int u,v,k;scanf("%d%d%d",&u,&v,&k);
+            addedge(u,v,k);addedge(v,u,k);
+        }
+        dfs(1,0,0);dfs2(1,1);
+        while(m--)
+        {
+            int u,v;scanf("%d%d",&u,&v);
+            int short_path = dir[u]+dir[v] -2*dir[LCA(u,v)];
+            printf("%d\n",short_path);
+        }
+    }
+    return 0;
+}
+
+
+
+//LCA求法总结
+1.树链剖分 时间复杂度 O(n) + q*O(logn) 空间复杂度O(n)  适用于查询小空间紧
+2.ST在线 时间复杂度 预处理O(n*logn) 查询O(1) 适用于海量查询
+3.tarjan离线算法 时间复杂度 O(n + Q) 空间巨大 要保存完整的查找树 适用于离线算法
+4.doubly 算法查询时间复杂度为O(logn) 空间复杂度为O(n*logn) 复杂度很稳定
