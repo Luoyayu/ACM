@@ -118,32 +118,43 @@ RMQ(区间最值查询) ST+dfs 算法
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 50005;
+int maxdp[N][20], mindp[maxn][20];
 int dp[N][20];
 void init(int n)
 {
-    int K = log2(n);
-    for(int j = 1; j<=K; ++j)
-        for(int i = 1; i <= n; ++i)
-            if(i + (1 << j) - 1 <= n)
-                dp[i][j] = max(dp[i][j - 1], dp[i + (1 << (j - 1))][j - 1]);
+    int k = log2(n);
+    for(int j = 1; j<=k; ++j)
+        for(int i = 1; i + (1 << j) - 1 <= n; ++i)
+        {
+            maxdp[i][j] = max(maxdp[i][j - 1], maxdp[i + (1 << (j - 1))][j - 1]);
+            mindp[i][j] = max(mindp[i][j - 1], mindp[i + (1 << (j - 1))][j - 1]);
+        }
 }
-inline void RMQ(int l, int r)
+
+pair<int,int> RMQ(int l, int r)
 {
+    if(l > r) swap(l, r);
     int k = log2(r-l+1.0);
-    return  max(dp[a][k], dp[b - (1 << k) + 1][k]);
+    MAX =  max(maxdp[l][k], maxdp[r - (1 << k) + 1][k]);
+    MIN =  min(mindp[l][k], mindp[r - (1 << k) + 1][k])
+    return make_pair(MIN,MAX); 
 }
+
 int main()
 {
     int num, query;
     while(scanf("%d %d", &num, &query) != EOF)
     {
         for(int i = 1; i <= num; ++i)
-            scanf("%d", &dp[i][0]);
+        {
+            scanf("%d", &mindp[i][0]);
+            maxdp[i][0]=maxdp[i][0];
+        }
         init(num);
         while(query--)
         {
             int a,b;scanf("%d%d", &a, &b);
-            printf("%d\n", RMQ(a,b));
+            pair<int,int> ans = RMQ(a,b);
         }
     }
     return 0;
@@ -157,10 +168,10 @@ using namespace std;
 int dp[maxn<<1][25];
 int ver[maxn<<1];
 int dep[maxn<<1];
-int vis[maxn<<1];
+int vis[maxn];
 int dir[maxn];
-int first[maxn<<1];
-int head[maxn<<1];
+int first[maxn];
+int head[maxn];
 int tot,cnt;
 struct Edge
 {

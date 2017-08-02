@@ -4,7 +4,7 @@
 using namespace std;
 const int maxn = int(8e4+7);
 int ver[maxn<<1];
-int first[maxn<<1];
+int first[maxn];
 bool vis[maxn];
 int len[maxn<<1];
 int dep[maxn<<1];
@@ -13,7 +13,6 @@ int val[maxn];
 vector<int> e[maxn];
 int cnt;
 int dp[maxn<<1][25];
-//int _pow[30];
 
 bool cmp(int &a,int &b)
 {

@@ -6,10 +6,10 @@ using namespace std;
 int dp[maxn<<1][25];
 int ver[maxn<<1];
 int dep[maxn<<1];
-int vis[maxn<<1];
-int dir[maxn<<1];
-int first[maxn<<1];
-int head[maxn<<1];
+int vis[maxn];
+int dir[maxn];
+int first[maxn];
+int head[maxn];
 int tot,cnt;
 int F[maxn<<1];//并查集
 struct Edge
