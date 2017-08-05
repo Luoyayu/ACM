@@ -4,14 +4,14 @@
 using namespace std;
 const int maxn = 100001;
 typedef  long long ll;
-//#pragma comment(linker, "/STACK:1024000000,1024000000")
+//#pragma comment(linker, "/STACK:1024000000,1024000000") //这两个dfs还是不会爆栈的
 //*************************************
 int se[maxn][2];
 /*int Cedge[maxn];
-int Cnode[maxn];*/
+int Cnode[maxn];*/   // 尝试树状数组
 ll ans_edge[maxn];
 ll ans_node[maxn];
-//**************************************
+//*************************************************数据结构
 int head[maxn];
 int tot_edge;
 struct E
@@ -24,7 +24,7 @@ void addedge(int u, int v,int w=0)
     e[tot_edge].next = head[u];
     head[u] = tot_edge++;
 }
-//*****************************************************
+//*****************************************************  建立有根树+树链剖分
 int son[maxn], fa[maxn], sz[maxn], dep[maxn], id[maxn];
 int fid[maxn], Top[maxn];
 int cnt = 1;
@@ -57,7 +57,7 @@ void dfs2(int u, int sp)
     }
 }
 
-//*****************************************************
+//***************************************************** //树状数组
 /*#define  lowbit(x) x&(-x)
 void add(int pos, int value, int c[])
 {
@@ -77,7 +77,7 @@ int sum(int pos, int c[])
     }
     return s;
 }*/
-//*******************************************************
+//******************************************************* //熟练操作
 void Change_node(int x, int y, int k)
 {
     int tu = Top[x],f2 = Top[y];
@@ -114,7 +114,7 @@ void Change_edge(int x, int y, int k)
     ans_edge[ id[x] + 1 ] += k;//重点啊，注意边的正确维护姿势
     ans_edge[ id[y] + 1 ] -= k;
 }
-//*******************************************************
+//*******************************************************初始化
 #define clr(x,y) memset(x,y,sizeof(x))
 void init()
 {
@@ -124,7 +124,7 @@ void init()
     clr(sz,0);cnt = 1;tot_edge = 0;
 
 }
-
+//************************************************
 int main()
 {
     int t;scanf("%d",&t);
@@ -148,11 +148,12 @@ int main()
             else Change_edge(u,v,k);
         }
 
-        for(int i=2;i<=n;i++)
+        for(int i=2;i<=n;i++) //前缀和即每个点/边的值
         {
             ans_edge[i] += ans_edge[i-1];
             ans_node[i] += ans_node[i-1];
         }
+
 
         printf("Case #%d:\n",kase);
         for(int i=1;i<n;i++)
