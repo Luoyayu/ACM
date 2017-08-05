@@ -1,13 +1,10 @@
-#include <iostream>
-#include <vector>
-#include <stdio.h>
-#include <cstring>
-#include <cmath>
+#include<bits/stdc++.h>
 using namespace std;
 int n,m;
 int arr[100005];
 int num[500][11][10];
 int big=0;
+
 void init()
 {
     int x,index;
@@ -27,7 +24,7 @@ inline int ans(int x,int y,int z)
     int cnt=0;
     for(int i=0;i<=10;++i)
     {
-        if(i==z)return x%10==y;
+        if(i==z) return x%10==y;
         x/=10;
     }
 }

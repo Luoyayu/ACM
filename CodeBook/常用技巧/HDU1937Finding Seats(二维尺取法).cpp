@@ -28,7 +28,7 @@ int main()
         for(int i=2;i<=r;i++)
             for(int j=1;j<=c;j++)
                 sum[i][j] += sum[i-1][j];//再加上正上方点的前缀和
-        
+
         int ans = inf;
         for(int i=1;i<=c;i++)
             for(int j=i;j<=c;j++)//枚举到第i列到第j列之间
@@ -38,8 +38,6 @@ int main()
                 {
                     while(sum[t][j]-sum[t][i-1]-sum[p-1][j]+sum[p-1][i-1]>=k)//如果改点的前缀和-行前点的前缀和-
                         ans = min(ans,(j-i+1)*(t-p+1)), p++;//列*行
-                    
-                    
                 }
             }
         printf("%d\n",ans);

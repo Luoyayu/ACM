@@ -102,7 +102,7 @@ int main()
     return 0;
 }
 
- 
+
 在线算法
 预备知识 RMQ dp
 RMQ(区间最值查询) ST+dfs 算法
@@ -136,7 +136,7 @@ pair<int,int> RMQ(int l, int r)
     int k = log2(r-l+1.0);
     MAX =  max(maxdp[l][k], maxdp[r - (1 << k) + 1][k]);
     MIN =  min(mindp[l][k], mindp[r - (1 << k) + 1][k])
-    return make_pair(MIN,MAX); 
+    return make_pair(MIN,MAX);
 }
 
 int main()
@@ -160,7 +160,7 @@ int main()
 }
 
 
-//补ST+dfs在线做法 神查询
+//补ST+dfs在线做法 O（1）查询
 #include<bits/stdc++.h>
 const int maxn = 40000+111;
 using namespace std;
@@ -295,7 +295,7 @@ int id[maxn]; //剖分后的边在新的数据结构中的位置着重记录一�
 int fid[maxn];
 int sz[maxn];
 int Top[maxn];
-int cnt;////已编号数量 
+int cnt;////已编号数量
 
 void dfs(int u,int pre,int d)
 {
@@ -338,7 +338,7 @@ int LCA(int x,int y)
 void init()
 {
     memset(son,-1, sizeof(son));
-    edge_tot = 0; 
+    edge_tot = 0;
     cnt = 0;//树状数组从1开始
     memset(dir,0, sizeof(dir));
     memset(head,-1, sizeof(head));
@@ -365,11 +365,3 @@ int main()
     }
     return 0;
 }
-
-
-
-//LCA求法总结
-1.树链剖分 时间复杂度 O(n) + q*O(logn) 空间复杂度O(n)  适用于查询小空间紧
-2.ST在线 时间复杂度 预处理O(n*logn) 查询O(1) 适用于海量查询
-3.tarjan离线算法 时间复杂度 O(n + Q) 查询O(1) 空间巨大 要保存完整的查找树 适用于离线算法
-4.doubly 算法查询时间复杂度为O(logn) 空间复杂度为O(n*logn) 复杂度垃圾很稳定

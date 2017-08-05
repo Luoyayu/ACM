@@ -1,8 +1,5 @@
-#include<map>
-#include<string>
-#include<cstdio>
-#include<cstring>
-#include<iostream>
+//STL 做法
+#include<bits/stdc++.h>
 #define rank Rank
 using namespace std;
 int main()
@@ -31,8 +28,7 @@ int main()
 
             map<string,int>::iterator it;
             for(it=shop.begin();it!=shop.end();it++)
-                if(it->second > favor)
-                    rank++;
+                if(it->second > favor) rank++;
             cout<<rank<<endl;
         }
         shop.clear();

@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+//CDOJ 1324 查询区间最值得sqrt(n) 算法
 using namespace std;
 const int maxn=1e5+7;
 int belong [maxn];//表示这个数在那一块里面

@@ -33,7 +33,8 @@ bool judge(int limit)
     {
         if(cur + sp[i]<=limit)
             cur+=sp[i];
-        else{
+        else
+        {
             num++;
             cur = sp[i];
         }
@@ -53,7 +54,6 @@ int main()
     int low = MAX, high = tot,mid;
     while(low!=high)
     {
-
         int mid = (low + high)>>1;
         if(judge(mid))
         {
@@ -65,5 +65,4 @@ int main()
         }
     }
     printf("%d\n",low);
-
 }
