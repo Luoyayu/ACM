@@ -1,6 +1,5 @@
 //例just a hook,区间重置，区间求和
-#include<cstdio>
-#include<cstring>
+#include<bits/stdc++.h>
 using namespace std;
 #define lson (i<<1)
 #define rson (i<<1|1)

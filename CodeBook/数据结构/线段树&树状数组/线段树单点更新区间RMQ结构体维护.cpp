@@ -1,8 +1,5 @@
 //线段树单点更新+RMQ
-#include<cstdio>
-#include<cstring>
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 const int maxn=200005;
 const int inf=0x3f3f3f3f;

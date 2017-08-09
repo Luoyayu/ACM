@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn=5005;
-/
-
 //最小反转数：序列中ai,aj(i<j&&ai<aj)的对数
 //描述：对于一个数列，可以把第n个数按需要移到序列末尾
 //输入做小反转数值

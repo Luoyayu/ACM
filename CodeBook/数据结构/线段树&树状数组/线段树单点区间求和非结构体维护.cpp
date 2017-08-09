@@ -1,7 +1,4 @@
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
-#include <iostream>
+#include<bits/stdc++.h>
 #define lson i<<1,l,M
 #define rson i<<1|1,M+1,r
 #define Lson i<<1
