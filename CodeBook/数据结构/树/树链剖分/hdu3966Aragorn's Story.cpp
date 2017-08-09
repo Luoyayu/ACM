@@ -12,7 +12,6 @@ int a[maxn];
 //************************************************************//邻接表
 int edge_tot;
 int head[maxn];
-//vector<int> G[maxn];//
 struct Edge
 {
     int to,next,w;
@@ -32,12 +31,12 @@ int fa[maxn]; //fa[u] u的父亲
 int son[maxn];//son[u] u 的重儿子
 int id[maxn]; //剖分后的边在新的数据结构中的位置着重记录一条重链上的相对位置
 //这个id[u]存的是(v,u)边的编号v是u其的父亲，也可以代表u的相对编号
-//TODO：@@此处维护点权@@
+//@@此处维护点权@@
 int fid[maxn];//与id含义相反
 int Top[maxn];//u所在树链起点 u,v在同一树链中当且仅当Top[u]==Top[v]
 int cnt;//已编号数量
 
-void dfs1(int u, int pre, int d)//建有根树 求出sz[],depth[],fa[],son[]
+void dfs1(int u, int pre, int d)//建有根树 求出sz[],dep[],fa[],son[]
 {
     dep[u] = d; fa[u] = pre; sz[u] = 1;
     for(int i = head[u]; ~i; i = edge[i].next)
@@ -54,7 +53,7 @@ void dfs1(int u, int pre, int d)//建有根树 求出sz[],depth[],fa[],son[]
     }
 }
 
-void dfs2(int u, int sp) //剖分有根树 求出id[], Top[]1
+void dfs2(int u, int sp) //剖分有根树 求出id[], Top[]
 {
     Top[u] = sp; //根节点是第一条链
     id[u] = cnt ++;
@@ -95,10 +94,10 @@ int sum(int pos)
 void Update(int u, int v, int k) //更新从u到v路径上的点权
 {
     int tu = Top[u], tv = Top[v];
-    //将两个节点毕竟最多需要跳转O(logn)次
-    while(tu != tv) //u, v在不同的树链上时我们需要不断逼近到同一条链上
+    //维护两个节点最多需要跳转O(logn)次
+    while(tu != tv) //u, v在不同的树链上时我们需要不断将其逼近到同一条链上
     {
-        if (dep[tu] < dep[tv]) //保证u这条树链处于靠下的位置也就是较深的位置
+        if (dep[tu] < dep[tv]) //保证u这条树链处于靠下的位置也就是较深的位置dep[tu]>dep[tv]的状态
         {
             swap(tu,tv);
             swap(u,v);
@@ -108,7 +107,7 @@ void Update(int u, int v, int k) //更新从u到v路径上的点权
         tu = Top[u];
     }//这样不断逼近的结果使u上升到成为和v在同一条链上的树链顶端节点
 
-    //由于在同一条链上深度递增,id递增
+    //由于在同一条链上深度递增,id递增dep[u]>dep[v] <==> id[u]>id[v]
     if(dep[u]>dep[v]) swap(u,v);//u, v在同一条链上啦且保持u的深度小于v的深度,及u在v的上方
     add(id[u], k);add(id[v]+1,-k);
 }

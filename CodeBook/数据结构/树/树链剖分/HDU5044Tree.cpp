@@ -1,14 +1,12 @@
-//TODO: HDU 5044 Tree
-//可能是树状数组+树剖的大水题应该能搞
+//可能是树状数组+树剖
+//注意若查询修改规模较大时,通过前缀和模拟树状数组
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 100001;
 typedef  long long ll;
 //#pragma comment(linker, "/STACK:1024000000,1024000000") //这两个dfs还是不会爆栈的
-//*************************************
+//**************************************************基本数据
 int se[maxn][2];
-/*int Cedge[maxn];
-int Cnode[maxn];*/   // 尝试树状数组
 ll ans_edge[maxn];
 ll ans_node[maxn];
 //*************************************************数据结构
@@ -56,75 +54,56 @@ void dfs2(int u, int sp)
         if(v != son[u]&&v!=fa[u]) dfs2(v, v);
     }
 }
+//******************************************************* //树链操作
+void Change(char type, int u,int v,int k)
+{
+    if(type=='1')//维护点
+    {
+        int tu = Top[u],tv = Top[v];
+        while(tu != tv)
+        {
+            if(dep[tu] < dep[tv])
+            {
+                swap(u,v);
+                swap(tu,tv);
+            }
+            ans_node[ id[tu] ] += k;
+            ans_node[ id[u]+1 ] -= k;
+            u = fa[tu];tu = Top[u];
+        }
+        if(dep[u] > dep[v]) swap(u,v);
+        ans_node[ id[u]    ] += k;
+        ans_node[ id[v] + 1] -= k;
+    }
 
-//***************************************************** //树状数组
-/*#define  lowbit(x) x&(-x)
-void add(int pos, int value, int c[])
-{
-    while(pos<=n)
+    else//维护边
     {
-        c[pos]+=value;
-        pos += lowbit(pos);
-    }
-}
-int sum(int pos, int c[])
-{
-    int s = 0;
-    while(pos>0)
-    {
-        s += c[pos];
-        pos -= lowbit(pos);
-    }
-    return s;
-}*/
-//******************************************************* //熟练操作
-void Change_node(int x, int y, int k)
-{
-    int tu = Top[x],f2 = Top[y];
-    while(tu != f2)
-    {
-        if(dep[tu] < dep[f2])
+        int tu = Top[u],tv = Top[v];
+        while(tu != tv)
         {
-            swap(x,y);
-            swap(tu,f2);
+            if(dep[tu] < dep[tv])
+            {
+                swap(u,v);
+                swap(tu,tv);
+            }
+            ans_edge[ id[tu] ] += k;
+            ans_edge[ id[u]+1 ] -= k;
+            u = fa[tu];tu = Top[u];
         }
-        ans_node[ id[tu] ] += k;
-        ans_node[ id[x]+1 ] -= k;
-        x = fa[tu];tu = Top[x];
+        if(dep[u] > dep[v]) swap(u,v);
+        ans_edge[ id[u] + 1 ] += k;//注意在同一条链上边权的维护姿势,边权由该边的深度较大的节点维护
+        ans_edge[ id[v] + 1 ] -= k;
     }
-    if(dep[x] > dep[y]) swap(x,y);
-    ans_node[ id[x]    ] += k;
-    ans_node[ id[y] + 1] -= k;
-}
-void Change_edge(int x, int y, int k)
-{
-    int tu = Top[x],f2 = Top[y];
-    while(tu != f2)
-    {
-        if(dep[tu] < dep[f2])
-        {
-            swap(x,y);
-            swap(tu,f2);
-        }
-        ans_edge[ id[tu] ] += k;
-        ans_edge[ id[x]+1 ] -= k;
-        x = fa[tu];tu = Top[x];
-    }
-    if(dep[x] > dep[y]) swap(x,y);
-    ans_edge[ id[x] + 1 ] += k;//重点啊，注意边的正确维护姿势
-    ans_edge[ id[y] + 1 ] -= k;
 }
 //*******************************************************初始化
 #define clr(x,y) memset(x,y,sizeof(x))
 void init()
 {
     clr(head,-1);clr(son,-1);
-    //clr(Cedge,0);clr(Cnode,0);
     clr(ans_edge,0);clr(ans_node,0);
     clr(sz,0);cnt = 1;tot_edge = 0;
-
 }
-//************************************************
+//*****************************************************
 int main()
 {
     int t;scanf("%d",&t);
@@ -143,18 +122,14 @@ int main()
         {
             char op[10];scanf("%s",op);
             int u,v,k;scanf("%d %d %d",&u,&v,&k);
-            if(op[3]=='1')
-                Change_node(u,v,k);
-            else Change_edge(u,v,k);
+            Change(op[3],u,v,k);
         }
 
         for(int i=2;i<=n;i++) //前缀和即每个点/边的值
         {
-            ans_edge[i] += ans_edge[i-1];
             ans_node[i] += ans_node[i-1];
+            ans_edge[i] += ans_edge[i-1];
         }
-
-
         printf("Case #%d:\n",kase);
         for(int i=1;i<n;i++)
             printf("%lld ",ans_node[id[i]]);
@@ -163,7 +138,7 @@ int main()
         bool flag = 0;
         for(int i = 1; i <= n-1; i++)
         {
-            if(dep[ se[i][0] ] < dep[ se[i][1] ])
+            if(dep[ se[i][0] ] < dep[ se[i][1] ])//保证该边由深度较大的点维护
                 swap(se[i][0],se[i][1]);
             if(flag == 0)
                 printf("%lld",ans_edge[ id[se[i][0]] ]),flag = 1;
