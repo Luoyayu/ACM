@@ -1,4 +1,4 @@
-//È¾É«
+//æŸ“è‰²
 #include<cstdio>
 #include<queue>
 #include<cstring>
@@ -20,7 +20,7 @@ int bi_bfs(int st)
 {
 	queue<int> q;
 	q.push(st);
-	col[st]=1;//È¾É«¿ªÊ¼ 
+	col[st]=1;//æŸ“è‰²å¼€å§‹ 
 	while(!q.empty())
 	{
 		st=q.front();
@@ -43,7 +43,7 @@ int bi_bfs(int st)
 }
 void solve()
 {
-	memset(col,-1,sizeof col);//È«²¿È¾-1É« 
+	memset(col,-1,sizeof col);//å…¨éƒ¨æŸ“-1è‰² 
 	bool flag=false; 
 	int Max=0;
 	for(int i=1;i<=n;i++)
@@ -54,7 +54,7 @@ void solve()
 			flag=true;
 			break;
 		}
-		Max+=max(acnt,bcnt);//Ì°ÐÄ£¬Ã¿´Î¼ÓÈë×î¶àµÄ	
+		Max+=max(acnt,bcnt);//è´ªå¿ƒï¼Œæ¯æ¬¡åŠ å…¥æœ€å¤šçš„	
 	}
 	if(!flag)
 		printf("%d %d\n",Max,n-Max);
@@ -76,7 +76,7 @@ int main()
 			G[a].push_back(b);
 			G[b].push_back(a);
 		}
-		if(n<2) //ÌØÀý 
+		if(n<2) //ç‰¹ä¾‹ 
 		{
 			printf("Poor wyh\n");
 			continue;

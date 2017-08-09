@@ -37,7 +37,6 @@ int main()
 {
     while(scanf("%d",&uN),uN)
     {
-        int i;
         memset(g,0,sizeof g);
         memset(linker ,-1,sizeof linker);
         scanf("%d%d",&vN,&k);

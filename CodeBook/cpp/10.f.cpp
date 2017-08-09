@@ -1,11 +1,4 @@
-#include <cstdio>
-#include <cstring>
-#include <algorithm>
-#include <iostream>
-#include <queue>
-#include <map>
-#include <vector>
-#include <cmath>
+#include<bits/stdc++.h>
 using namespace std;
 const double pi=acos(double(-1));
 bool cmp(string a,string b)

@@ -1,11 +1,6 @@
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <cctype>
-#include <map>
-char str[1000000];
+#include<bits/stdc++.h>
+const int maxn = 1e6+7;
+char str[MAXN];
 using namespace std;
 int main()
 {
