@@ -1,6 +1,4 @@
-# include <iostream.h> 
-# include <string.h> 
-# include <stdlib.h> 
+#include<bits/stdc++.h>
 char map[9][9]; 
 int n,m,t,di,dj; 
 bool escape; 

@@ -4,12 +4,7 @@
 ///注意此处的mod模后的结果都为正,故A%B=(A%B+B)%B;
 ///由HDU4474的结论可知,模数相等的情况下对两个数操作结果是一致的
 ///担心自己忘了还是写一边吧:
-#include<cstdio>
-#include<vector>
-#include<string>
-#include<queue>
-#include<iostream>
-#include<cstring>
+#include<bits/stdc++.h>
 int mod;
 int n,m,k;
 const int maxn=1000000+555;
