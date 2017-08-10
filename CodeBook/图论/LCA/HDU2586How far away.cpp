@@ -6,36 +6,39 @@
 //离线算法流程：通过深搜
 //dir[i]+dir[j]-2*dir[LCA(i,j)] dir[x] 为x到根的距离
 
+/*详解tarjan算法
+* 基于并查集和DFS,DFS用来遍历树,并查集用来当dfs访问完一个节点时,通过并查集将这个节点和他的子节点连接成一个集合
+* 
+*/
 const int maxn = 40000+7;
 const int maxQ = 200+7;
 using namespace std;
+#define clr(a,b) memset(a,b,sizeof(a));
 
-int father[maxn];
+int ancestor[maxn];
 int find(int x)
 {
-    if(father[x]==-1) return x;
-    return father[x]=find(father[x]);
+    if(ancestor[x]==-1) return x;
+    return ancestor[x]=find(ancestor[x]);
 }
+
 void merge(int u,int v)
 {
     int fu = find(u), fv = find(v);
     if(fv != fu)
-        father[fv]=fu;
+        ancestor[fv]=fu;
 }
 int dis[maxn];
 bool vis[maxn];//访问标记
 
-struct Edge
-{
+struct {
     int to,next,w;
 }e[maxn<<1];
+
 int tot=0, head[maxn];
 void addedge(int u,int v,int w)
 {
-    e[tot].to =v;
-    e[tot].w = w;
-    e[tot].next = head[u];
-    head[u] = tot++;
+    e[tot].to=v;e[tot].w=w;e[tot].next=head[u];head[u]=tot++;
 }
 
 vector<int> query[maxn];
@@ -44,22 +47,17 @@ int ans[maxn];
 void init()
 {
     tot=0;
-    memset(father,-1, sizeof(father));
-    memset(vis,0, sizeof(vis));
-    memset(head,-1, sizeof(head));
-    memset(dis,0,sizeof(dis));
-    memset(ans,0, sizeof(ans));
+    clr(ancestor,-1);clr(vis,0);
+    clr(head,-1);clr(dis,0);clr(ans,0);
     for(int i=0;i<maxn;i++)
     {
-        query[i].clear();
-        num[i].clear();
+        query[i].clear();num[i].clear();
     }
-
 }
+
 void tarjan(int u,int val)
 {
-    vis[u]=1;
-    dis[u]=val;
+    vis[u]=1;dis[u]=val;
     for(int i=head[u];~i;i=e[i].next)
     {
         int to = e[i].to;
@@ -71,7 +69,6 @@ void tarjan(int u,int val)
     {
         int to = query[u][i];
         if(vis[to]==0) continue;//如果to被访问过就可以回答这个询问
-
         ans[num[u][i]] = dis[u]+dis[to]-2*dis[find(to)];//find(to)就是lca(u,i)
     }
 }
@@ -103,8 +100,7 @@ int main()
 }
 
 
-在线算法
-预备知识 RMQ dp
+//online算法
 RMQ(区间最值查询) ST+dfs 算法
 对于长度为n的序列a定义dp[i][j]表示从a[i]开始长度为2^j的区间的最值。
 对于dp[i][j]这偶数个数字a[i,i+1,i+2···i+2^j-1],
@@ -114,8 +110,10 @@ RMQ(区间最值查询) ST+dfs 算法
 区间长度j-i+1 取k = log2(j-i+1) RMQ(a,i,j)=max(dp[i][k],dp[j-2^k+1][k])
 能做到预处理O(nlogn)(可优化质O(n)) 查询O(1)
 初状态dp[i][0]=a[i]
+
 #include <bits/stdc++.h>
 using namespace std;
+pair<int,int> pll;
 const int N = 50005;
 int maxdp[N][20], mindp[maxn][20];
 int dp[N][20];
@@ -130,7 +128,7 @@ void init(int n)
         }
 }
 
-pair<int,int> RMQ(int l, int r)
+pll RMQ(int l, int r)
 {
     if(l > r) swap(l, r);
     int k = log2(r-l+1.0);
@@ -153,7 +151,9 @@ int main()
         while(query--)
         {
             int a,b;scanf("%d%d", &a, &b);
-            pair<int,int> ans = RMQ(a,b);
+            pll ans = RMQ(a,b);
+            int MIN = ans.first;
+            int MAX = ans.second;
         }
     }
     return 0;
