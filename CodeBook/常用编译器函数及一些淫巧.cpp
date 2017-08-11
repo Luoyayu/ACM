@@ -12,25 +12,5 @@
                return make_pair<double,double>;
            }
 9.//超级读入挂
-        namespace IO
-        {
-            const int len=4e7;char buf[len];int sz,p;       //4e7大概大小为44M
-            void begin(){p=0;sz=fread(buf,1,len,stdin);}
-            inline bool read(LL &x)
-            {
-                if (p==sz)return 0;int f=1,d=0;char s=buf[p++];
-                while(s<'0'||s>'9'&&p<sz){if(s=='-') f=-1;s=buf[p++];}
-                while(s>='0'&&s<='9'&&p<sz){d=d*10+s-'0';s=buf[p++];}
-                x=f*d; return p!=sz;
-            }
-            inline void writeln(LL x)
-            {
-                if(x==0){putchar('0');putchar('\n');return;}
-                if(x<0)putchar('-'),x=-x;int len=0,buf[20];
-                while(x)buf[len++]=x%10,x/=10;int i=len-1;
-                while (i>=0){putchar(buf[i--]+'0');}putchar('\n');return;
-            }
-        }
-    用法: IO::read(x); IO::writeln(x);
-
-10.
+10.next_permutation()按字典序产生序列的下一个排列,三参数,排序起始,排序终点,可选排序范围个数
+例如 num[]={1,2,3,4} next_permutation(num,num+4) 此时num={1,2,4,3} 
