@@ -1,3 +1,4 @@
+//二分答案+最小生成树
 #include <cstdio>
 #include <algorithm>
 #include <cstring>

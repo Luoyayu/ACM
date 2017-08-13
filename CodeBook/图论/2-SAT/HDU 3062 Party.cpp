@@ -1,10 +1,7 @@
-//2-sat ÈëÃÅ
-//Éè°ïÅÉ(a0,a1) (b0,b1) ÓĞÃ¬¶Üa0¡ª¡ªb0 ½¨Á¢ÓĞÏò±ß(a0,b1) (b0,a1)
-//ÓĞÏò±ß(a,b) ±íÊ¾Ñ¡Ôña±ØĞëÑ¡b
-#include <cstdio>
-#include <cstring>
-#include <queue>
-#include <algorithm>
+//2-sat å…¥é—¨
+//è®¾å¸®æ´¾(a0,a1) (b0,b1) æœ‰çŸ›ç›¾a0â€”â€”b0 å»ºç«‹æœ‰å‘è¾¹(a0,b1) (b0,a1)
+//æœ‰å‘è¾¹(a,b) è¡¨ç¤ºé€‰æ‹©aå¿…é¡»é€‰b
+#include<bits/stdc++.h>
 using namespace std;
 const int N = 100000;
 #define stack STACK
@@ -79,10 +76,8 @@ int main()
         {
             int a,b,c,d;
             scanf("%d%d%d%d",&a,&b,&c,&d);
-            a=(a<<1)+c;
-            b=(b<<1)+d;
-            add(a,b^1);
-            add(b,a^1);
+            a=(a<<1)+c;b=(b<<1)+d;
+            add(a,b^1);add(b,a^1);
         }
         int MM=n<<1;
         for(int i=0;i<MM;i++)

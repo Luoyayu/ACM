@@ -56,11 +56,9 @@ int main()
         memset(head,-1,sizeof head);
         for(int i=0;i<m;i++)
         {
-            int u,v;
-            scanf("%d %d",&u,&v);
+            int u,v;scanf("%d %d",&u,&v);
             u--;v--;
-            add(u,v^1);
-            add(v,u^1);
+            add(u,v^1);add(v,u^1);
         }
         if(solve())
         {
