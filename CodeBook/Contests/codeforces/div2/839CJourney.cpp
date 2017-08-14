@@ -39,7 +39,7 @@ int main()
 {
     int n=read();
     clr(h,-1);
-    for(int i=1;i<n;i++)addedge2(read(),read());
+    for(int i=1;i<n;i++) addedge2(read(),read());
     dfs(1,-1);
     printf("%.16f",f[1]);
     return 0;

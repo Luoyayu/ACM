@@ -1,7 +1,7 @@
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<queue>
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <queue>
 using namespace std;
 int n,k[202],vis[202];
 int bfs(int a,int b)
