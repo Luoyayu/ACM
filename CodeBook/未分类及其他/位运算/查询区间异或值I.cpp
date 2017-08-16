@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-//分块 518ms 其实是 前缀异或
+//分块 518ms 其实是 前缀异或 XOR[r] ^ XOR[l-1]
 //XOR 的性质 a ^ a = 0 ; a ^ 0 = a;
 //q*sqrt(n) + O(n)
 using namespace std;
