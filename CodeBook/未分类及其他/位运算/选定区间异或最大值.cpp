@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+// 并且输出字典序最小的区间端点值
 typedef long long ll;
-typedef pair<int,int>P;
 const int INF=0x3f3f3f3f;
 int n,num,ans,l,r,cnt;
 int ch[1000003*32][2];
@@ -59,7 +59,7 @@ int main()
         init();Insert(0,0);
         for(int i=1;i<=n;i++)
         {
-           num^=read();
+            num^=read();
             Insert(i,num);query(i,num);
         }
         printf("%d %d %d\n",ans, l+1, r);

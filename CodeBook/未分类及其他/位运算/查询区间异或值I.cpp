@@ -60,6 +60,14 @@ int ask(int x,int y)
 
     return ans ;
 }
+
+void update(int x,int d) //修改某位置的异或值
+{
+    int tmp = a[x];
+    a[x] = d;
+    XOR[belong[x]] ^= (tmp ^ d);
+}
+
 int main()
 {
     int t = read();
