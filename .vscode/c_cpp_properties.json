@@ -16,7 +16,6 @@
                     "C://MinGW//lib///gcc//mingw32//5.3.0//include//c++//mingw32",
                     "C://MinGW//include",
                     "C://MinGW//lib//gcc//mingw32//5.3.0//include",
-
                     "${workspaceRoot}"
                 ]
             },

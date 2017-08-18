@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+#define home
 #define dg(x) cout<<#x<<" = "<<x<<endl;
 //从一开始连续异或到 n 的XOR值
 //if n % 4==1 XOR= 1
@@ -23,7 +24,7 @@ int main()
             continue;
         }
 
-        //n==15 k==3
+        //n==27 k==3
         ll ans = n;
         //i's par = (i-1)/k
         while(1)
@@ -40,16 +41,18 @@ int main()
                 x *= k;
                 now += x;
             }
-            //dg(x);dg(now);
+
             ll last = n - now;//最后一层节点数
-            //dg(last);
+
             ll l = (last-1)/x;//唯一 一颗不满k叉树左边合法树
             ll r = k-l-1;//右边已合法树
-            //dg(l);dg(r);
             if(l%2==1) ans ^= now;//
             if(r%2==1) ans ^= (now-x);
-            n -= l*now+r*(now-x)+1;//dg(n);
+            n -= l*now+r*(now-x)+1;
             ans ^= n;
+#ifdef home
+            dg(x);dg(now);dg(last); dg(l);dg(r);dg(n);
+#endif
         }
         printf("%lld\n",ans);
     }
