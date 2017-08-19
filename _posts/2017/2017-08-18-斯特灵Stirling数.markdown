@@ -1,17 +1,11 @@
 [TOC]
-### how to use markdown for CS
+#### Stirling 
+- 第一类斯特灵数   
 
+是指对$n$个元素分$k$组的排列数,例如$s(4,2)=11$ 表示将四个元素分成两组有11种情况
+有递推关系如下$s(n,k) = s(n-1,k-1)+(n-1)*s(n-1,k)$
+意义如下将n个物品分为k组,考虑第n个物品,有第n个物品可以单独构成一组共有$s(n-1,k-1)$种情况,或者前$n-1$物品已经构成了$k$种,那么需把第n个物品插入其中有方法数$(n-1)*s(n-1,k)$  
 
-```flow
+- 第二类斯特林数
 
-st=>start: Start
-e=>end: End
-op1=>operation: My Operation
-sub1=>subroutine: My Subroutine
-cond=>condition: Yes or No?
-io=>inputoutput: catch something...
-st->op1->cond
-cond(yes)->io->e
-cond(no)->sub1(right)->op1
-
-```
+是$n$个元素的集定义$k$个等价类的方法数记为$S(n,k)$
