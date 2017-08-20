@@ -11,7 +11,7 @@
            {
                return make_pair<double,double>;
            }
-9.//读入挂
+9.//行走江湖必备之读入挂
 inline int read()
 {
     int x=0,f=1;char ch=getchar();
