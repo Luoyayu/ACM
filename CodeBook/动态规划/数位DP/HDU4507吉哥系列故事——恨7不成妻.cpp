@@ -15,8 +15,7 @@ Node dfs(int pos, int pra, int prb, bool limit)//pra:位数之和%7; prb:数值%
 {
     if(pos == -1)
         return Node(pra!=0 && prb!=0, 0, 0);
-    if(!limit && ~dp[pos][pra][prb].cnt)
-        return dp[pos][pra][prb];
+    if(!limit && ~dp[pos][pra][prb].cnt) return dp[pos][pra][prb];
     int up = limit?a[pos]:9;
     Node ans = Node(0, 0, 0);
     for(int i=0; i<=up; i++)

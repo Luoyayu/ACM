@@ -16,10 +16,11 @@ int f(int x)
 }
 ll dfs(int pos, int sum, bool limit)
 {
-    int ans = 0;
     if(pos==-1) return sum<=all;
-    if(!limit&&dp[pos][all-sum]!=-1) return dp[pos][all-sum];
+    if(all-sum<=) return 0;
+    if(!limit&& ~dp[pos][all-sum]) return dp[pos][all-sum];
     int up =limit?a[pos]:9;
+    int ans = 0;
     for(int i=0;i<=up;i++)
         ans+=dfs(pos-1,sum+i*(1<<pos),limit&&i==a[pos]);
     if(!limit) dp[pos][all-sum]=ans;
