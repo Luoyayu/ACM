@@ -17,9 +17,9 @@ void sub(string& ori)//大数-1
     else
     {
         int i = len-1;
-        while(i>=0&&A[i]=='0') 
+        while(i>=0&&ori[i]=='0') 
             ori[i]='9',i--;
-        A[i]-=1;
+        ori[i]-=1;
     }
 }
 bool check(int x,int y,char op)

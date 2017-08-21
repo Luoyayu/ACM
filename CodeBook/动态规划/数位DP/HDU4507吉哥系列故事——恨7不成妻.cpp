@@ -39,7 +39,7 @@ Node dfs(int pos, int pra, int prb, bool limit)//pra:位数之和%7; prb:数值%
     return ans;
 }
 
-void init()
+inline void init()
 {
     js[0] = 1;
     for(int i=1; i<20; i++)
@@ -54,7 +54,7 @@ LL solve(LL n)
         a[pos++] = n%10;
         n /= 10;
     }
-    Node ans = dfs(pos-1, 0, 0, 1);
+    Node ans = dfs(pos-1, 0, 0, true);
     return ans.sqsum;
 }
 

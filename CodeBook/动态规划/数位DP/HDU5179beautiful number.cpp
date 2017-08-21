@@ -17,8 +17,7 @@ int dfs(int pos, int pre, int lead, bool limit)
         if(lead==0||(i<=pre && i && pre%i==0))
             ans+= dfs(pos-1,i,lead||i,limit && i==up);
     }
-    if(!limit) dp[pos][pre]=ans;
-    return ans;
+    return !limit? dp[pos][pre]=ans:ans;
 }
 int solve(int n)
 {

@@ -20,11 +20,7 @@ ll dfs(int pos, int o, int num, bool limit)
 ll solve(ll n)
 {
     int pos = 0;
-    while(n)
-    {
-        a[pos++] = n % 10;
-        n /= 10;
-    }
+    while(n) a[pos++] = n % 10, n /= 10;
     ll ans = 0;
     for(int i=0;i<=pos-1;i++)
         ans+=dfs(pos-1,i,0,true);

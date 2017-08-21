@@ -18,7 +18,6 @@ ll dfs(int pos, int sum, bool limit)
 {
     int ans = 0;
     if(pos==-1) return sum<=all;
-    if(sum>all) return 0;
     if(!limit&&dp[pos][all-sum]!=-1) return dp[pos][all-sum];
     int up =limit?a[pos]:9;
     for(int i=0;i<=up;i++)
