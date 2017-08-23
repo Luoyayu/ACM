@@ -4,11 +4,12 @@ const int maxn = 2500 + 55;
 bool dp[maxn][maxn]; // dp[i][j] 表示 A的前i个字符可以匹配 B的前j个字符
 int main()
 {
-    int t;scanf("%d",&t);
+    ios::sync_with_stdio(false);
+    int t;cin>>t;
     while(t--)
     {
         string a,b;cin>>a>>b;
-        a = '#' + a;
+        a = '#' + a;//转移的话就不用考虑-2/-1越界
         b = '#' + b;
         int lena = a.size()-1, lenb = b.size()-1;
         memset(dp, false, sizeof dp);
@@ -28,8 +29,8 @@ int main()
                         dp[i][j] = dp[i-1][j] || dp[i-1][j-1];
                 }
             }
-        if(dp[lena][lenb]) printf("yes\n");
-        else printf("no\n");
+        if(dp[lena][lenb]) cout<<"yes\n";
+        else cout<<"no\n";
     }
     return 0;
 }
