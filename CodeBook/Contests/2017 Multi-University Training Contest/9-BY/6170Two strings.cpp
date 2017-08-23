@@ -25,8 +25,8 @@ int main()
                 {
                     dp[i][j] = dp[i][j-2] || dp[i][j-1];
 
-                    if(a[i]==a[i-1])
-                        dp[i][j] = dp[i-1][j] || dp[i-1][j-1];
+                    if(a[i]==a[i-1] && (dp[i-1][j] || dp[i-1][j-1]))
+                        dp[i][j] = 1;
                 }
             }
         if(dp[lena][lenb]) cout<<"yes\n";
