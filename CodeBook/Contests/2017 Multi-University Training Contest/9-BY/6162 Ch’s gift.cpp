@@ -39,7 +39,7 @@ void dfs(int u,int dfn)
         int v = edge[i].to;
         if(!vis[v])
         {
-            dir[v].assign(dir[u].begin(),dir[u].end());//现学的技能担心会在这里被卡,标算维护的是treap,最后给出标算的实现
+            dir[v].assign(dir[u].begin(),dir[u].end());//现学的技能担心会在这里被卡,标算维护的是treap
             dir[v].push_back(quan[v]);
             dfs(v,dfn+1);
             ver[++cnt] = u;
@@ -80,7 +80,7 @@ int LCA(int u,int v)
 }
 int main()
 {
-     int n,m;
+    int n,m;
     while(~scanf("%d %d",&n,&m))
     {
         init(n);
@@ -88,13 +88,11 @@ int main()
             scanf("%d",&quan[i]);
         for(int i=1;i<=n-1;i++)
         {
-            int a,b;
-            scanf("%d %d",&a,&b);
-            addedge(a,b);
-            addedge(b,a);
+            int a,b; scanf("%d %d",&a,&b);
+            addedge(a,b); addedge(b,a);
         }
-        dir[0].push_back(quan[1]);
-        dfs(1,1);ST(2*n-1);
+        dir[1].push_back(quan[1]);
+        dfs(1,1); ST(2*n-1);
         while(m--)
         {
             int s,t,a,b;
