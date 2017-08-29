@@ -17,9 +17,9 @@ int dp[maxn][10][c1][c2]
 int dfs(int pos, int pre, int inc1,int inc2,....int lim, int led)//记忆化
 {
     if(pos==-1) return inc1==c1 && inc2==c2&&...&&lead;//处理到个位时需单独判断
-  	if(!lim&& ~dp[pos][pre][c1][c2]) return dp[pos][pre][c1][c2];
+  	if(!lim && ~dp[pos][pre][c1][c2]) return dp[pos][pre][c1][c2];
   	int up = lim ? dig[pos] : 9;
-  	for(int i=led?1:0;i<=9;i++)//考虑是否能枚举0
+  	for(int i = led?1:0; i<=9; i++)//考虑是否能枚举0
   	{
       	//状态转移
       	ans += dfs(pos-1,i,newc1,newc2...,i==up?lim,led&&i==0);//区分前导0
@@ -39,20 +39,20 @@ int solve(int x)//常规处理 123-> dig[]={3,2,1}
 int solve(char *x)//处理大数
 {
     int len = strlen(x);
-  	for(int i=0;x[i];i++)
+  	for(int i=0; x[i]; i++)
 		dig[len-i-1] = x[i] - '0';
   	return dfs(len-1,-1,false,false,...true,false);
 }
 void Bigsub(char *o)//大数-1
 {
     int len = strlen(o);
-  	if(o[len-1]>'0') o[len-1]-=1;
+  	if(o[len-1]>'0') o[len-1]--;
   	else//借位
     {
         int pos = len -1;
-      	while(pos>=0&&o[pos]=='0')
+      	while(pos>=0 && o[pos]=='0')
           o[i]='9', pos--;
-      	o[pos] -= 1;
+      	o[pos]--;
     }
 }
 bool check()//在记忆化中较为复杂的校检——例:2010多校 数字的趋势
@@ -63,10 +63,10 @@ bool check()//在记忆化中较为复杂的校检——例:2010多校 数字的
 
 ### Beginner level
 
-#### HDU 2089 不62 
+#### HDU 2089 不要62 
 
 ```c++
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int dp[22][2], dig[22];
 int dfs(int pos,int pre,int inc,bool lim)
@@ -77,7 +77,7 @@ int dfs(int pos,int pre,int inc,bool lim)
     int ans = 0;
     for(int i=0;i<=up;i++)
     {
-        if(i==4||i==2&&pre==6)continue;
+        if(i==4 || i==2&&pre==6)continue;
         ans += dfs(pos-1,i,i==6,lim&i==up);
     }
     return !lim?dp[pos][inc] = ans : ans;
@@ -93,7 +93,7 @@ int main()
 {
     int n,m;
     memset(dp,-1,sizeof(dp));
-    while(scanf("%d%d",&n,&m)!=EOF&&n+m)
+    while(scanf("%d%d",&n,&m)!=EOF && n+m)
         printf("%d\n",cal(m)-cal(n-1));
     return 0;
 }
@@ -361,8 +361,6 @@ Description: data range:= 2e9, 定义windy数为不含前导0且相邻两个数�
 
 
 #### HDU 4352 [XHXJ's LIS](http://acm.hdu.edu.cn/showproblem.php?pid=4352)
-
-
 
 
 

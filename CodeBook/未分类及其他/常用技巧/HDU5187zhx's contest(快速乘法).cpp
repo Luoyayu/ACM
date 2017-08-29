@@ -6,25 +6,17 @@
 typedef long long ll;
 const int maxn = 1e6+7;
 using namespace std;
-ll qmul(ll a,ll b,ll mod)//O(1) 二分乘法
+ll qmul(ll a,ll b,ll mod)//O(1) 快速乘法
 {
     ll ret = 0, k=a, sig = 1;
     if(k<0)
-    {
-        sig=-1;
-        k=-k;
-    }
+        sig=-1,k=-k;
     if(b<0)
-    {
-        sig*=-1 ;
-        b=-b;
-    }
+        sig*=-1 ,b=-b;
     while(b)
     {
-        if(b&1)
-            ret=(ret+k)%mod;
-        k=(k+k)%mod;
-        b>>=1;
+        if(b&1) ret=(ret+k)%mod;
+        k=(k+k)%mod,b>>=1;
     }
     return ret*sig;
 }
