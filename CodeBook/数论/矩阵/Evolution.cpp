@@ -10,7 +10,6 @@ const int maxn=220;
 struct matrix
 {
     double mat[maxn][maxn];
-
 };
 double p[maxn];
 matrix multi(matrix a,matrix b)

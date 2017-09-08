@@ -11,13 +11,12 @@ ull pow_mod(ull a,ull p,ull n)
 }
 ull power_mod(ull a,ull b,ull mod)
 {
-    ull ans=1,tmp=a%mod;
+    ull ans=1, base=a%mod;
     while(b)
     {
         if(b&1)
-            ans=ans*tmp%mod;
-
-        tmp=tmp*tmp%mod;
+            ans=ans*base%mod;
+        base=base*base%mod;
         b>>=1;
     }
     return ans;
