@@ -3,8 +3,12 @@
 #include <cstring>
 #include <algorithm>
 using namespace std;
-// 题意: 给出序列a,求出最小得分—— 取出的数*左边的数*右边的数 (不能取两边)
-// 区间DP入门题 循环写法/记忆化写法
+//题意: 给出序列a,求出最小得分—— 取出的数左边的数右边的数 (不能取两边)，
+//实质为矩阵链乘变形，设dp[i][j]为取光(i,j)之间的元素所得的最小值, 
+//k为区间(i,j)最后取出的元素，
+//这样转移就可以维持状态方程的一致性
+//dp[i][j]=min(dp[i][j], DP(l,k)+DP(k,r)+a[k]*a[l]*a[r])，
+//因为如果k为第一次取出的元素的话不好确定k左右的临近元素
 inline int read()
 {
     int x=0,f=1;char ch=getchar();
@@ -21,8 +25,8 @@ int DP(int l, int r)
     if(~dp[l][r])return dp[l][r];
     if(r-l==1) return dp[l][r] = 0;
     dp[l][r] = inf;
-    for(int i=l+1; i<=r-1; ++i)//枚举取出的点
-        dp[l][r] = min(dp[l][r], DP(l,i)+DP(i,r)+a[i]*a[l]*a[r]);
+    for(int k=l+1; k<=r-1; ++k)//枚举取出的点
+        dp[l][r] = min(dp[l][r], DP(l,k)+DP(k,r)+a[k]*a[l]*a[r]);
     return dp[l][r];
 }
 int main()

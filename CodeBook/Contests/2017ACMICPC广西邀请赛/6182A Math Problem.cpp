@@ -14,7 +14,7 @@ ll mqul(ll a,ll b) //cal (a*b)
     return ret;
 }
 
-ll power(ll a,ll b)//cal a^b //二进制拆b遇到1累乘否则累乘基数
+ll power(ll a,ll b)//cal a^b //二进制拆b遇到1累乘否则累乘基数 
 {
     ll ret = 1, t = a;
     while(b)
