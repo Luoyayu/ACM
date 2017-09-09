@@ -1,51 +1,105 @@
-//菜啊,这么基础的前缀打标处理都没想到
+//题意:给出字符串S(1e5),T(10);Q(1e5) 次操作
+//C a b 改变第a个字符为b
+//Q a b 查询S[a,b]中出现T的次数
+//思路：KMP+树状数组
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn =200000+7;
-int ans[maxn];
+const int maxn = 1e5 + 7;
 int c[maxn];
-#define lowbit(x) (x)&(-x)
-void add(int pos, int val)
+char s[maxn], p[maxn];
+int lens, lenp;
+bool vis[maxn];
+#define lowbit(x) x & -x;
+void add(int pos, int value)
 {
-    while(pos<maxn)
+    while(pos<lens)
     {
-        c[pos]+=val;
-        pos+=lowbit(pos);
+        c[pos] += value;
+        pos += lowbit(pos);
     }
 }
 int sum(int pos)
 {
-    int res = 0;
+    int ret = 0;
     while(pos>0)
     {
-        res += c[pos];
-        pos-=lowbit(pos);
+        ret += c[pos];
+        pos -= lowbit(pos);
     }
-    return res;
+    return ret;
 }
 int main()
 {
-    int n,m,k;
-    while(scanf("%d%d%d",&n,&m,&k)!=EOF)
+    int t;scanf("%d",&t);
+    while(t--)
     {
+        int q;scanf("%d",&q);
+        memset(vis,0,sizeof(vis));
         memset(c,0,sizeof(c));
-        memset(ans,0,sizeof(ans));
-        for(int i=1;i<=n;i++)
+        scanf("%s %s",s+1, p+1);
+        lenp = strlen(p+1);lens = strlen(s+1);
+        for(int i=1;i+lenp-1<=lens;i++)
         {
-            int a,b;scanf("%d%d",&a,&b);
-            add(a,1);add(b+1,-1);
+            bool flag = 1;
+            for(int j=1;j<=lenp;j++)
+                if(s[i+j-1]!=p[j])
+                {
+                    flag = 0;
+                    break;
+                }
+
+            if(flag)
+            {
+                add(i,1);vis[i]=1;
+            }
         }
-        for(int i=1;i<maxn;i++)
+        while(q--)
         {
-            int tmp = sum(i);
-            if(tmp>=m) ans[i] = ans[i-1] + 1;
-            else ans [i] =ans[i-1];
-        }
-        while(k--)
-        {
-            int u,v;scanf("%d%d",&u,&v);
-            printf("%d\n",ans[v]-ans[u-1]);
+            char ch;scanf(" %c",&ch);
+            if(ch=='Q')
+            {
+                int l,r;scanf("%d %d",&l,&r);
+                r -= lenp;r++;
+                if(l<=r) printf("%d\n",sum(r) - sum(l-1));
+                else printf("0\n");
+            }
+            else
+            {
+                int pos;scanf("%d %c",&pos,&ch);
+                s[pos] = ch;
+                for(int i=max(1,pos-lenp+1);i<=min(pos,lens-lenp+1);i++)
+                {
+                    bool flag = 1;
+                    for(int j = 1;j<=lenp;j++)
+                    {
+                        if(s[i+j-1]!=p[j])
+                        {
+                            flag = 0;
+                            break;
+                        }
+                    }
+                    if(flag != vis[i])
+                    {
+                        if(vis[i]) add(i,-1);
+                        else add(i,1);
+                        vis[i] = !vis[i];
+                    }
+                }
+            }
         }
     }
     return 0;
 }
+
+/*
+1
+5
+AABBABA
+AA
+Q 1 3
+C 6 A
+Q 2 7
+C 2 B
+Q 1 5
+
+ */
