@@ -1,9 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int mod = 1e9 + 7;
+//题意:求有多少k满足k^k<=n n(1e18)
 //大概16^16=1e19 题设1e^18
 //有点蠢,手撸快速乘,快速幂练习
-ll mqul(ll a,ll b) //cal (a*b)
+
+ll qmul(ll a,ll b) //cal (a*b)
 {
     ll ret = 0, t = a;
     while(b)

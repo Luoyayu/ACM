@@ -1,14 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+//题意:给出每只猴子偏好的几种香蕉
+//给出香蕉的产地几个产地
+//输出每只猴子接受的产地
 int main()
 {
-    int n,m;
-    int t;
-    scanf("%d",&t);
+    int t;scanf("%d",&t);
     while(t--)
     {
-        scanf("%d%d",&n,&m);
+        int n,m;scanf("%d%d",&n,&m);
         bool mon[55][55];
         bool place[55][55];
         memset(mon,0,sizeof(mon));
