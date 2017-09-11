@@ -18,11 +18,7 @@ bool free_x[maxn];//判断是否是不确定的变元
 2）唯一解 k==equ,行阶梯形成了严格的上三角形阵
 3）无穷解k<equ，自由变元的个数为equ-k
 
-#include<stdio.h>
-#include<algorithm>
-#include<iostream>
-#include<string>
-#include<math.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 const int maxn=50;
@@ -47,7 +43,7 @@ void Debug(void)
 
 inline int lcm(int a,int b)
 {
-    return a/gcd(a,b)*b;
+    return a/__gcd(a,b)*b;
 }
 
 // 高斯消元法解方程组(Gauss-Jordan elimination).(-2表示有浮点数解，但无整数解，
