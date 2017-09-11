@@ -16,7 +16,7 @@ node *root = new node,*p;
 void insert(char *str)
 {
 	p = root;
-	for (int i = 0; str[i]!='\0'; i++)
+	for (int i = 0; str[i]; i++)
 	{
 		int id = str[i] - 'a';
 		if (p->next[id] == NULL)

@@ -1,95 +1,51 @@
-//<Trie+KMP+手工queue>实现的多模式串字符匹配算法——AC自动机(Aho-Corasick automation)
-#include<bits/stdc++.h>
+//是时候学习Aho-Corasick automaton（多模匹配算法）了
+//多个模式串字符串在原串中出现(多组KMP暴力)
+//简单来说ac自动机等同于kmp的理解,key在建立失配指针,按失配指针遇到失配时规律跳转。
+#include <bits/stdc++.h>
 using namespace std;
-const int _size=26;
-const int kind = _size;
-struct node
+//ac 自动机 trie数组实现
+const int maxn = 10000;
+#define Sigmasize (26)
+int tot, son[maxn][Sigmasize], id[maxn], fail[maxn], q[maxn];
+//son[][26] trie树; fai 失配指针
+//id[x] = p 表示第p个模式串
+int n;char s[maxn];
+void insert(int p, int len)//build trie
 {
-    node *failure;       //失配指针
-    node *next[kind]; //Tire每个节点的个子节点（最多个字母）
-    int count;        //是否为该单词的最后一个节点
-    node()
+    for(int dep=0,i=0,w;i<len;i++)
     {
-        failure=NULL;
-        count=0;
-        memset(next,NULL,sizeof(next));
+        if(!son[dep][w=s[i]-'a']) son[dep][w]=++tot;
+        dep=son[dep][w];//字典树层数
+        if(i==l-1) id[dep]=p;//到达最后一层时,该 id[该层]=序号
     }
-}*q[500001];          //队列，方便用于bfs构造失配指针
-char word[51];     //输入的单词
-char T[1000001];    //模式串
-int head,tail;        //队列的头尾指针
+}
+//fail指针的理解：每个节点的失配指针指向的是 以当前节点表示的为最后一个字符的最长当前字符串的后缀的字符串的 最后一个节点。
+//例如有模式串 {abcd bce cd} first_c-> second_c -> third_c
+//每个与根相连的字符的失配指针指向根
+//失配指针的用处：比如上例有文本串abce 在d(abcd)发生失配时由d前一字符c跳转到c(bce)节点继续比较e(abcd)==e(bce)完成匹配输出
 
-void createTree(char *str,node *root)//建trie树
+void make()
 {
-    node *p=root;
-    int i=0,index;
-    while(str[i])
+    int h=1, t=0, x;fail[0] = -1;
+    for(int i=0;i<Sigmasize;i++) if(son[0][i]) q[++t] = son[0][i];
+    while(h<=t) for(x=q[h++],i=0;i<26;i++)
+        if(son[x][i]) fail[son[x][i]]=son[fail[x][i]],q[++t]=son[x][i];
+        else son[x][i] = son[fail[x]][i];
+}
+
+void find(int len)
+{
+    for(int x=0,i=0,w;i<len;i++)
     {
-        index=str[i]-'a';
-        if(p->next[index]==NULL)
-            p->next[index]=new node;
-        p=p->next[index];
-        i++;
-    }
-    p->count++;     //单词的最后一个节点count+1，代表一个单词
- }
- void build_ac_automation(node *root)//失配指针
- {
-    int i;
-    root->fail=NULL;
-    q[head++]=root;
-    while(head!=tail)
-    {
-        node *temp=q[tail++];
-        node *p=NULL;
-        for(i=0;i<_size;i++)
-        {
-            if(temp->next[i]!=NULL)
-            {
-                if(temp==root)
-                    temp->next[i]->fail=root;
-                else
-                {
-                    p=temp->fail;
-                    while(p!=NULL)
-                    {
-                        if(p->next[i]!=NULL)
-                        {
-                            temp->next[i]->fail=p->next[i];
-                            break;
-                        }
-                        p=p->fail;
-                    }
-                    if(p==NULL) temp->next[i]->fail=root;
-                }
-                q[head++]=temp->next[i];
-            }
-        }
+        x = son[x][w=s[i]-'a'];
+        for(int j=x;j;j=fail[j]) if(id[j]) printf("%d ",id[j]);
     }
 }
-int query(node *root)//查询
-{
-    int i=0,cnt=0,index,len=strlen(str);
-    node *p=root;
-    while(str[i])
-    {
-        index=str[i]-'a';
-        while(p->next[index]==NULL && p!=root)
-            p=p->fail;
-        p=p->next[index];
-        p=(p==NULL)?root:p;
-        node *temp=p;
-        while(temp!=root && temp->count!=-1)
-        {
-            cnt+=temp->count;
-            emp->count=-1;
-            temp=temp->fail;
-        }
-        i++;
-    }
-    return cnt;
-}
+
 int main()
 {
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++) scanf("%s",s),insert(i,strlen(s));//输入多模式串
+    while(1) scanf("%s",s),find(strlen(s)),puts("");//输入原串
     return 0;
 }
