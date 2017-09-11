@@ -20,13 +20,10 @@ void make()
     static int q[maxn];
     int bg=0, ed=0, i, x, v;fail[0] = 0;
     for(i=0;i<26;i++) if((v=son[0][i])) fail[q[ed++]=v]=0;
-
     while(bg<ed)
-    {
-        for(x=q[bg++],i=0;i<26;i++)
-            if((v=son[x][i])) fail[q[ed++]=v]=son[fail[x]][i];
-            else son[x][i] = son[fail[x]][i];
-    }
+    for(x=q[bg++],i=0;i<26;i++)
+    if((v=son[x][i])) fail[q[ed++]=v]=son[fail[x]][i];
+    else son[x][i] = son[fail[x]][i];
 }
 
 int find(char *s)
@@ -46,8 +43,7 @@ int main()
     int t;cin>>t;
     while(t--)
     {
-        tot = 1;
-        clr(son[0]);
+        tot = 1;clr(son[0]);
         cin>>n;
         while(n--) cin>>s,insert(s);
         make();cin>>s;cout<<find(s)<<endl;

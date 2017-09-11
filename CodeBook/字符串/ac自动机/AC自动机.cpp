@@ -3,10 +3,13 @@
 //简单来说ac自动机等同于kmp的理解,key在建立失配指针,按失配指针遇到失配时规律跳转。
 #include <bits/stdc++.h>
 using namespace std;
-//ac 自动机 trie数组实现
+//ac自动机 trie数组实现
+//深入理解:ac自动机通过失配指针把trie树拓展构建成trie图
+//trie树又可以理解成前缀树,本质上时DFA（确定性有限状态自动机）
+//数组实现空间利用率较低
 const int maxn = 10000;
 #define Sigmasize (26)
-int tot, son[maxn][Sigmasize], id[maxn], fail[maxn], q[maxn];
+int tot, son[maxn][Sigmasize], id[maxn], fail[maxn];
 //son[][26] trie树; fai 失配指针
 //id[x] = p 表示第p个模式串
 int n;char s[maxn];
@@ -26,11 +29,13 @@ void insert(int p, int len)//build trie
 
 void make()
 {
-    int h=1, t=0, x;fail[0] = -1;
-    for(int i=0;i<Sigmasize;i++) if(son[0][i]) q[++t] = son[0][i];
-    while(h<=t) for(x=q[h++],i=0;i<26;i++)
-        if(son[x][i]) fail[son[x][i]]=son[fail[x][i]],q[++t]=son[x][i];
-        else son[x][i] = son[fail[x]][i];
+    static int q[maxn];
+    int bg=0, ed=0,i,x,v;fail[0]=0;
+    for(i=0;i<26;i++) if((v=son[0][i])) fail[q[ed++]=v]=0;
+    while(bg<ed)
+    for(x=q[bg++],i=0;i<26;i++)
+    if((v=son[x][i])) fail[q[ed++]=v]=son[fail[x]][i];
+    else son[x][i] = son[fail[x]][i];
 }
 
 void find(int len)
