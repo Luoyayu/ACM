@@ -13,18 +13,18 @@ void getfailure(const char *x, int len)//失配函数build
     int j = Next[0]= -1,i = 0;
     while (i < len)
     {
-        while (j!= -1 &&  x[i] != x[j])//x[i]表前缀，p[j]表后缀匹配失败
+        while (~j &&  x[i] != x[j])//x[i]表前缀，p[j]表后缀匹配失败
             j = Next[j];
-        if (x[++i] == x[++j])//*
-            Next[i] = Next[j];//**去掉注释该此行位Next[++i]=++j可用来求最小循环节
-        else Next[i] = j;//*
+        if (x[++i] == x[++j])  //***************************************************
+            Next[i] = Next[j]; //**去掉注释该此行位 Next[++i] = ++j可用来求最小循环节**
+        else Next[i] = j;      //***************************************************
     }
 }
-int KMP()
+int KMP(int plen, int slen)
 {
-    int ans = 0,plen=strlen(p),slen=strlen(s);
+    int ans = 0;
     getfailure(p, plen);
-    int i =0,j = 0;
+    int i = 0, j = 0;
     while (i < slen)
     {
         while (j!= -1 && s[i] != p[j])//j!=-1表示当前字符匹配失败,i不变,j=Next[j];模式串向右移动位数为：
@@ -32,7 +32,7 @@ int KMP()
             j = Next[j];
         i++; j++;//成功i,j都移动1位
         if (j >= plen)//匹配到达模式串末尾
-            ans++,j = 0;//j=0 不允许重叠的匹配,否则j会继续根据next[j]跳转,模式串匹配j重新移到串首,ans++ 匹配数++
+            ans++, j = 0;//j=0 不允许重叠的匹配,否则j会继续根据next[j]跳转,模式串匹配j重新移到串首,ans++ 匹配数++
     }
     return ans;
 }
@@ -42,8 +42,17 @@ int main()//求模式串不重叠在原串中出现了几次
     {
         if (s[0] == '#') break;
         scanf("%s", p);
-        int ans = KMP();
-       printf("%d\n", ans);
+        int plen = strlen(p);
+        int slen = strlen(s);
+        int ans = KMP(plen, slen);
+        printf("%d\n", ans);
     }
     return 0;
 }
+//KMP 算法的再理解 
+// S：a b a c a a b a c a b a c a b a a b b
+// T：a b a c a b
+//原串和模式串匹配时,一旦失陪模式串根据失配数组尽可能的向右跳转，
+//找出最长 相同的前缀和后缀使得移动的位置重叠
+// 失配数组的意义是 若Next[i] = k 则 k是在T 中长度为k
+//第一次匹配时S[5]!=T[5]
