@@ -1,7 +1,7 @@
 //题意:给出字符串S(1e5),T(10);Q(1e5) 次操作
 //C a b 改变第a个字符为b
 //Q a b 查询S[a,b]中出现T的次数
-//思路：KMP+树状数组
+//思路：树状数组
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn = 1e5 + 7;

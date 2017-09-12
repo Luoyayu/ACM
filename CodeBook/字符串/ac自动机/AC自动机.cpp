@@ -1,14 +1,15 @@
 //是时候学习Aho-Corasick automaton（多模匹配算法）了
 //多个模式串字符串在原串中出现(多组KMP暴力)
 //简单来说ac自动机等同于kmp的理解,key在建立失配指针,按失配指针遇到失配时规律跳转。
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 //ac自动机 trie数组实现
 //深入理解:ac自动机通过失配指针把trie树拓展构建成trie图
 //trie树又可以理解成前缀树,本质上时DFA（确定性有限状态自动机）
-//数组实现空间利用率较低
+
+//数组实现
 const int maxn = 10000;
-#define Sigmasize (26)
+#define Sigmasize (26)//若为ascill字符集的话 sigmasize为198
 int tot, son[maxn][Sigmasize], id[maxn], fail[maxn];
 //son[][26] trie树; fai 失配指针
 //id[x] = p 表示第p个模式串
@@ -53,4 +54,61 @@ int main()
     for(int i=1;i<=n;i++) scanf("%s",s),insert(i,strlen(s));//输入多模式串
     while(1) scanf("%s",s),find(strlen(s)),puts("");//输入原串
     return 0;
+}
+
+//指针实现
+#define crl(x) memset(s,0,sizeof x)
+const int Sigmasize =26;;
+const int maxn = 500100;
+struct node{
+    Node *ch[Sigmasize], *fail;
+    int match;
+    void clear(){clr(this);}
+}
+Node *que[maxn];
+Node node[maxn], *root ,*superRoot ,*cur;
+Node * newNode()
+{
+    cur ->clear();
+    return cur++;
+}
+void clear()
+{
+    cur = nodes;    
+    superRoot = newNode();
+    root = newNode();
+    root->fail = superRoot;
+    for(int i=0;i<Sigmasize;i++)
+    {
+        superRoot -> ch[i] = root;
+        superRoot->match = -1;
+    }
+}
+void insert(char *s)
+{
+    Node *t = root;
+    for(;*s,s++)
+    {
+        int x = *s - 'a';
+        if(t->ch[i]==NULL)
+            t->ch[i]=newNode();
+            t = t->ch[x];
+    }
+}
+
+void build()
+{
+    int p = 0,q = 0;
+    que[q++]=root;
+    while(q!=p)
+    {
+        Ndoe *t =que[p++];
+        for(int i=0;i<Sigmasize;i++)
+        {
+            if(t->ch[i])
+            {
+                t->ch[i]->fail=t->fail->ch[i]
+            }
+        }
+    }
 }

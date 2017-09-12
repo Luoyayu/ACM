@@ -21,7 +21,7 @@ ll power(ll a,ll b)//cal a^b //二进制拆b遇到1累乘否则累乘基数
     ll ret = 1, t = a;
     while(b)
     {
-        if(b&1) ret =qmul(ret,t);
+        if(b&1) ret = qmul(ret,t);
         t=qmul(t,t);b>>=1;
     }
     return ret;
