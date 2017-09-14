@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 //题意：给出长度为n（n<=1000）的序列s，对于不同的i,j,k;
-//求出max(i,j,k) (si+sj)^sk
-//建立Trie树 O(n^2) = 10^6枚举 (i,j),每次删除(si,sj)查询最大值，在次插入即可
+//求出max(i,j,k) (s_i+s_j)^s_k
+//建立Trie树 O(n^2) = 10^6枚举 (i,j),每次删除(si,sj)查询最大值，再次插入即可
 #define clr(a,b)memset(a,b,sizeof(a));
 inline int read()
 {
@@ -16,7 +16,7 @@ const int maxn = 32*2000;
 int a[maxn];
 int root,tot;
 struct {
-    int ch[2],size;
+    int ch[2],size;//记录每个节点被标记的数量
 }T[maxn];
 void Insert(int x)
 {
@@ -30,11 +30,6 @@ void Insert(int x)
         T[o].size++;
     }
 }
-inline void init()
-{
-    clr(T,0);tot = 1;root=1;
-}
-
 int query(int x)
 {
     int o=root;
@@ -69,8 +64,8 @@ int main()
     while(t--)
     {
         int n=read();//不能前插0!
-        init();
-        for(int i=1;i<=n;i++)
+        clr(T,0);tot = 1;root=1;
+        for(int i=1;i<=n;i++)//可以边读边插
             a[i] = read(),Insert(a[i]);
         int ans = 0;
         for(int i=1;i<=n;i++)
@@ -79,7 +74,7 @@ int main()
             for(int j=i+1;j<=n;j++)
             {
                 Delete(a[j]);
-                ans = max(ans,query(a[i]+a[j]));
+                ans = max(ans, query(a[i]+a[j]));
                 Insert(a[j]);
             }
             Insert(a[i]);
