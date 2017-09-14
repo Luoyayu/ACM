@@ -17,11 +17,13 @@ int main()
         for(int i=1;i<=n;i++)
             scanf("%d",&a[i]);
         memset(dp,INF,sizeof(dp));
+
         for(int i=1;i<=n;i++)
             *lower_bound(dp+1,dp+n+1,a[i])=a[i];
         ans1=lower_bound(dp+1,dp+n+1,INF)-(dp+1);
-         for(int i=1;i<=n;i++)
+        for(int i=1;i<=n;i++)
             a[i]=-a[i];
+        
         memset(dp,INF,sizeof(dp));
         for(int i=1;i<=n;i++)
             *lower_bound(dp+1,dp+n+1,a[i])=a[i];

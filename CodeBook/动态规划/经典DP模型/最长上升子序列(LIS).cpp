@@ -1,9 +1,9 @@
 //欠下的还是要还的
-#include<bit/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std; 
 int main()
 /*O(n^2)解法 
-* 定义dp[i]表示为以第i个位置的数作为子序列中的最后一个元素时,能够构成子序列的最大长度. fgogg                                                    bb
+* 定义dp[i]表示为以第i个位置的数作为子序列中的最后一个元素时,能够构成子序列的最大长度. 
 * 建立转移方程: dp[i] = max(dp[i], dp[j] + 1) (j<i && a[j]<a[i])
 */
 int getMaxlen()
