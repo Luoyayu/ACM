@@ -45,6 +45,5 @@ int main()
         ans = pow(e,n);
         printf("%I64d\n",(ans.v[0][1]+mod-1)%mod);
     }
-
     return 0;
 }

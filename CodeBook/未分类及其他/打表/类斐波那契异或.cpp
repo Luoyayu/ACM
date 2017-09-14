@@ -1,0 +1,144 @@
+### 请使用typeora阅览公式
+### 备忘：
+
+由高斯消元得递推式$$f(x)=f(x-1)+5f(x-2)+f(x-3)-f(x-4)$$得矩阵快速幂
+
+$$\left[\begin{array}{cccc}1&5&1&-1\\1&0&0&0\\0&1&0&0\\0&0&1&0\end{array} \right] *\left[\begin{array}{c} f(x-1)\\f(x-2)\\f(x-3)\\f(x-4)\end{array} \right]=\left[\begin{array}{cccc} f(x)&f(x-1)&f(x-2)&f(x-3)\end{array} \right]$$
+
+$$A^{n-4}*\left[\begin{array}{c} f(4)=36\\f(3)=11\\f(2)=5\\f(1)=1\end{array} \right]=\left[\begin{array}{cccc} f(x)&f(x-1)&f(x-2)&f(x-3)\end{array} \right]$$
+
+$$f(x)=A[0][1]*f(4)+f[0][1]*f(3)+f[0][2]*f(2)+f(0)[3]*f(4)$$
+
+
+
+#### 异或+矩阵快速幂(excel+python打表法)
+
+$$f(x)=f(x-1)+f(x-2) \ , (f(0)=0,f(1)=f(2)=1)$$
+
+如果$n$为奇数$$f(n)=(f(n-1)+f(n-2)) \ xor \ 1$$
+
+$$if(c=a+b为奇数) \ c \ xor \ 1=c-1;$$
+
+$$else \ c=c+1$$
+
+如果$n$为偶数$f(n)=(f(n-1)+f(n-2)) \ xor  \ 0$
+
+打表可轻松得
+
+$$w(x)=\frac{ Fi(x)-g(x)}{2}=a_x-a_{x-1}$$
+
+$$g(x)=0  \ ，if(n是6的倍数)$$
+
+$$g(x)=-1，if(n-1是6的倍数)$$
+
+$$g(x)=-2，if(n是3的倍数且\frac{n}{3}为奇数)$$
+
+$$g(x)=1，if(其余情况)$$ 
+
+$$a_n=(\sum_{i=2}^{n}w(i) \ ) +1$$
+
+$$\sum_{i=2}^{n}w(i)=(\sum_{i=1}^{n}w(i) )\ -1$$
+
+$$a_n=\sum_{i=1}^{n}w(i)=\frac{\sum_{i=1}^{n}Fi(i) \ -\sum_{i=1}^{n}g(i)}{2}=\frac{Fi(n+2)-1-\sum_{i=1}^{n}g(i)}{2}$$
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+typedef unsigned long long  ll;
+const ll mod = 1000000007;
+//2对于mod的逆元为 500000004
+const ll inv2 = 500000004;
+struct Matrix
+{
+    ll v[2][2];
+    Matrix() { memset(v, 0, sizeof(v)); }
+    Matrix operator * (const Matrix y) 
+    {
+        Matrix ans;
+        for(int i = 0; i <= 1; i++)
+            for(int j = 0; j <= 1; j++)
+                for(int k = 0; k <= 1; k++)
+                    ans.v[i][j] += v[i][k]*y.v[k][j];
+        for(int i = 0; i <= 1; i++)
+            for(int j = 0; j <= 1; j++)
+                ans.v[i][j] = ans.v[i][j]%mod;
+        return ans;
+    }
+    void operator = (const Matrix b)
+    {
+        for(int i = 0; i <= 1; i++)
+            for(int j = 0; j <= 1; j++)
+                v[i][j] = b.v[i][j];
+    }
+};
+ll solve(ll x) 
+{
+    Matrix ans, trs;
+    ans.v[0][0] = ans.v[1][1] = 1;
+    trs.v[0][0] = trs.v[1][0] = trs.v[0][1] = 1;
+    while(x)
+    {
+        if(x&1)
+            ans = ans*trs;
+        trs = trs*trs;
+        x >>= 1;
+    }
+    return ans.v[0][0];
+}
+int GX[]={0,1,0,2,1,0,0};
+int main()
+{
+    ll k;
+    int t;scanf("%d",&t);
+    while(t--)
+    {
+        //freopen("C:\\Users\\gavin\\Desktop\\AC.txt","r",stdin);
+        //freopen("C:\\Users\\gavin\\Desktop\\WA.txt","w",stdout);
+        scanf("%lld",&k);
+        if(k==1) {printf("1\n");continue;}
+        if(k==2) {printf("1\n");continue;}
+        if(k==3) {printf("3\n");continue;}
+        ll IN = k+2;
+        ll fi_n = solve(IN-1);
+        /*
+        cout<<" 0="<<k/6<<endl;
+        cout<<" 1="<<k<<endl;
+        cout<<"-1="<<(k-1)/6+1<<endl;
+        cout<<"-2="<<(k/3+1)/2<<endl;
+        */
+        //ll gx = (-k+(k/6+((k-1)/6+1)*2+(k/3+1)/2*3)+mod)%mod;
+        ll gx2 = GX[k%6];
+        //printf("%lld : %d\n",k,gx);
+        ll ret = (fi_n-1+gx2)%mod;
+        printf("%lld\n",(ret*inv2%mod));
+    }
+    return 0;
+}
+/*
+
+python 打表代码
+list = []
+for i in range(10000):
+    list.append([])
+
+list[0] = 0
+list[1] = 1
+list[2] = 1
+list[3] = 2
+mod = 1000000007
+for i in range(3, 1001):
+    if i % 2 == 1:
+        list[i] = (list[i - 1] + list[i - 2]) ^ 1
+    if i % 2 == 0:
+        list[i] = (list[i - 1] + list[i - 2]) ^ 0
+
+# for i in range(3,101):
+#     list[i] = list[i-1] + list[i-2] # 斐波那契数列
+
+for i in range(1,1001):
+    print(list[i] % mod)
+    
+*/
+```
+
+

@@ -1,16 +1,13 @@
 #include <bits/stdc++.h>
-//题意：
 using namespace std;
-typedef long long  LL;
-const int maxn=1e5+10;
-const int INF=0x3f3f3f3f;
+typedef long long ll;
+//题意：N>=K 问在N中任意选K个都要满足点亮K个屏幕,求最少的线缆数;
+ll n,k;
 int main()
 {
-    LL m,k;
-    while(~scanf("%lld %lld",&m,&k))
+    while(scanf("%lld%lld",&n,&k)!=EOF)
     {
-        LL ans=(m-k)*k+k;
-        printf("%lld\n",ans);
+        cout<<(n-k+1)*k<<endl;//画图得每个源射向(n-k+1)个屏幕即可
     }
     return 0;
 }
