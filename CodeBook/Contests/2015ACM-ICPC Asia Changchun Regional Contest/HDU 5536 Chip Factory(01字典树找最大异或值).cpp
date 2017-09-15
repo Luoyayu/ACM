@@ -16,7 +16,7 @@ const int maxn = 32*2000;
 int a[maxn];
 int root,tot;
 struct {
-    int ch[2],size;//记录每个节点被标记的数量
+    int ch[2],size;//记录每个节点被标记的次数便于删除
 }T[maxn];
 void Insert(int x)
 {
