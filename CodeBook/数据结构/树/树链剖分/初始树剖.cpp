@@ -64,14 +64,14 @@ void dfs1(int u, int pre, int d)//建有根树 求出sz[],depth[],fa[],son[]
     }
 }
 
-void dfs2(int u, int sp) //剖分有根树 求出id[], Top[]1
+void dfs2(int u, int sp) //剖分有根树 求出id[], Top[]
 {
     Top[u] = sp; //根节点是第一条链
     id[u] = cnt ++;
     fid[id[u]] = u;
     if(son[u]==-1) return;//没有重儿子推出分支
     dfs2(son[u], sp);
-    for(int i=head[u]; ~i; i =edge[i].next)
+    for(int i=head[u];~i;i=edge[i].next)
     {
         int v = edge[i].to;
         int w = edge[i].w;

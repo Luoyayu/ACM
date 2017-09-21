@@ -137,7 +137,7 @@ int main()
         for(int i=1;i<=n;i++) scanf("%d",&a[i]);
         while(M--)
         {
-            scanf("%d%d",&u,&v);
+            scanf("%d %d",&u,&v);
             addedge(u,v);addedge(v,u);
         }
         dfs1(1,0,0);
