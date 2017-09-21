@@ -1,5 +1,5 @@
 //HDU 4815 Little Tiger vs Deep Monkey.cpp
-//概率DP
+//基础概率DP
 //dp[i][j]表示前i场得分为j的概率
 #include<bits/stdc++.h>
 using namespace std;
@@ -15,7 +15,7 @@ int main()
     {
         int n;double p;
         scanf("%d %lf", &n, &p);
-        int sum = 0;
+        int sum = 0;//总分
         for (int i = 1; i <= n; i++) scanf("%d", &a[i]), sum+=a[i];
         memset(dp,0, sizeof(dp));
         dp[0][0] = 1.0;
@@ -23,7 +23,7 @@ int main()
         for(int i=1;i<=n;i++)
             for(int j=0;j<=sum;j++)
             {
-                if(j >= a[i]) dp[i][j] = dp[i-1][j-a[i]]/2;
+                if(j >= a[i]) dp[i][j] = dp[i-1][j-a[i]]/2; 
                 dp[i][j] += dp[i-1][j] / 2;
             }
 
