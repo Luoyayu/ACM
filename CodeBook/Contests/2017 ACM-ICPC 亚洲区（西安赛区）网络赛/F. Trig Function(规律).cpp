@@ -14,7 +14,7 @@ ll pow_mod(ll a, ll b, ll p) //a^(p-2)%p
     return ret;
 }
 
-inline ll Fermat(ll a,ll p)//求a关于p的逆元
+inline ll Fermat(ll a,ll p)//姹俛鍏充簬p鐨勯�嗗厓
 {
     return pow_mod(a,p-2,p);
 }

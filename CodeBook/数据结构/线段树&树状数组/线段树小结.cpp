@@ -12,6 +12,8 @@ Note:节点数开为tree[maxn<<2] 一般所需maxn*3,确保叶节点保存。
 相邻的区间的信息可以被合并成两个区间的并区间的信息
 int tree[maxn<<2]//线段树需要维护的信息
 void push_up(int i) {}//维护节点信息，把当前节点的信息更新到父节点
+
+
 void pushdown(int i,int num) //num=(r-l+1)>>1+1
 {
     int &tmp=Add[i];

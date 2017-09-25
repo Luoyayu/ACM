@@ -52,13 +52,15 @@ int main()
         memset(visit, 0, sizeof(visit));
         memset(dis, 0, sizeof(dis));
         cnt_edge = 0;
-        rep(i, 1, M){
+        rep(i, 1, M)
+        {
             int a, b, l;
             scanf("%d%d%d", &a, &b, &l);
             add_edge(a, b, l);
         }
         ans = 0;
-        rep(i, 1, N){
+        rep(i, 1, N)
+        {
             if(visit[i] == 0)
                 dfs(i, 0);
         }
