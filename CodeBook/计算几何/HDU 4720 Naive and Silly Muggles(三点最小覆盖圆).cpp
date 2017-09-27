@@ -40,7 +40,6 @@ int main()
         }
         else
         {
-
             double x21=x2-x1,y21=y2-y1,x31=x3-x1,y31=y3-y1;//圆心公式
             double u21=(x2*x2-x1*x1+y2*y2-y1*y1)/2;
             double u31=(x3*x3-x1*x1+y3*y3-y1*y1)/2;
