@@ -34,7 +34,6 @@ void init()
     len[0] = 0,len[1] = -1;
     fail[0] = fail[1] = 1;
     last = 0; tot=1;
-
 }
 int main()
 {
