@@ -4,7 +4,7 @@
 #include<vector>
 using namespace std;
 const int N = 100000 + 5;
-vector<int > prime_factor[N];
+vector<int> prime_factor[N];
 void init()
 {
     for(int i = 2; i < N; i++)
@@ -40,7 +40,7 @@ void init()
 vector<int> prime_factor[maxn];
 void init()
 {
-    for(int i=2;i<maxn;i++) if(prime_factor[i.size()==0)
+    for(int i=2;i<maxn;i++) if(prime_factor[i].size()==0)
         for(int j=i;j<maxn;j+=i)
         {
             int tmp=j;
