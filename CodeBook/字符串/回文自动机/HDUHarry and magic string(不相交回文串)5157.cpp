@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 typedef long long ll;
 using namespace std;
+#define cmax(a,b) a = max(a,b);
+#define cmin(a,b) a = min(a,b);
 const int maxn  = 100000+10;
 const int sigma = 26;
 int fail[maxn];
@@ -31,6 +33,14 @@ int add (char c)
     }
     last = nxt[cur][c] ;cnt[last] ++ ;
     return num[last];
+}
+int Count()
+{
+    for(int i=tot;i;i--)
+    {
+        cnt[fail[i]] += cnt[i]; //此时的cnt不完整，要等全部插完,一路沿fail统计
+        cmax(ans,(ll)cnt[i]);
+    }
 }
 void init()
 {
