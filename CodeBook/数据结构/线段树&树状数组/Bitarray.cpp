@@ -15,7 +15,7 @@ struct Bitarray
     {
         while(pos<maxn)
         {
-            cmax(c[pos], value);
+            cmax(c[pos],value);
             pos += lowbit(pos);
         }
     }
@@ -25,7 +25,7 @@ struct Bitarray
         int res = 0;
         while(pos)
         {
-            cmax(res, c[pos]);
+            cmax(res,c[pos]);
             pos -= lowbit(pos);
         }
         return res;
