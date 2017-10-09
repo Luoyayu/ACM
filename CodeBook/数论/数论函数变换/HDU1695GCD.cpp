@@ -150,6 +150,7 @@ using namespace std;
 const int maxn = 1e5+7;
 int mob[maxn],prime[maxn],tot;
 bool notprime[maxn];
+int sum[maxn];
 void init()
 {
     mob[1] = 1;
@@ -170,6 +171,7 @@ void init()
             }
             mob[i*prime[j]] = -mob[i];
         }
+        sum[i]=sum[i-1]+mob[i];
     }
 }
 
