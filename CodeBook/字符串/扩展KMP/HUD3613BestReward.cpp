@@ -4,6 +4,7 @@
 //如果extend[len-i]==i则前i个字符为回文串
 #include<bits/stdc++.h>
 using namespace std;
+// #define Local
 #define next NEXT
 const int MAX=500000+10;
 char s1[MAX],s2[MAX];
@@ -54,7 +55,8 @@ int main()
 			s2[i-1]=s1[len-i];
 		}
 		EKMP(s1,s2,ex1,len);
-		EKMP(s2,s1,ex2,len);
+        EKMP(s2,s1,ex2,len);
+        
 		#ifdef Local
 		for(int i=0;i<strlen(s1);i++)
             printf("%d ",ex1[i]);
@@ -64,6 +66,7 @@ int main()
             printf("%d ",ex2[i]);
         printf("\n");
         #endif // Local
+
 		int ans=0,temp=0;
 		for(int i=1;i<len;++i)
         {

@@ -34,16 +34,18 @@ const int maxn = 2500+5;
 struct node{
     ll x,y,ans;
 }x[maxn];
-bool mat[maxn][maxn],vised[maxn];
+map<int,string> ANS[maxn]; 
+bool vised[maxn];
 void init()
 {
-    clr(mat,-1);
+    clr(ANS,0);
+    clr(linker,-1);
 }
 bool dfs(int u)
 {
     for(int i=1;i<=cnt;i++)
     {
-
+        
     }
 }
 int solve()
@@ -52,5 +54,23 @@ int solve()
 }
 int main()
 {
-
+    int n,tot;
+    while(scanf("%d",&n)!=EOF)
+    {
+        init();
+        st.clear();
+        tot = 0;
+        for(int i=1;i<=n;i++)
+        {
+            int a,b;scanf("%d%d",&a,&b);
+            ll tmp = a+b
+            st.insert(tmp);
+            ANS[i][tmp]=1;
+            tmp = a * b;
+            ANS[i][tmp]=1;
+            tmp = a-b;
+            ANS[i][a-b]=1;
+        }
+        
+    }
 }

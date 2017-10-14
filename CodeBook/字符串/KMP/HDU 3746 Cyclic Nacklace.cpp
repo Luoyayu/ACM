@@ -12,26 +12,26 @@ void getnext()
     while(i<plen)
     {
         while(j!=-1&&p[i]!=p[j])
-            j=Next[j];
+            j = Next[j];
         Next[++i]=++j;
     }
 }
+
 int main()
 {
-    int t;
-    scanf("%d",&t);
+    int t;scanf("%d",&t);
     while(t--)
     {
         scanf("%s",p);
-        plen=strlen(p);
+        plen = strlen(p);
         getnext();//Next[plen]为最小循环节
-        int L=plen-Next[plen];
-        if(plen%L==0&&L!=plen)//L为自身长度要排除
+        int L = plen-Next[plen];
+        if(plen%L==0 && L!=plen)//L为自身长度要排除
         {
             printf("0\n");
             continue;
         }
-        printf("%d\n",L-plen%L);
+        printf("%d\n",L-plen % L);
     }
     return 0;
 }

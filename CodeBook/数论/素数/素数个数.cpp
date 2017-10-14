@@ -2,7 +2,7 @@
 using namespace std;
 const int maxn=20000000+5;
 int p[maxn],tot=0;
-int isprime[maxn];
+bool isprime[maxn];
 void init()
 {
     fill(isprime,isprime+maxn,1);
@@ -15,10 +15,8 @@ void init()
             if(i % p[j] ==0) break;
         }
 
-        if(isprime[i])
-            isprime[i]+=isprime[i-1];
-        else
-            isprime[i]=isprime[i-1];
+        if(isprime[i]) isprime[i]+=isprime[i-1];
+        else isprime[i]=isprime[i-1];
     }
 }
 

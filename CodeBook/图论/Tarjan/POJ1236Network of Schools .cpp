@@ -94,10 +94,8 @@ int main()
             int inc=0,outc=0;
             for(int i=1;i<=sccc;i++)
             {
-                if(indeg[i]==0)
-                    inc++;
-                if(outdeg[i]==0)
-                    outc++;
+                if(indeg[i]==0)inc++;
+                if(outdeg[i]==0) outc++;
             }
             printf("%d\n%d\n",inc,max(inc,outc));
         }

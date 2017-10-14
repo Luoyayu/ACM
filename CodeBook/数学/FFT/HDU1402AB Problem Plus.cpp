@@ -62,6 +62,9 @@ int sum[MAXN];
 
 int main()
 {
+    //24 * 34
+    //(x^2+x^4)*(x^3+x^4) = x^5 + x^6 + x^7 +x^8
+
     while(scanf("%s%s",str1,str2)==2)
     {
         int len1 = strlen(str1);
@@ -84,11 +87,14 @@ int main()
 
         for(int i = 0;i < len;i++) x1[i] = x1[i]*x2[i];//点积x1 x2
         fft(x1,len,-1);
+
         for(int i = 0;i < len;i++)
         {
             sum[i] = (int)(x1[i].r+0.5);
             printf("%d ",sum[i]);
-        }printf("\n");
+        }
+        printf("\n");
+
         for(int i = 0;i < len;i++)//
         {
             sum[i+1]+=sum[i]/10;

@@ -14,7 +14,7 @@ int dfs(int u)
         if(g[u][v]&&!used[v])
         {
             used[v]=true;
-            if(linker[v]==-1||dfs(linker[v]))
+            if(linker[v]==-1 || dfs(linker[v]))
             {
                 linker[v]=u;
                 return 1;
