@@ -268,11 +268,9 @@ int base[10];
 int dig[10];
 int dp[10][55000];//设计状态为dp[pos][j]为当前pos位不大于j的个数
 int FA;
-int F(int x)
-{
+int F(int x){
     int ret=0, cnt=0;
-    while(x)
-    {
+    while(x) {
         ret += (x%10)*base[cnt++];
         x/=10;
     }
@@ -289,14 +287,12 @@ int dfs(int pos, int inc, bool lim)//inc = F(A) - F(x);
         ans += dfs(pos-1,inc+base[pos]*i,i==up && lim);
     return !lim?dp[pos][FA-inc] = ans : ans;
 }
-int cal(int x)
-{
+int cal(int x){
     int pos = 0;
     while(x) dig[pos++] = x % 10, x /= 10;
     return dfs(pos-1,0,true);
 }
-int main()
-{
+int main(){
     base[0]=1;memset(dp,-1, sizeof(dp));
     for(int i=1;i<=10;i++) base[i] = base[i-1]<<1;
     int t,kase=1;scanf("%d",&t);

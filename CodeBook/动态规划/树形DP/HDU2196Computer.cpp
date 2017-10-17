@@ -61,8 +61,7 @@ int main()
     {
         memset(head,-1,sizeof head);
         tot=0;
-        for(int v=2;v<=n;v++)
-        {
+        for(int v=2;v<=n;v++) {
             int u,w;scanf("%d%d",&u,&w);
             addedge(u,v,w);
         }

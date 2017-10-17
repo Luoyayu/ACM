@@ -60,16 +60,12 @@ int main()
     {
         int len = strlen(ss);
         for(int i=0;i<len;i++)//处理匹配
-            if(ss[i]=='(')
-            {
+            if(ss[i]=='(') {
                 int cnt = 0;
-                for(int j=i;j<len;j++)
-                {
+                for(int j=i;j<len;j++){
                     if(ss[j] =='(') cnt++;
                     else cnt--;
-
-                    if(cnt==0)
-                    {
+                    if(cnt==0) {
                         belong[i] = j;
                         break;
                     }

@@ -6,19 +6,19 @@
 
 $NaN$对于浮点数，整数，布尔值和一般对象的缺省值
 
-$NaT$ 对于Datetime64[ns]的缺省值
+$NaT$ 对于`Datetime64[ns]`的缺省值
 
-※注：缺省值的判断请使用$np.isnan()$而非==np.NaN
+※注：缺省值的判断请使用$np.isnan()$而非`x == np.NaN`
 
-### Series 数据结构
+### Series 序列
 
-构造：1. 通过字典构造 `sdata = {'1': 1, '2': 2} obj =pd.Series(sdata) `
+构造：1. 通过字典构造 `sdata = {'1': 1, '2': 2} obj = pd.Series(sdata) `
 
-此时如果要传入index=必须是传入的等于原来字典的序列Index = ['1', '2'],否则数据缺省
+此时如果要传入`index=`必须是传入的等于原来字典的序列`index = ['1', '2']`,否则数据缺省
 
 2. 通过传入数组 `obj = pd.Series([1,2,3,4], index=['1','2','3','4'])`
 
-通过dict(obj)可将Series转换成字典，可使用pd.isnull(obj)或pd.notnull(obj)来检测数据丢失
+使用`dict(obj)`可将Series转换成字典，可使用`pd.isnull(obj)`或`pd.notnull(obj)`来检测数据丢失
 
 ### Series 对象操作
 
@@ -26,8 +26,8 @@ $NaT$ 对于Datetime64[ns]的缺省值
 2. 按值要求取值 `obj[obj > 3]` 
 3. 算术运算 `np.exp(obj)`, `obj * 2` ；不同Series算数自动对齐运算，索引不匹配填充NaN
 4. `obj.index` `obj.value` `obj.name` 
-5. 索引更该 obj.index = ['0', '1',]
-6. 值替换：obj = obj.replace(2,222) 值2的全部改为222，临时操作，需要复制过去 也可以传入字典修改 obj = obj.replace({1: 111,2: 222})
+5. 索引更改` obj.index = ['0', '1',]`
+6. 值替换：`obj = obj.replace(2,222)` 值2的全部改为222，临时操作，需要复制过去 也可以传入字典修改` obj = obj.replace({1: 111,2: 222})`
 
 ### DataFrame数据结构
 
@@ -42,9 +42,9 @@ $NaT$ 对于Datetime64[ns]的缺省值
            'year': [2000,2001,2002,2003],
            'pop': [1.5, 1.7, 2.1, 2.4]}
    frame = DataFrame(sdata)
-   # frame = DataFrame(sdata, columns=['year','state','pop'])
-   # 默认列索引可以传入columns=[]特定顺序 有索引无法对应的缺省为NaN
-   In [xxx]:
+   frame = DataFrame(sdata, columns=['year','state','pop'])
+   # 默认列索引可以传入columns=[]特定顺序 有索引无法对应的则缺省为NaN
+   Out []:
       year   state  pop
    0  2001    Ohio  1.5
    1  2002    Ohio  1.7
@@ -52,7 +52,7 @@ $NaT$ 对于Datetime64[ns]的缺省值
    3  2004  Nevada  2.4
    ```
 
-   - 通过data_range 构建日期索引在创建行索引为日期的表格
+   - 通过`data_range` 构建日期索引在创建行索引为日期的表格
 
    ```python
    In [109]: Dates = pd.date_range('20170921',periods=6)
@@ -138,7 +138,7 @@ $NaT$ 对于Datetime64[ns]的缺省值
 
      `frame_pop[(frame_pop.Nevada>2.0)&(frame_pop.Ohio<2.03)] `使用&或者|筛选行数据
 
-     * 通过loc标签选择展示数据
+     * 通过`loc`标签选择展示数据
 
      ​
 

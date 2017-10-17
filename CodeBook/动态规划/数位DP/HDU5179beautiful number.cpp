@@ -19,11 +19,9 @@ int dfs(int pos, int pre, int lead, bool limit)
     }
     return !limit? dp[pos][pre]=ans:ans;
 }
-int solve(int n)
-{
+int solve(int n){
     int pos = 0;
-    while(n)
-    {
+    while(n) {
         a[pos++]= n%10;
         n/=10;
     }

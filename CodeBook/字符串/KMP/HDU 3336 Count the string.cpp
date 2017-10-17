@@ -30,7 +30,7 @@ int main()
         scanf("%d",&plen);
         scanf("%s",p);
         getnext();
-        for (int i=1;i<plen;i++ )
+        for(int i=1;i<plen;i++ )
         {
             int q=i;
             while(q!=-1)

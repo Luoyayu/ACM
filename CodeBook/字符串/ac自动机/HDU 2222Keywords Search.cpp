@@ -39,7 +39,6 @@ int query(char *buf)
         {
             res += val[last],vis[last]=1;
         }
-        
 //        while(last!=root)
 //        {
 //            res += val[last];

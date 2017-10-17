@@ -1,12 +1,10 @@
 #include<bits/stdc++.h>
 /*状压DP第一题 旅行商 TSP 问题
-
 //题意:必须访问N个城市至少一次至多两次,N 座城市, M条道路+费用
 //使用3进制数表示1~N个城市的状态
 //定义状态dp[i][j]=cost为1~N城市处于i状态,目前最后一个访问的城市是j所需要的费用
 //由dp[i][j]转移下到一个城市v: dp[i+3^v][v]=min(dp[i+3^v][v],dp[i][j]+Cjv);
 //初始化dp[3^j][j]=0;(j=1.2.3···n)表示从城市j出发的cost=0;
-
 //定义所有N个城市的
 */
 using namespace std;
@@ -41,14 +39,11 @@ int main()
         for(int i=0;i<n;i++)
             dp[len[i]][i]=0; //初始化城市出发状态,出发费用为0
 
-        for(int i=1;i<len[n];i++)//遍历状态
-        {
+        for(int i=1;i<len[n];i++)//遍历状态{
             bool viss = 1;//假设在状态i下所有的城市都被访问过
             
-            for(int j = 0;j < n;j++)
-            {
-                if(gets(i,j)==0)
-                {
+            for(int j = 0;j < n;j++){
+                if(gets(i,j)==0) {
                     viss =  0;
                     continue;
                 }
@@ -62,14 +57,11 @@ int main()
 
                 }
             }
-
             if(viss)
                 for(int j = 0;j < n;j++)
                     ans = min(dp[i][j],ans);
         }
-
-        if(ans == dp[0][0])
-            ans = -1;
+        if(ans == dp[0][0])  ans = -1;
         printf("%d\n",ans);
     }
     return 0;
