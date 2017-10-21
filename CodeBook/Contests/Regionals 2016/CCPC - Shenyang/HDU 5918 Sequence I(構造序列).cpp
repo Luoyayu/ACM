@@ -7,5 +7,5 @@ const int maxn = 1e6+7;
 //输出: 
 int main()
 {
-
+    
 }

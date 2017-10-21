@@ -14,8 +14,7 @@ double dp[44][1001*44];
 int main()
 {
     int t;scanf("%d",&t);
-    while(t--)
-    {
+    while(t--) {
         int n;double p;
         scanf("%d %lf", &n, &p);
         int sum = 0;//总分
@@ -24,19 +23,17 @@ int main()
         dp[0][0] = 1.0;
 
         for(int i=1;i<=n;i++)
-            for(int j=0;j<=sum;j++)
-            {
+            for(int j=0;j<=sum;j++) {
                 if(j >= a[i]) dp[i][j] = dp[i-1][j-a[i]] / 2; //可以拿的分数由前面转移
                 dp[i][j] += dp[i-1][j] / 2;//无论胜负都要在上次的基础上除2
             }
 
         double tmp=0.0;
         for(int i=0;i<=sum;i++)
-            if ((tmp+=dp[n][i]) > p || fabs(tmp - p) < eps)
-            {
+            if ((tmp+=dp[n][i]) > p || fabs(tmp - p) < eps) {
                 printf("%d\n", i);
                 break;
-        }
+            }
     }
     return 0;
 }
