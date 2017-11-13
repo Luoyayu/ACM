@@ -1,8 +1,6 @@
-//
-// Created by Tongyu on 17.11.13.
-//
-// ���⣺
+// 题意：给出一棵树n个节点n-1条边，M个人在树节点，边权为1
 #include <bits/stdc++.h>
+
 #ifdef LOCAL
 #include "ACM.h"
 #endif
