@@ -1,6 +1,8 @@
-// 题意：给出一棵树n个节点n-1条边，M个人在树节点，边权为1
+// 题意：给出一棵树n个节点n-1条边，M个人在树上节点，边权为1
+// 每一个时刻每个人都同时随机向着其他人且距离大于1的房间直到所有人无法走动，求期望时间
+// tick：找到最远的两个点，每一时刻这两个人都想着彼此前进一格答案为floor(dis/2)
+// 因为每个人行走都是随机，在本题中期望的时间为：平均花费时间
 #include <bits/stdc++.h>
-
 #ifdef LOCAL
 #include "ACM.h"
 #endif
@@ -18,7 +20,6 @@ void dfs(int u,int fa,int d) {
             dfs(v, u, d + 1);
         }
     }
-    return ;
 }
 int main() {
     int t;scanf("%d", &t);
@@ -37,6 +38,7 @@ int main() {
             e[u].push_back(v);
             e[v].push_back(u);
         }
+        // 树上常见操作求最远点对两端点
         dis[1] = 0;
         dfs(1, -1, 0);int MAX = -1, id = 0;
         for(int i=1;i<=n;i++)
