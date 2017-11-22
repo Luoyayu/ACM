@@ -44,31 +44,43 @@ int main()
 
 */
 //O(n) 的尺取法
+// 思想：先固定好初始长度，然后左端点向右移动1个单位右端点调整，这样便能取遍序列所有满足的情况
+//#include <bits/stdc++.h>
+#include <cstdio>
+#include <algorithm>
+#ifdef Local
+#include "ACM.h"
+#endif
+using namespace std;
+const int maxn = int(1e5+7);
 int a[maxn];
-int main()
-{
-    int t;scanf("%d",&t);
-    while(t--)
-    {
-        int n,S;scanf("%d %d",&n ,&S);
-        for(int i=1;i<=n;i++)
-           scanf("%d",&a[i]);
+int main() {
+    int T;
+    scanf("%d", &T);
+    while (T--) {
+        int n, ss, tot = 0;
+        scanf("%d%d", &n, &ss);
+        for (int i = 1; i <= n; i++) scanf("%d", &a[i]), tot += a[i];
 
-        int s = 0, t = 0, sum = 0;
-        int res = n + 1;
-        while(1)
-        {
-            while(t<=n && sum < S)
-                sum += a[t++];
-            if(sum<S) break;//推到尾还不行直接跳出
-            res = min(res, t - s );//注意t++
-            sum -= a[s++];
+        if (tot <= ss) {
+            printf("%d\n", tot == ss ? n : 0);
+            continue;
         }
-        if(res > n)
-            res = 0;
-        printf("%d\n",res);
+        a[0] = 0;
+        int s = 0, t = 0;
+        int sum = 0;
+        int res = n + 1;
+        while (1) {
+            while (t <= n && sum < ss)
+                sum += a[t++];
+            debug(t);
+            if (sum < ss) break; //推到尾部跳出
+            res = min(res, t - s); // t已经加1
+            debug(res);
+            sum -= a[s++];debug(sum);
+        }
+        printf("%d\n", res > n ? 0 : res);
     }
     return 0;
 }
-
 
