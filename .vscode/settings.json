@@ -58,6 +58,9 @@
         "utility": "cpp",
         "valarray": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "codecvt": "cpp",
+        "cuchar": "cpp",
+        "shared_mutex": "cpp"
     }
 }

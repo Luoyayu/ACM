@@ -6,18 +6,20 @@
 #include <bits/stdc++.h>
 using namespace  std;
 const int maxn=2333;
-int par[maxn];
+int Fa[maxn];
 #define rank RANK
 int rank[maxn];
+
 void init(int n)
 {
     for(int i=0;i<n;i++)
-        par[i]=i,rank[i]=0;
+        Fa[i] = i,rank[i]=0;
 }
+
 int find(int x)
 {
-    if(par[x]==x) return x;
-    else return par[x]=find(par[x]);
+    if(Fa[x] == x) return x;
+    else return Fa[x] = find(Fa[x]);
 }
 
 void unite(int x,int y)
@@ -25,10 +27,10 @@ void unite(int x,int y)
     x = find(x), y = find(y);
     if(x==y) return ;
     if(rank[x]<rank[y])
-        par[x]=y;
+        Fa[x]=y;
     else
     {
-        par[y]=x;
+        Fa[y]=x;
         if(rank[x]==rank[y]) rank[x]++;
     }
 }
