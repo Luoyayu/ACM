@@ -30,9 +30,9 @@ Linear model : $y = b + \sum w_ix_i \left\{\begin{matrix} x_i : attribute \  of 
 
 梯度下降法拟合Loss Function $w^*,b^*=\underset{w,b}{arg \ min} \ L(w,b)$ 
 
-1.  :arrow_forward:(Randomly) Pick an initial value $w^0,b^0​$
-2.  :arrow_forward:compute $\displaystyle \frac{\partial L}{\partial w}|_{w=w^0,b=b^0},\frac{\partial L}{\partial b}|_{w=w^0,b=b^0}$
-3.  :arrow_forward:$\displaystyle w^1\leftarrow w^0-\eta\frac{\partial L}{\partial w}|_{w=w^0,b=b^0}$    $\displaystyle b^1\leftarrow b^0-\eta\frac{\partial L}{\partial b}|_{w=w^0,b=b^0}$  ($\eta$ is "learning rate")
+1.  :arrow_forward:(Randomly) Pick an initial value $w^0,b^0$
+2.  :arrow_forward:compute $\displaystyle \frac{\partial L}{\partial w}|_{w=w^0,b=b^0},\frac{\partial L}{\partial b}|_{w=w^0,b=b^0}$ 
+3.  :arrow_forward:$\displaystyle w^1\leftarrow w^0-\eta\frac{\partial L}{\partial w}|_{w=w^0,b=b^0}​$    $\displaystyle b^1\leftarrow b^0-\eta\frac{\partial L}{\partial b}|_{w=w^0,b=b^0}​$  ($\eta​$ is "learning rate")
 4.  :arrow_forward: 拟合到global optimal(in Linear regression  the loss function has *no local optimal*)
 
 ![gradient descent](C:\Users\Tongyu\Pictures\Saved Pictures\gradient descent.png)
