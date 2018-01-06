@@ -12,27 +12,28 @@
 #include <cstring>
 using namespace std;
 typedef long long ll;
-const int maxn=2020;
-ll a[maxn],b[maxn];
+const int maxn = 2020;
+ll a[maxn], b[maxn];
 int main()
 {
-    int n,m;
-    while(scanf("%d%d",&n,&m)!=EOF)
+    int n, m;
+    while (scanf("%d%d", &n, &m) != EOF)
     {
-        ll ans=0;
-        for(int i=0;i<2016;i++)//统计n有多少2016倍数
-            a[i]=n/2016,b[i]=m/2016;
-        int p=n%2016;
-        int q=m%2016;
-        for(int i=1;i<=p;i++)
+        ll ans = 0;
+        for (int i = 0; i < 2016; i++) //统计n有多少2016倍数
+            a[i] = n / 2016, b[i] = m / 2016;
+        int p = n % 2016;
+        int q = m % 2016;
+        for (int i = 1; i <= p; i++)
             a[i]++;
-        for(int i=1;i<=q;i++)
+        for (int i = 1; i <= q; i++)
             b[i]++;
-        for(int i=0;i<2016;i++)//对自然数按照mod 2016余数分类
-            for(int j=0;j<2016;j++)
-                if((i%2016*(j%2016))%2016==0)
-                    ans+=a[i]*b[j];
-        printf("%lld\n",ans);
+
+        for (int i = 0; i < 2016; i++) //对自然数按照mod 2016余数分类
+            for (int j = 0; j < 2016; j++)
+                if ((i % 2016 * (j % 2016)) % 2016 == 0)
+                    ans += a[i] * b[j];
+        printf("%lld\n", ans);
     }
-    return  0;
+    return 0;
 }

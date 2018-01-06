@@ -3,7 +3,6 @@
 //dp[i][j]表示前i场得分为j的概率
 //题意：n个问题有各自的分数，A,B各有50%几率答对一题并得到分数，问B想要在至少P的概率上总分不低于A
 //B至少需要得多少分？
-// 
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn = 41;

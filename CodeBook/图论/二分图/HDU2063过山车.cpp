@@ -1,4 +1,3 @@
-
 #include<cstdio>
 #include<cstring>
 const int maxn=  1005;
