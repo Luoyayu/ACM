@@ -10,7 +10,6 @@ int main()
 {
     set<int> all;
     int p;scanf("%d",&p);
-    int tot = 0;
     for(int i=0;i<p;i++)
     {
         scanf("%d",&a[i]);

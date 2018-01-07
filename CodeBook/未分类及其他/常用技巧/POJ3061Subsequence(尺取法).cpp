@@ -73,11 +73,12 @@ int main() {
         while (1) {
             while (t <= n && sum < ss)
                 sum += a[t++];
-            debug(t);
+            //debug(t);
             if (sum < ss) break; //推到尾部跳出
             res = min(res, t - s); // t已经加1
-            debug(res);
-            sum -= a[s++];debug(sum);
+            //debug(res);
+            sum -= a[s++];
+            //debug(sum);
         }
         printf("%d\n", res > n ? 0 : res);
     }
