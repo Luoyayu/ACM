@@ -1,5 +1,5 @@
 //素数环dfs
-#include <cstdio>
+#include<cstdio>
 #include<cmath>
 #include<cstring>
 int vis[25];
