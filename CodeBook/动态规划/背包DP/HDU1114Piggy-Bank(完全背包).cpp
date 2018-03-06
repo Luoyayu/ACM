@@ -13,10 +13,8 @@ int main()
         scanf("%d %d",&E,&F);
         int V=F-E;
         int N;scanf("%d",&N);
-        for(int i=1;i<=N;i++)
-            scanf("%d %d",&w[i],&c[i]);
-        for(int i=1;i<maxn;i++)
-            dp[i]=INF;
+        for(int i=1;i<=N;i++) scanf("%d %d",&w[i],&c[i]);
+        for(int i=1;i<maxn;i++) dp[i]=INF;
         dp[0]=0;
         for(int i=1;i<=N;i++)
             for(int v=c[i];v<=V;v++)

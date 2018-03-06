@@ -16,7 +16,7 @@ vector<node> G;
 int main()
 {
     int t;
-    ios::sync_with_
+    ios::sync_with_stdio(false);
     cin>>t;
     for(int j=1;j<=t;j++ )
     {

@@ -19,9 +19,7 @@ void merge(int *d, int p, int q, int r) {
 }
 void mergesort(int *d, int p, int r)
 {
-	puts("");
 	if(p < r){
-		for(int i=p; i<=r; i++) cout<<a[i]<<" ";
 		int q = (p+r)>>1;
 		mergesort(d, p, q);
 		mergesort(d, q+1, r);
