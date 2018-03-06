@@ -15,6 +15,6 @@ int main()
             cnt++;
         }
         if (a >= 0) printf("Vladik\n");
-        else printf("Valera\n"); 
+        else printf("Valera\n");
     }
 }
