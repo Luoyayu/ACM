@@ -36,9 +36,9 @@ int main() {
             if (i % 6 == 4) b = i;
         }
         int X = sum % 6;
-        if(X == 2) v[4] = a;
-        else if(X == 3) v[5] = a;
-        else if(X == 5) v[5] = b;
+        if(X == 2) v[0] = a;
+        else if(X == 3) v[1] = a; // 
+        else if(X == 5) v[1] = b; // 6k+2 + 6k+3(6k+3 modified by 6k+4)
         for(int i = 0; i < n; i++) printf("%d%c", v[i], i==n-1?'\n':' ');
     }
 }
