@@ -62,5 +62,31 @@
         "codecvt": "cpp",
         "cuchar": "cpp",
         "shared_mutex": "cpp"
-    }
+    },
+    "cSpell.enabledLanguageIds": [
+        "c",
+        "csharp",
+        "css",
+        "go",
+        "handlebars",
+        "html",
+        "jade",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "latex",
+        "less",
+        "markdown",
+        "php",
+        "plaintext",
+        "pub",
+        "python",
+        "restructuredtext",
+        "rust",
+        "scss",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yml"
+    ]
 }

@@ -20,7 +20,7 @@ int main() {
     if (!next_permutation(s2.begin(), s2.end())) return !printf("-1\n");// 输出下一种排列
     for (int i = 0; i < len; i++) {
         printf("%c", s2[i]);
-        if (s2[i] != s[i]) break; //按要求截断
+        if (s2[i] != s[i]) break; //按要求截断即可
     }
     puts("");
 }
