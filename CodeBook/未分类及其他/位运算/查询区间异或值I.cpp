@@ -74,8 +74,7 @@ int main()
     while(t--)
     {
         n = read();
-        for(int i=1;i<=n;i++)
-            a[i] = read();
+        for(int i=1;i<=n;i++) a[i] = read();
         build();
         q = read();
         while(q--)

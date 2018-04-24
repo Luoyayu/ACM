@@ -37,7 +37,6 @@ int main()
         int root = 1;//找到根节点
         while(head[root]!=-1)
             root=head[root];
-
         dfs(root);
         printf("%d\n",max(dp[root][1],dp[root][0]));
     }
