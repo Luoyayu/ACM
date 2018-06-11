@@ -1,0 +1,1 @@
+/usr/local/Cellar/gcc@7/7.3.0/bin/g++-7  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/HW.dir/HW3.2.cpp.o  -o HW 
