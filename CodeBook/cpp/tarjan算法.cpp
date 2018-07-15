@@ -1,64 +1,56 @@
-//tarjanËã·¨
-#include<stdio.h>
-#include<string.h>  
-#include<vector>  
-#include<algorithm>  
-using namespace std;  
-#define maxn 10005  
-vector<int>mp[maxn];  
-int ans[maxn],is[maxn],dfn[maxn],low[maxn],vis[maxn]; //DFNÊ±¼ä´Á£¬¸Ã½Úµã±»ËÑË÷µ½µÄ´ÎÐò 
-//LOW[i] i»òiËùÔÚµÄ×ÓÊ÷ÄÜ¹»×·ËÝµ½µÄ×îÔçµÄÕ»ÖÐ½ÚµãµÄ´ËÐòºÅ
-//µ±DFN[i]==LOW[i] Ê±ÔòiÎª×ÓÊ÷¿ÉÒÔ¹¹³ÉÒ»¸öÇ¿ÁªÍ¨·ÖÁ¿ 
-int n,m;
-int tt,cnt,sig;  
-void init()  
-{  
-    memset(low,0,sizeof(low));  
-    memset(dfn,0,sizeof(dfn));  
-    memset(vis,0,sizeof(vis));  
-    for(int i=1;i<=n;i++)
-		mp[i].clear();  
-}  
-void Tarjan(int u)  
-{  
-    vis[u]=1;  
-    low[u]=dfn[u]=cnt++;  
-    for(int i=0;i<mp[u].size();i++)  
-    {  
-        int v=mp[u][i];  
-        if(vis[v]==0)
-			Tarjan(v);  
-        if(vis[v]==1)
-			low[u]=min(low[u],low[v]);  
-    }  
-    if(dfn[u]==low[u])
-        sig++; 
-}  
-void Slove()  
-{  
-    int tt=-1;cnt=1;sig=0;  
-    for(int i=1;i<=n;i++)  
-        if(vis[i]==0)   
-            Tarjan(i); 
-	if(sig==1) 
-		printf("Yes\n") ;
-	else 
-		printf("No\n");
-   // printf("%d\n",sig);  
-}  
-int main()  
-{  
-    while(~scanf("%d",&n),n)  
-    {   
-        scanf("%d",&m);  
-        init();  
-        for(int i=0;i<m;i++)  
-        {  
-            int x,y;  
-            scanf("%d%d",&x,&y);  
-            mp[x].push_back(y);  
-        }  
-        Slove();  
+// tarjanï¿½ã·¨
+#include <stdio.h>
+#include <string.h>
+#include <algorithm>
+#include <vector>
+using namespace std;
+#define maxn 10005
+vector<int> mp[maxn];
+int ans[maxn], is[maxn], dfn[maxn], low[maxn],
+    vis[maxn];  // DFNÊ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã½Úµã±»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+// LOW[i]
+// iï¿½ï¿½iï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¹ï¿½×·ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½Ð½Úµï¿½Ä´ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½DFN[i]==LOW[i] Ê±ï¿½ï¿½iÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ç¿ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+int n, m;
+int tt, cnt, sig;
+void init() {
+    memset(low, 0, sizeof(low));
+    memset(dfn, 0, sizeof(dfn));
+    memset(vis, 0, sizeof(vis));
+    for (int i = 1; i <= n; i++) mp[i].clear();
+}
+void Tarjan(int u) {
+    vis[u] = 1;
+    low[u] = dfn[u] = cnt++;
+    for (int i = 0; i < mp[u].size(); i++) {
+        int v = mp[u][i];
+        if (vis[v] == 0) Tarjan(v);
+        if (vis[v] == 1) low[u] = min(low[u], low[v]);
+    }
+    if (dfn[u] == low[u]) sig++;
+}
+void Slove() {
+    int tt = -1;
+    cnt = 1;
+    sig = 0;
+    for (int i = 1; i <= n; i++)
+        if (vis[i] == 0) Tarjan(i);
+    if (sig == 1)
+        printf("Yes\n");
+    else
+        printf("No\n");
+    // printf("%d\n",sig);
+}
+int main() {
+    while (~scanf("%d", &n), n) {
+        scanf("%d", &m);
+        init();
+        for (int i = 0; i < m; i++) {
+            int x, y;
+            scanf("%d%d", &x, &y);
+            mp[x].push_back(y);
+        }
+        Slove();
     }
     return 0;
-}  
+}

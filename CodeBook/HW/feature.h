@@ -9,6 +9,4 @@
 
 #define HW_FEATURE_H
 
-
-
-#endif //HW_FEATURE_H
+#endif  // HW_FEATURE_H

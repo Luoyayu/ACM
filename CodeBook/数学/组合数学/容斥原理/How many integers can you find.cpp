@@ -1,8 +1,8 @@
 //容斥解决重复计算，求重叠的最小公倍数
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-ll n,m,num;
+ll n, m, num;
 ll a[55];
 ll ans;
 /*
@@ -26,14 +26,15 @@ ll op()
     return sum;
 }
 */
-void dfs(int th,ll now,int step)//265MS
+void dfs(int th, ll now, int step)  // 265MS
 {
-    if(step>num) return;
-    ll lcm = now/__gcd(now,a[th])*a[th];
-    if(step&1) ans+=n/lcm;
-    else ans-=n/lcm;
-    for(int p=th+1;p<num;p++)
-        dfs(p,lcm,step+1);
+    if (step > num) return;
+    ll lcm = now / __gcd(now, a[th]) * a[th];
+    if (step & 1)
+        ans += n / lcm;
+    else
+        ans -= n / lcm;
+    for (int p = th + 1; p < num; p++) dfs(p, lcm, step + 1);
 }
 /* //位运算的容斥 998MS
 int main()
@@ -52,22 +53,18 @@ int main()
     }
     return 0;
 }*/
-//dfs的容斥
-int main()
-{
-    while(scanf("%lld%lld",&n,&m)!=EOF)
-    {
-        n--;num=ans=0;
-        for(ll i=0;i<m;i++)
-        {
+// dfs的容斥
+int main() {
+    while (scanf("%lld%lld", &n, &m) != EOF) {
+        n--;
+        num = ans = 0;
+        for (ll i = 0; i < m; i++) {
             ll x;
-            scanf("%lld",&x);
-            if(x)
-                a[num++]=x;
+            scanf("%lld", &x);
+            if (x) a[num++] = x;
         }
-        for(int i=0;i<num;i++)
-            dfs(i,a[i],1);
-        printf("%lld\n",ans);
+        for (int i = 0; i < num; i++) dfs(i, a[i], 1);
+        printf("%lld\n", ans);
     }
     return 0;
 }

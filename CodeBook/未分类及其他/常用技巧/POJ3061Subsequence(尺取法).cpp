@@ -1,14 +1,13 @@
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
-#include<iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
 using namespace std;
-#define clr(a,b) memset(a,b,sizeof(a))
-const int maxn = 1e5+7;
+#define clr(a, b) memset(a, b, sizeof(a))
+const int maxn = 1e5 + 7;
 //二分尺取法
 //打前缀和sum(i) =Σ[1~i) ai
 //都为正数sum满足递增二分处理,枚举起点s O(n)
-
 
 /* nlogn 做法
 int sum[maxn];
@@ -43,16 +42,16 @@ int main()
 
 
 */
-//O(n) 的尺取法
+// O(n) 的尺取法
 // 思想：先固定好初始长度，然后左端点向右移动1个单位右端点调整，这样便能取遍序列所有满足的情况
 //#include <bits/stdc++.h>
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 #ifdef Local
 #include "ACM.h"
 #endif
 using namespace std;
-const int maxn = int(1e5+7);
+const int maxn = int(1e5 + 7);
 int a[maxn];
 int main() {
     int T;
@@ -71,17 +70,15 @@ int main() {
         int sum = 0;
         int res = n + 1;
         while (1) {
-            while (t <= n && sum < ss)
-                sum += a[t++];
-            //debug(t);
-            if (sum < ss) break; //推到尾部跳出
-            res = min(res, t - s); // t已经加1
-            //debug(res);
+            while (t <= n && sum < ss) sum += a[t++];
+            // debug(t);
+            if (sum < ss) break;    //推到尾部跳出
+            res = min(res, t - s);  // t已经加1
+            // debug(res);
             sum -= a[s++];
-            //debug(sum);
+            // debug(sum);
         }
         printf("%d\n", res > n ? 0 : res);
     }
     return 0;
 }
-

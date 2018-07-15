@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int INF=0x3f3f3f3f;
-const int MAX_N=100000+10;
+const int INF = 0x3f3f3f3f;
+const int MAX_N = 100000 + 10;
 int main() {
     int cases = 1;
     double k = log(2) / log(10);

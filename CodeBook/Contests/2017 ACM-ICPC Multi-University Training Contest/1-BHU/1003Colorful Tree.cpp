@@ -10,8 +10,7 @@ const int maxn = 200007;
 typedef long long ll;
 int cnt;
 vector<int> tr[maxn];
-void addedge2(int u,int v)
-{
+void addedge2(int u, int v) {
     tr[u].push_back(v);
     tr[v].push_back(u);
 }
@@ -20,32 +19,29 @@ bool vis[maxn];
 ll ans;
 void init() {
     ans = cnt = 0;
-    memset(vis,0, sizeof(vis));
-    memset(sum,0, sizeof(sum));
+    memset(vis, 0, sizeof(vis));
+    memset(sum, 0, sizeof(sum));
 }
-ll dfs(int u, int pa)
-{
+ll dfs(int u, int pa) {
     sz[u] = 1;
     ll all_son = 0;
     int CNT = tr[u].size();
-    for(int i=0;i<CNT;i++)
-    {
+    for (int i = 0; i < CNT; i++) {
         int v = tr[u][i];
-        if(v == pa) continue;
+        if (v == pa) continue;
         ll last = sum[c[u]];
-        sz[u] += dfs(v,u);
-        ll add = sum[c[u]]-last;
-        ans += (sz[v]-add)*(sz[v]-add-1LL)/2;
+        sz[u] += dfs(v, u);
+        ll add = sum[c[u]] - last;
+        ans += (sz[v] - add) * (sz[v] - add - 1LL) / 2;
         all_son += sz[v] - add;
     }
     sum[c[u]] += all_son + 1;
     return sz[u];
 }
-int main()
-{
+int main() {
     int n;
     int kase = 1;
-    while(scanf("%d", &n)!=EOF) {
+    while (scanf("%d", &n) != EOF) {
         init();
         for (int i = 1; i <= n; i++) {
             scanf("%lld", &c[i]);
@@ -69,8 +65,7 @@ int main()
             if (vis[i] == 0) continue;
             ans += (n - sum[i]) * (n - sum[i] - 1LL) / 2;
         }
-        printf("%lld\n", (long long) n * (n - 1LL) / 2 * cnt - ans);
+        printf("%lld\n", (long long)n * (n - 1LL) / 2 * cnt - ans);
     }
     return 0;
 }
-

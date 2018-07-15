@@ -12,7 +12,8 @@ node *build() {
     int v;
     scanf("%d", &v);
     node *T;
-    if (!v)T = nullptr;
+    if (!v)
+        T = nullptr;
     else {
         T = new node();
         T->v = v;

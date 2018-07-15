@@ -19,8 +19,7 @@ int main() {
     double sum = 0, exp = 0;
     for (int i = 0; i < n; i++) {
         sum += a[i];
-        for (int j = i + 1; j < n; j++)
-            exp += x[i] * x[j] * (j - i);
+        for (int j = i + 1; j < n; j++) exp += x[i] * x[j] * (j - i);
     }
     printf("%lf\n", exp / sum / sum);
 }

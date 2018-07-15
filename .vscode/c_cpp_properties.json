@@ -54,7 +54,45 @@
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17"
+        },
+        {
+            "name": "OSX",
+            "includePath": [
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/../../../../../../include/c++/7.3.0",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/../../../../../../include/c++/7.3.0/x86_64-apple-darwin17.5.0",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/../../../../../../include/c++/7.3.0/backward",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/include",
+                "/usr/local/include",
+                "/usr/local/Cellar/gcc@7/7.3.0/include",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/include-fixed",
+                "/usr/include",
+                "/System/Library/Frameworks",
+                "/Library/Frameworks",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "browse": {
+                "path": [
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/../../../../../../include/c++/7.3.0",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/../../../../../../include/c++/7.3.0/x86_64-apple-darwin17.5.0",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/../../../../../../include/c++/7.3.0/backward",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/include",
+                "/usr/local/include",
+                "/usr/local/Cellar/gcc@7/7.3.0/include",
+                "/usr/local/Cellar/gcc@7/7.3.0/lib/gcc/7/gcc/x86_64-apple-darwin17.5.0/7.3.0/include-fixed",
+                "/usr/include",
+                "/System/Library/Frameworks",
+                "/Library/Frameworks",
+                "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/usr/local/Cellar/gcc@7/7.3.0/bin/gcc-7",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         }
     ],
-    "version": 3
+    "version": 4
 }

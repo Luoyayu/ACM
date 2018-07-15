@@ -61,7 +61,14 @@
         "string": "cpp",
         "codecvt": "cpp",
         "cuchar": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "hashtable": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "string_view": "cpp"
     },
     "cSpell.enabledLanguageIds": [
         "c",

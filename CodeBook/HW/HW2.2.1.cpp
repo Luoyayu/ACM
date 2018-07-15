@@ -12,13 +12,11 @@ int main() {
     int n, V;
     scanf("%d %d", &n, &V);
 
-    for (int i = 0; i < n; i++)
-        scanf("%d %d", &c[i], &w[i]);
+    for (int i = 0; i < n; i++) scanf("%d %d", &c[i], &w[i]);
 
     memset(dp, 0, sizeof(dp));
     for (int i = 1; i <= n; i++)
-        for (int v = V; v >= c[i]; v--)
-            dp[v] = max(dp[v], dp[v - c[i]] + w[i]);
+        for (int v = V; v >= c[i]; v--) dp[v] = max(dp[v], dp[v - c[i]] + w[i]);
     printf("%d\n", dp[V]);
 }
 

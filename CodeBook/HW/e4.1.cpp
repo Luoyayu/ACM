@@ -15,7 +15,8 @@ void Dijkstra() {
     for (int i = 0; i < n; i++) d[i] = (i == st ? 0 : INF);
     for (int i = 0; i < n; i++) {
         int x, m = INF;
-        for (int y = 0; y < n; y++) if (!done[y] && d[y] <= m) m = d[x = y];
+        for (int y = 0; y < n; y++)
+            if (!done[y] && d[y] <= m) m = d[x = y];
         done[x] = 1;
         for (int y = 0; y < n; y++) d[y] = min(d[y], d[x] + g[x][y]);
     }

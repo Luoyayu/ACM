@@ -63,8 +63,7 @@ int main() {
         memset(num, 0, sizeof num);
 
         __tire.pre();
-        for (int i = 1; i <= n; i++)
-            scanf("%lld", &num[i]);
+        for (int i = 1; i <= n; i++) scanf("%lld", &num[i]);
 
         for (int i = 1; i <= n; i++)
             __tire.insert(__tire.root[i], __tire.root[i - 1], num[i]);
@@ -78,7 +77,8 @@ int main() {
             LL maxn = 0;
             // for(int j=l;j<=r;j++)maxn=max(maxn,num[j]^x);
             // printf("ans==%lld\n",maxn);
-            printf("%lld\n", __tire.query(__tire.root[l - 1], __tire.root[r], x));
+            printf("%lld\n",
+                   __tire.query(__tire.root[l - 1], __tire.root[r], x));
         }
     }
 }

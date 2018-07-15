@@ -10,12 +10,12 @@ const int maxn = 5005;
 char str[maxn];
 int ans;
 void solve(int len, int lim) {
-    for (int i = 2; i <= len; i++)//遍历右端点, 取等号便可处理奇偶中心
+    for (int i = 2; i <= len; i++)  //遍历右端点, 取等号便可处理奇偶中心
     {
         int mid = i / 2;
         int s = 0, t = 0;
         int sum = 0;
-        for (int j = 0; j < mid; j++) //遍历左端点
+        for (int j = 0; j < mid; j++)  //遍历左端点
         {
             sum += abs(str[j] - str[i - j - 1]);
             if (sum <= lim) {
@@ -23,27 +23,26 @@ void solve(int len, int lim) {
                 ans = max(ans, t);
             } else {
                 t--;
-                sum -= abs(str[j] - str[i - j - 1]); // 还原状态
+                sum -= abs(str[j] - str[i - j - 1]);  // 还原状态
                 sum -= abs(str[s] - str[i - s - 1]);
-                s++;// 移左端点
+                s++;  // 移左端点
                 j--;
             }
         }
     }
 }
-int main()
-{
+int main() {
     int t;
     scanf("%d", &t);
-    while(t--)
-    {
+    while (t--) {
         ans = 0;
-        int m;scanf("%d %s", &m, str);
+        int m;
+        scanf("%d %s", &m, str);
         int len = strlen(str);
         solve(len, m);
         strrev(str);
         solve(len, m);
-        printf("%d\n",ans);
+        printf("%d\n", ans);
     }
     return 0;
 }

@@ -1,5 +1,5 @@
-#include "feature.h"
 #include <bits/stdc++.h>
+#include "feature.h"
 
 using namespace std;
 
@@ -10,8 +10,7 @@ int solve(int n, int k) {
     int ans = 0, tot = 0;
     for (int i = 0; i < k; i++) {
         tot += a[i];
-        if (tot > n)
-            ans++, tot = a[i];
+        if (tot > n) ans++, tot = a[i];
     }
     return ans;
 }

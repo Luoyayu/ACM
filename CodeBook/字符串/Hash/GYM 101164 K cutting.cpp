@@ -7,7 +7,8 @@ struct node
     int h1,h2,h3;
     unsigned i,j;
     node(){}
-    node(int h1,int h2,int h3, unsigned  i, unsigned j):h1(h1),h2(h2),h3(h3),i(i),j(j){}
+    node(int h1,int h2,int h3, unsigned  i, unsigned
+j):h1(h1),h2(h2),h3(h3),i(i),j(j){}
 
     bool operator ==(const node b)
     {
@@ -61,7 +62,8 @@ int main()
                 if(H1[i]==H2[j])
                 {
                     printf("YES\n");
-                    string a1=s2.substr(0,H2[j].i),a2=s2.substr(H2[j].i,H2[j].j),
+                    string
+a1=s2.substr(0,H2[j].i),a2=s2.substr(H2[j].i,H2[j].j),
                     a3=s2.substr(H2[j].j+H2[j].i,lens2-(H2[j].i+H2[j].j));
                     string new2=a1+a2+a3;
                     string new1=s1;
