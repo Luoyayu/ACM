@@ -54,7 +54,7 @@ int main() {
         sort(a, a + n, cmpr);
         for (int i = 1; i < n; i++)
             if (a[i].r - a[i - 1].r <= k) merge(a[i].idx, a[i - 1].idx);
-            
+
         int ans = 0;
         for (int i = 0; i < n; i++) ans += (fa[i] == i);
         printf("%d\n", ans);
