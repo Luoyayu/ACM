@@ -4,19 +4,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 // ac自动机 trie数组实现
-//深入理解:ac自动机通过失配指针把trie树拓展构建成trie图
-// trie树又可以理解成前缀树,本质上时DFA（确定性有限状态自动机）
+//深入理解: ac自动机通过失配指针把trie树拓展构建成trie图
+// trie树又可以理解成前缀树,本质上是DFA（确定性有限状态自动机）
 
 //数组实现
 const int maxn = 10000;
 #define Sigmasize (26)  //若为ascill字符集的话 sigmasize为198
 int tot, son[maxn][Sigmasize], id[maxn], fail[maxn];
-// son[][26] trie树; fai 失配指针
+// son[][26] trie树; fail 失配指针
 // id[x] = p 表示第p个模式串
 int n;
 char s[maxn];
-void insert(int p, int len)  // build trie
-{
+void insert(int p, int len) {  // build trie
     for (int dep = 0, i = 0, w; i < len; i++) {
         if (!son[dep][w = s[i] - 'a']) son[dep][w] = ++tot;
         dep = son[dep][w];            //字典树层数
@@ -63,13 +62,14 @@ int main() {
 //指针实现
 #define crl(x) memset(s, 0, sizeof x)
 const int Sigmasize = 26;
-;
+
 const int maxn = 500100;
-struct node {
+struct Node {
     Node *ch[Sigmasize], *fail;
     int match;
     void clear() { clr(this); }
-} Node *que[maxn];
+};
+Node *que[maxn];
 Node node[maxn], *root, *superRoot, *cur;
 Node *newNode() {
     cur->clear();
@@ -87,9 +87,9 @@ void clear() {
 }
 void insert(char *s) {
     Node *t = root;
-    for (; *s, s++) {
+    for (; *s; s++) {
         int x = *s - 'a';
-        if (t->ch[i] == NULL) t->ch[i] = newNode();
+        if (t->ch[x] == NULL) t->ch[x] = newNode();
         t = t->ch[x];
     }
 }
@@ -98,10 +98,10 @@ void build() {
     int p = 0, q = 0;
     que[q++] = root;
     while (q != p) {
-        Ndoe *t = que[p++];
+        Node *t = que[p++];
         for (int i = 0; i < Sigmasize; i++) {
             if (t->ch[i]) {
-                t->ch[i]->fail = t->fail->ch[i]
+                t->ch[i]->fail = t->fail->ch[i];
             }
         }
     }

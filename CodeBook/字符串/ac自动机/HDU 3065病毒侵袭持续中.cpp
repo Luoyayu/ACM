@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 const int maxn = 1010 * 50;
 const int Size = 128;
 char vir[1010][51];

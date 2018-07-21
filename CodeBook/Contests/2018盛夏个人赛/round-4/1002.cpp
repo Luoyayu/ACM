@@ -1,45 +1,53 @@
 #include <bits/stdtr1c++.h>
 #include <utility>
-
+#pragma comment(linker, "/STACK:1024000000,1024000000")
 using namespace std;
 const int maxn = 1e5 + 7;
-// MLE
+// MLE 中
+
 string s[maxn];
-map<string, string> mp_raw;
-map<string, int> mp_idx;
-vector<string> v[maxn];
-map<string, bool> st;
+struct node {
+    string s;
+    int idx;
+};
+map<string, node> mp;
+vector<string> v;
+stack<string> stk;
+int visedIdxInBFS[maxn];
+bool vis[maxn];
 
-void addIntoVector(int idx, const string &Q) {
-    int curFuncNameIdx = mp_idx[Q];
+void addIntoVector(const string &Q) {
+    int curFuncNameIdx = mp[Q].idx;
     unsigned long len = s[curFuncNameIdx].length();
-
     for (int i = 0; i < len;) {
         int funcNameSt = 0, funcNameEd = 0;
-        if (string(s[curFuncNameIdx], static_cast<unsigned long>(i), 4) == "with") {
+        if (string(s[curFuncNameIdx], i, 4) == "with") {
             funcNameSt = i + 5;
             for (int j = funcNameSt; j < len; j++)
                 if (s[curFuncNameIdx][j] == ' ') {
                     funcNameEd = j;
                     break;
                 }
-            v[idx].emplace_back(s[curFuncNameIdx], funcNameSt, funcNameEd - funcNameSt);
+            v.emplace_back(s[curFuncNameIdx], funcNameSt,
+                           funcNameEd - funcNameSt);
             i = funcNameEd;
-        } else i++;
+        } else
+            i++;
     }
 }
 
 int bfs(const string &Q, int cnt) {
     queue<string> q;
     q.push(Q);
-    v[++cnt].push_back(Q);
+    v.push_back(Q);
     while (!q.empty()) {
         string cur = q.front();
         q.pop();
-        addIntoVector(++cnt, cur);
-        for (const auto &x:v[cnt])
-            q.push(x);
-        v[cnt].insert(v[cnt].begin(), cur);
+        int before_idx = v.size() - 1;
+        addIntoVector(cur);
+        v.push_back(cur);
+        int after_idx = v.size();
+        for (int i = before_idx + 1; i < after_idx; i++) q.push(v[i]);
     }
     return cnt;
 }
@@ -49,45 +57,66 @@ int main() {
     cin >> t;
     getchar();
     while (t--) {
-        mp_raw.clear();
-        mp_idx.clear();
-        st.clear();
+        mp.clear();
+        while (!stk.empty()) stk.pop();
         int n;
         cin >> n;
-        for (int i = 0; i < n; i++) v[i].clear();
         getchar();
+        for (int i = 0; i <= n; i++)
+            v[i].clear(), vis[i] = visedIdxInBFS[i] = 0;
+
         for (int i = 0; i < n; i++) {
             getline(cin, s[i]);
             auto len = static_cast<int>(s[i].length());
             string funcName;
             int funcNameSt = 4, retVal = 0;
             int j;
-            for (j = 4; j < len; j++) if (s[i][j] == ' ') break;
-            funcName = string(s[i], 4, static_cast<unsigned long>(j - 4));
-            mp_idx[funcName] = i;
-            for (j = len - 1; j >= 4; j--) if (s[i][j] == '=') break;
-            mp_raw[funcName] = string(s[i], static_cast<unsigned long>(j + 2),
-                                      static_cast<unsigned long>(len - (j + 2)));
+            for (j = 4; j < len; j++)
+                if (s[i][j] == ' ') break;
+            funcName = string(s[i], 4, j - 4);
+            mp[funcName].idx = i;
+            for (j = len - 1; j >= 4; j--)
+                if (s[i][j] == '=') break;
+            mp[funcName].s = string(s[i], j + 2, len - (j + 2));
         }
         string Q;
         cin >> Q;
         int cnt = bfs(Q, -1);
-        stack<string> stk;
+
+        // stack 倒置 + 去重
         for (int i = cnt - 1; i >= 0; i--) {
-            for (auto it = v[i].rbegin(); it != v[i].rend(); it++) {
+            for (auto it = v.rbegin(); it != v.rend(); it++) {
                 string x = *it;
-                if (!st[x]) {
+                if (!vis[mp[x].idx]) {
                     stk.push(x);
-                    st[x] = true;
+                    vis[mp[x].idx] = true;
                 }
             }
         }
-        cout << mp_raw[stk.top()];
+        cout << mp[stk.top()].s;
         stk.pop();
         while (!stk.empty()) {
-            cout << " " << mp_raw[stk.top()];
+            cout << " " << mp[stk.top()].s;
             stk.pop();
         }
         cout << endl;
     }
 }
+
+/*
+2
+4
+def a = pentakill
+def b with a = quadrakill
+def c with b = thriplekill
+def d with c = doublekill
+d
+6
+def f1 = world
+def f2 = hello
+def f3 with f2 with f1 = say
+def f4 = please
+def f5 with f3 with f4 = dont
+def f6 with f3 with f2 = rather
+f6
+*/

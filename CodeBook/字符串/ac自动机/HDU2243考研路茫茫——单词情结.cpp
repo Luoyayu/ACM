@@ -56,13 +56,14 @@ struct Trie {
         while (!Q.empty()) {
             int now = Q.front();
             Q.pop();
-            for (int i = 0; i < Size; i++)
+            for (int i = 0; i < Size; i++) {
                 if (son[now][i] == -1)
                     son[now][i] = son[fail[now]][i];
                 else {
                     fail[son[now][i]] = son[fail[now]][i];
                     Q.push(son[now][i]);
                 }
+            }
         }
     }
     matrix getM() {

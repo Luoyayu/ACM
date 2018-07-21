@@ -16,7 +16,7 @@ void insert(char *s, int idx) {
     }
     val[x]++;
 }
-void inline init() {
+void init() {
     tot = 1;
     clr(son[0]);
     clr(val);
