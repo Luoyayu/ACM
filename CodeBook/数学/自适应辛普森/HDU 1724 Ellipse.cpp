@@ -15,7 +15,7 @@ double ASR(double a, double b) {
     double sumb = Simpson(mid, b);
     return (fabs(sum - suma - sumb) < esp ? sum : ASR(a, mid) + ASR(mid, b));
 }
-int main(int argc, char const *argv[]) {
+int main() {
     int t;
     scanf("%d", &t);
     while (t--) {
