@@ -1,7 +1,5 @@
 //数据的离散化/逆序数和==swap次数
-#include <algorithm>
-#include <cstdio>
-#include <cstring>
+#include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 #define lowbit(x) x &(-x)
