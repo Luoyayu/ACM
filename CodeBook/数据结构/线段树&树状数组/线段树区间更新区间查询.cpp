@@ -11,8 +11,8 @@ typedef long long LL;
 #define Rson i << 1 | 1
 LL sum[MAXN * 4];
 LL addv[MAXN * 4];
-void PushDown(int node, int num) {
-    LL &lazy = addv[node];
+void PushDown(int i, int num) {
+    LL &lazy = addv[i];
     if (lazy) {
         sum[Lson] += lazy * (num - (num / 2));
         sum[Rson] += lazy * (num / 2);

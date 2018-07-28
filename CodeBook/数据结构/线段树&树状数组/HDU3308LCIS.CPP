@@ -55,8 +55,7 @@ int query(int rt, int l, int r) {
     int t2 = query(rson);
     int ans = max(t1, t2);
     if (a[mid] < a[mid + 1])
-        ans = max(ans, (min(ls[rt << 1 | 1], y - mid) +
-                        min(rs[rt << 1], mid + 1 - x)));
+        ans = max(ans, (min(ls[rt << 1 | 1], y - mid) + min(rs[rt << 1], mid + 1 - x)));
     return ans;
 }
 int main() {

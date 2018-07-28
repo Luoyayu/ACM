@@ -1,7 +1,5 @@
-// zwk��
-#include <cstdio>
-#include <cstring>
-#include <iostream>
+// zwk???
+#include<bits/stdc++.h>
 using namespace std;
 const int N = 100005;
 int T[N << 2], M;

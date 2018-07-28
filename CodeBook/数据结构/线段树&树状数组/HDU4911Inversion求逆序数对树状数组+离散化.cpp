@@ -31,9 +31,8 @@ int main() {
         ll ret = 0;  //交换次数
         for (ll i = 1; i <= n; i++) {
             add(s[i].index, 1);
-            ret +=
-                i -
-                sum(s[i].index);  // sum(i)表示比i小的个数，i-sum(i)即表示比i大的个数
+            ret += i - sum(s[i].index);  
+            // sum(i)表示比i小的个数，i-sum(i)即表示比i大的个数
         }
         // if(ret==k) ret=k;
         printf("%lld\n", ret);

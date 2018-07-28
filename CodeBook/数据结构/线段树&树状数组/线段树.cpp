@@ -5,6 +5,7 @@ const int INF = 0x3f3f3f3f;
 #define rson m + 1, r, rt * 2 + 1
 int tree[50005 << 2];
 void maintain(int rt) { tree[rt] = tree[rt * 2] + tree[rt * 2 + 1]; }
+
 int query(int L, int R, int l, int r, int rt) {
     if (L <= l && r <= R)
         return tree[rt];

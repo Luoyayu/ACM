@@ -134,7 +134,7 @@ pll RMQ(int l, int r)
     int k = log2(r-l+1.0);
     MAX =  max(maxdp[l][k], maxdp[r - (1 << k) + 1][k]);
     MIN =  min(mindp[l][k], mindp[r - (1 << k) + 1][k])
-    return make_pair(MIN,MAX);
+    return make_pair(MIN, MAX);
 }
 
 int main()
