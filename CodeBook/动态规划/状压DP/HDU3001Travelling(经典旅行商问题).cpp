@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 /*状压DP第一题 旅行商 TSP 问题
-//题意:必须访问N个城市至少一次至多两次,N 座城市, M条道路+费用
+//题意:必须访问N个城市至少一次至多两次,N座城市, M条道路+费用
 //使用3进制数表示1~N个城市的状态
 //定义状态dp[i][j]=cost为1~N城市处于i状态,目前最后一个访问的城市是j所需要的费用
 //由dp[i][j]转移下到一个城市v: dp[i+3^v][v]=min(dp[i+3^v][v],dp[i][j]+Cjv);
@@ -14,9 +14,9 @@ const int inf = 0x3f3f3f3f;
 #define clr(a, b) memset((a), (b), sizeof(a))
 const int maxn = int(pow(3.0, 10.0)) + 5;
 int dp[maxn][11];
-#define gets(i, j) ((i) / len[(j)]) % 3  //计算状态i下城市j的状态(访问次数)
-int c[20][20];                           //距离
-int len[11];                             //三进制状态数
+#define gets(i, j) ((i) / len[(j)]) % 3  // 计算状态i下城市j的状态(访问次数)
+int c[20][20];                           // 距离
+int len[11];                             // 三进制状态数
 inline void init() {
     len[0] = 1;
     for (int i = 1; i <= 10; i++) len[i] = len[i - 1] * 3;
@@ -44,10 +44,8 @@ int main() {
                 viss = 0;
                 continue;
             }
+            for (int v = 0; v < n; v++) { //在状态i下最后到达城市j,转移到其他状态v
 
-            for (int v = 0; v < n;
-                 v++)  //在状态i下最后到达城市j,转移到其他状态v
-            {
                 if (gets(i, v) == 2)  //城市v已经被访问2次,不能再次访问
                     continue;
                 int u = i + len[v];  //计算新的状态
