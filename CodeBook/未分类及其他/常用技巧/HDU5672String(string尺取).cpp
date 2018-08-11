@@ -19,8 +19,7 @@ int main() {
         int s = 0, t = 0, len = strlen(str);
         int sum = 0;
         for (;;) {
-            while (t < len && sum < k)  // @@尝试满足
-            {
+            while (t < len && sum < k) {   // @@尝试满足
                 int tmp = str[t++] - 'a';  //@@移动右标
                 if (!vis[tmp]) sum++;
                 vis[tmp]++;

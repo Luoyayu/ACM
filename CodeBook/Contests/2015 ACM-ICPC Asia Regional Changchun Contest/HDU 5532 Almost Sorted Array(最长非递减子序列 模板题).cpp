@@ -6,8 +6,7 @@ int a[maxn], b[maxn], n, p[maxn], t;
 int L(int *v) {
     memset(p, inf, sizeof(p));
     for (int i = 0; i < n; i++)
-        *std::upper_bound(p, p + n, v[i]) = v
-            [i];  //严格单调递增子序列此处是lower_bound()，非严格是upper_bound()
+        *std::upper_bound(p, p + n, v[i]) = v[i];  //严格单调递增子序列此处是lower_bound()，非严格是upper_bound()
     return (std::lower_bound(p, p + n, inf) - p >= n - 1);
 }
 int main() {
@@ -15,9 +14,7 @@ int main() {
     while (t--) {
         scanf("%d", &n);
         for (int i = 0; i < n; i++) scanf("%d", a + i), b[n - i - 1] = a[i];
-        if (L(a) + L(b))
-            puts("YES");
-        else
-            puts("NO");
+        if (L(a) + L(b))puts("YES");
+        else puts("NO");
     }
 }

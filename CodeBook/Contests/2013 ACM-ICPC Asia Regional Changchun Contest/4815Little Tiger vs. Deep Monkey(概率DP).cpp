@@ -25,8 +25,7 @@ int main() {
         for (int i = 1; i <= n; i++)
             for (int j = 0; j <= sum; j++) {
                 if (j >= a[i])
-                    dp[i][j] =
-                        dp[i - 1][j - a[i]] / 2;  //可以拿的分数由前面转移
+                    dp[i][j] = dp[i - 1][j - a[i]] / 2;  //可以拿的分数由前面转移
                 dp[i][j] += dp[i - 1][j] / 2;  //无论胜负都要在上次的基础上除2
             }
 
@@ -37,5 +36,4 @@ int main() {
                 break;
             }
     }
-    return 0;
 }

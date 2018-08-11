@@ -72,7 +72,7 @@ int main() {
         while (1) {
             while (t <= n && sum < ss) sum += a[t++];
             // debug(t);
-            if (sum < ss) break;    //推到尾部跳出
+            if (sum < ss) break;    // 推到尾部跳出
             res = min(res, t - s);  // t已经加1
             // debug(res);
             sum -= a[s++];

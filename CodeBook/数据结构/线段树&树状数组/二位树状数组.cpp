@@ -18,6 +18,7 @@ int sum(int x, int y) {
         for (int j = y; j > 0; j -= lowbit(j)) ret += C[i][j];
     return ret;
 }
+
 int main() {
     int T, kase;
     scanf("%d", &kase);
