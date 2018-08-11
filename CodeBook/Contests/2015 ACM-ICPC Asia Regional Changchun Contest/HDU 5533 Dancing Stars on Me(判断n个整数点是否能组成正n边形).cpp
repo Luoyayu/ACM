@@ -4,15 +4,13 @@ using namespace std;
 //很明显只能是n=4组成正方形
 
 int main() {
-    int t;
-    scanf("%d", &t);
+    int t; scanf("%d", &t);
     while (t--) {
         int n;
         scanf("%d", &n);
         if (n != 4) {
             for (int i = 1; i <= n * 2; i++) {
-                int xx;
-                scanf("%d", &xx);
+                int xx; scanf("%d", &xx);
             }
             puts("NO");
             continue;
@@ -28,5 +26,4 @@ int main() {
         else
             puts("NO");
     }
-    return 0;
 }
