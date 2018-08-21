@@ -11,13 +11,13 @@
            {
                return make_pair<double,double>;
            }
+           
 9.//行走江湖必备之读入挂
-inline int read()
-{
+inline int read() {
     int x=0,f=1;char ch=getchar();
     while(ch<'0'||ch>'9'){if(ch=='-')f=-1;ch=getchar();}
     while(ch>='0'&&ch<='9'){x=x*10+ch-'0';ch=getchar();}
     return x*f;
 }
-10.next_permutation()按字典序产生序列的下一个排列,三参数,排序起始,排序终点,可选排序范围个数
-例如 num[]={1,2,3,4} next_permutation(num,num+4) 此时num={1,2,4,3} 
+10.next_permutation() 按字典序产生序列的下一个排列,三参数,排序起始,排序终点,可选排序范围个数
+例如 num[]={1, 2, 3, 4} next_permutation(num,num+4) 此时num={1,2,4,3} 
