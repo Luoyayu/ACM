@@ -1,3 +1,5 @@
 #### ACM
 
-关于ACM的一切，记录和分享。个人博客luoyayu.cn 或者 123.206.188.201
+关于ACM的一切，记录和分享。个人博客blog.luoyayu.cn
+
+Update 2018-9-4：再见
